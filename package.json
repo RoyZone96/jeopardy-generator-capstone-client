@@ -1,6 +1,7 @@
 {
   "name": "jeopardy-client",
   "version": "0.1.0",
+  "description": "Whether for exam review or entertainment, build your own Jeopardy board",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

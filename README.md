@@ -1,68 +1,131 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Jeopardy Generator
+Whether for exam review or entertainment, build your own Jeopardy board.
 
-## Available Scripts
+## Working Prototype???
+You can access a working prototype of the React app here: https://your-app-client.herokuapp.com/ and Node app here: https://your-app-server.herokuapp.com/
 
-In the project directory, you can run:
 
-### `npm start`
+## User Stories???
+This app is for two types of users: a visitor and a logged-in user
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Landing Page
+* as a visitor
+* I want to understand what I can do with this app (or sign up, or log in)
+* so I can decide if I want to use it
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Login Page
+* as a visitor
+* I want to log into this application 
+* so I can play the game
 
-### `npm test`
+#### Registration Page
+* as a visitor
+* I want to register a secure account
+* so I can play the game
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Home Page
+* as a visitor
+* I want a place to create and store my boards
+* so I can play and post them for others to use
 
-### `npm run build`
+#### Popular Boards Page
+* as a visitor
+* I want see the most popular boards uploaded
+* so I can play them myself
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Recent Page
+* as a visitor
+* I want to see all the boards that were recently posted
+* so I can play them myself
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Support Page
+* as a visitor
+* I want a place to report errors in the page
+* so I can play and post them for others to use
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Wireframes???
+Landing/Login Page
+:-------------------------:
+![Landing/Login Page](/github-images/wireframes/landing-page-wireframe.png)
+Landing/Register Page
+![Landing/Register Page](/github-images/wireframes/registration-page.png)
+Main Page
+![Main Page](/github-images/wireframes/main-page.png)
+Main Page/Gameboard
+![Main Page/Gameboard](/github-images/wireframes/gameboard-layout.png)
+Main Page/Question Submission
+![Main Page/Question Submission](/github-images/wireframes/question-submission-page.png)
+Support Page
+![Support Page](/github-images/wireframes/support-page.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Screenshots???
+Landing/Login Page
+:-------------------------:
+![Landing Page](/github-images/screenshots/login-page-screenshot.png)
+Landing/Register Page
+![Register Page](/github-images/screenshots/login-page-screenshot.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Functionality
+The app's functionality includes:
+* Every User has the ability to create an account
+* Every User has the ability to create fully functioning Jeopardy boards
+* Every User has the ability to play a fully functiong Jeopardy board down to final Jeopardy
+* Every User has the abilty to play other people's boards posted in both the Popular and Recent tabs
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Technology
+* Front-End: HTML5, CSS3, JavaScript ES6, React
+* Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
+* Development Environment: Heroku, DBeaver
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Front-end Structure - React Components Map???
+* __Index.js__ (stateless)
+    * __App.js__ (stateful)
+        * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
+            * __Login.js__ (stateful) -
+            * __Register.js__ (stateful) -
+        * __Navbar.js__ (stateless) -
+        * __Homepage.js__(stateless) -
+            * __NewBoardButton.js__(stateful)
+            * __BoardWrapper.js__(stateless)
+                * __Title.js__(stateless)
+                * __Button.js__(stateful)
+                    * __PlayBoard.js__(stateful)
+        * __Popular.js__(statless) -
+        * __Recent.js__(stateless) -
+        * __Support.js__(stateless) -
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Back-end Structure - Business Objects???
+* User (database table)
+    * Username (email validation)
+    * Password (at least 8 chars, at least one alpha and a special character validation)
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## API Documentation???
+API Documentation details:
+* get all users
 
-### Making a Progressive Web App
+## Responsive
+App is built to be usable on mobile devices, as well as responsive across mobile, tablet, laptop, and desktop screen resolutions.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Development Roadmap???
+This is v1.0 of the app, but future enhancements are expected to include:
+* add more functionality
 
-### Advanced Configuration
+## How to run it
+Use command line to navigate into the project folder and run the following in terminal
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Local Node scripts
+* To install the node project ===> npm install
+* To migrate the database ===> npm run migrate -- 1
+* To run Node server (on port 8000) ===> npm run dev
+* To run tests ===> npm run test
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Local React scripts
+* To install the react project ===> npm install
+* To run react (on port 3000) ===> npm start
+* To run tests ===> npm run test
