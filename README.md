@@ -5,7 +5,7 @@ Whether for exam review or entertainment, build your own Jeopardy board.
 You can access a working prototype of the React app here: https://your-app-client.herokuapp.com/ and Node app here: https://your-app-server.herokuapp.com/
 
 
-## User Stories???
+## User Stories
 This app is for two types of users: a visitor and a logged-in user
 
 #### Landing Page
@@ -24,31 +24,31 @@ This app is for two types of users: a visitor and a logged-in user
 * so I can play the game
 
 #### Home Page
-* as a visitor
+* as a user
 * I want a place to create and store my boards
 * so I can play and post them for others to use
 
 #### Popular Boards Page
-* as a visitor
+* as a user
 * I want see the most popular boards uploaded
 * so I can play them myself
 
 #### Recent Page
-* as a visitor
+* as a user
 * I want to see all the boards that were recently posted
 * so I can play them myself
 
 #### Support Page
-* as a visitor
+* as a user
 * I want a place to report errors in the page
 * so I can play and post them for others to use
 
 
 
-### Wireframes???
+### Wireframes
 Landing/Login Page
 :-------------------------:
-![Landing/Login Page](/github-images/wireframes/landing-page-wireframe.png)
+![Landing/Login Page](/github-images/wireframes/login-page.png)
 Landing/Register Page
 ![Landing/Register Page](/github-images/wireframes/registration-page.png)
 Main Page
@@ -81,7 +81,7 @@ The app's functionality includes:
 * Development Environment: Heroku, DBeaver
 
 
-## Front-end Structure - React Components Map???
+## Front-end Structure - React Components Map
 * __Index.js__ (stateless)
     * __App.js__ (stateful)
         * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
