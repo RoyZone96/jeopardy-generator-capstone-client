@@ -57,6 +57,10 @@ Main Page/Gameboard
 ![Main Page/Gameboard](/github-images/wireframes/gameboard-layout.png)
 Main Page/Question Submission
 ![Main Page/Question Submission](/github-images/wireframes/question-submission-page.png)
+Main Page/Playboard
+![Main Page/Playboard](/github-images/wireframes/gameboard-page.png)
+Main Page/Question Shown
+![Main Page/Question Shown](/github-images/wireframes/question-shown.png)
 Support Page
 ![Support Page](/github-images/wireframes/support-page.png)
 
@@ -85,26 +89,46 @@ The app's functionality includes:
 * __Index.js__ (stateless)
     * __App.js__ (stateful)
         * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
-            * __Login.js__ (stateful) -
-            * __Register.js__ (stateful) -
+            * __LoginForm.js__ (stateful) -
+            * __RegistrationForm.js__ (stateful) -
         * __Navbar.js__ (stateless) -
         * __Homepage.js__(stateless) -
             * __NewBoardButton.js__(stateful)
             * __BoardWrapper.js__(stateless)
                 * __Title.js__(stateless)
                 * __Button.js__(stateless)
-                    * __PlayBoard.js__(stateful)
-        * __Popular.js__(statless) -
-        * __Recent.js__(stateless) -
-        * __Support.js__(stateless) -
-            * __SupportForm.js__(stateful)
+            * __PlayBoard.js__(stateful)
+            * __Popular.js__(statless) -
+            * __Recent.js__(stateless) -
+            * __Support.js__(stateless) -
+                * __SupportForm.js__(stateful)
 
 
 ## Back-end Structure - Business Objects???
-* User (database table)
-    * Username (email validation)
-    * Password (at least 8 chars, at least one alpha and a special character validation)
-
+* Users (database table)
+    * id (auto-generated)
+    * email (email validation)
+    * username (at least 8 chars, special characters, alphanumerical)
+    * password (at least 8 chars, at least one alpha and a special character validation)
+* Boards
+    * id (auto-generated)
+    * user_id (auto-generated)
+    * board_title (25 chars maximum, alphabetical)
+    * times_played (integer, default 0)
+    * date_created ( date-time )
+    * date_updated ( date-time )
+* Questions
+    * id (auto-generated)
+    * board_id (auto-generated)
+    * question_text (alphabetical, text)
+    * question_answer (alphabetical, text)
+    * question_points (numerical, default 100)
+    * question_category (enumeration: )
+* Scores
+    * id (auto-generated)
+    * user_id (auto-generated)
+    * board_id (auto-generated)
+    * score_value ()
 
 ## API Documentation???
 API Documentation details:
