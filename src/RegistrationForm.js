@@ -1,45 +1,142 @@
 import React, { Component } from 'react'
+import AuthApiService from './AuthApiService'
+import TokenService from './TokenService'
 
 
-export default class RegistrationPage extends Component {
+export default class RegistrationForm extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            username: '',
-            password: '',
-            confirm_password: '',
-            email: ''
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
+            username: {
+                value: '',
+                touched: false
+            },
+            password: {
+                value: '',
+                touched: false
+            },
+            repeatPassword: {
+                value: '',
+                touched: false
+            },
+            LogInUserID: 0,
+            isActive: true
+        };
     }
 
+    componentDidMount() {
+        console.log('Stateful component Sign Up successfully mounted.');
+    }
 
-    handleSubmit = e => {
+    handleShow = () => {
+        this.setState({
+            isActive: false
+        })
+    }
+
+    changeusername(username) {
+        this.setState({
+            username: { value: username, touched: true }
+        });
+    }
+
+    changePassword(password) {
+        this.setState({
+            password: { value: password, touched: true }
+        });
+    }
+
+    updateRepeatPassword(repeatPassword) {
+        this.setState({ repeatPassword: { value: repeatPassword, touched: true } });
+    }
+
+    handleLoginSuccess = user => {
+        window.location = '/user/dash'
+    }
+
+    handleSubmit = (event) => {
         event.preventDefault();
+        const { username, password, confirmPassword, email } = event.target;
+        console.log('username:', username.value, 'password:', password.value, 'email', email.value);
+        this.setState({ error: null })
+        AuthApiService.postUser({
+            user_name: username.value,
+            password: password.value,
+        })
+
+            .then(response => {
+                console.log('user:', response)
+                username.value = ''
+                password.value = ''
+                confirmPassword.value = ''
+                email.value = ''
+                TokenService.saveAuthToken(response.authToken)
+                TokenService.saveUserId(response.id)
+                window.location = '/user/login'
+            })
+
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
+    }
+
+    validateusername() {
+        const username = this.state.username.value.trim();
+        if (username.length === 0) {
+            return <p className='input-error'>username is required</p>;
+        } else if (username.length < 2) {
+            return <p className='input-error'>username must be at least 2 characters long</p>;
+        }
+    }
+
+    validatePassword() {
+        const password = this.state.password.value.trim();
+        if (password.length === 0) {
+            return <p className='input-error'>Password is required</p>;
+        } else if (password.length < 6 || password.length > 72) {
+            return <p className='input-error'>Password must be between 6 and 72 characters long</p>;
+        } else if (!password.match(/[0-9]/)) {
+            return <p className='input-error'>Password must contain at least one number</p>;
+        }
+    }
+
+    validateRepeatPassword() {
+        const repeatPassword = this.state.repeatPassword.value.trim();
+        const password = this.state.password.value.trim();
+        // this.setState({submitButtonDisabled: 'disabled'});
+        if (repeatPassword != password) {
+            return <p className='input-error'>Passwords do not match</p>;
+        }
+        // else {
+        //     this.setState({submitButtonDisabled: ''});
+        // }
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username
-                    <input type="text" value={this.state.value} onSubmit={this.handleSubmit} required />
-                    </label>
-                    <label>
-                        Password
-                    <input type="text" value={this.state.value} onSubmit={this.handleSubmit} required />
-                    </label>
-                    <label>
-                        Confirm Password
-                    <input type="text" value={this.state.value} onSubmit={this.handleSubmit} required />
-                    </label>
-                    <label>
-                        E-mail
-                    <input type="text" value={this.state.value} onSubmit={this.handleSubmit} required />
-                    </label>
+                <form className="registration" onSubmit={this.handleSubmit}>
+                    <div className="wrapper">
+                        <label htmlFor="username"> username </label>
+                        <input type="text" className="username" name="username" required />
+                    </div>
+                    <div className="wrapper">
+                        <label htmlFor="password"> Password </label>
+                        <input type="text" className="password" name="password" required />
+                    </div>
+                    <div className="wrapper">
+                        <label htmlFor="confirmPassword"> Confirm Password </label>
+                        <input type="text" className="confirmPassword" name="confirmPassword" required />
+                    </div>
+                    <div className="wrapper">
+                        <label htmlFor="email"> E-mail </label>
+                        <input type="text" className="email" name="email" required />
+                    </div>
+                    <div className="wrapper">
+                        <button type="submit"> Submit </button>
+                    </div>
                 </form>
-                <a href="">Already have an account? Login in here.</a>
+                <a href="/login">Already have an account? Login in here.</a>
             </div>
         )
     }

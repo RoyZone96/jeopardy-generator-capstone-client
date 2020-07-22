@@ -94,12 +94,18 @@ The app's functionality includes:
         * __Navbar.js__ (stateless) -
         * __Homepage.js__(stateless) -
             * __NewBoardButton.js__(stateful)
-            * __BoardWrapper.js__(stateless)
-                * __Title.js__(stateless)
-                * __Button.js__(stateless)
+            * __BoardList.js__(stateless)
+                * __Board.js__(stateless)
+                * __BoardNav.js__(stateless)
             * __PlayBoard.js__(stateful)
             * __Popular.js__(statless) -
+                * __BoardList.js__(stateless)
+                    * __Board.js__(stateless)
+                    * __BoardNav.js__(stateless)
             * __Recent.js__(stateless) -
+                   *  __BoardList.js__(stateless)
+                        * __Board.js__(stateless)
+                        * __BoardNav.js__(stateless)
             * __Support.js__(stateless) -
                 * __SupportForm.js__(stateful)
 

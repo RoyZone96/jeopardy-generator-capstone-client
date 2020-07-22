@@ -1,31 +1,44 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from './Header'
+import Footer from './Footer'
 import NavLinks from './NavLinks'
 import MyBoards from './MyBoards'
 import PopularBoards from './PopularBoards'
 import RecentBoards from './RecentBoards'
 import Support from './Support'
+import LoginForm from './LoginForm'
+import LandingPage from './LandingPage';
+import RegistrationForm from './RegistrationForm';
+import Welcome from './Welcome';
+
 
 export default class App extends Component {
+  state = {
+    loggedIn: false
+  }
   render() {
     return (
+      <div>
       <Router>
         <Header />
         <main className='App'>
+          <Welcome />
+          <button type="button">Logout</button>
           <NavLinks />
           <Switch>
-            <Route exact path='/' component={MyBoards} />
+            <Route exact path="/" component={LandingPage} />
+            <Route path='/myboards' component={MyBoards} />
             <Route path='/popular' component={PopularBoards} />
             <Route path='/recent' component={RecentBoards} />
             <Route path='/support' component={Support} />
-            <Route />
+            <Route path='/login' component={LoginForm}/>
+            <Route path='/registration' component={RegistrationForm}/>
           </Switch>
-          <div className="staging-area">
-
-          </div>
         </main>
       </Router>
+      <Footer />
+      </div>
     );
   }
 }
