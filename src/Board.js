@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import { format, parseISO } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ApiContext from './ApiContext'
+import QuestionForm from './QuestionForm'
 import config from './config'
 
 
 
 export default class Board extends React.Component {
   static defaultProps = {
-    onDeleteNote: () => { },
+    onDeleteBoard: () => { },
   }
   static contextType = ApiContext;
 
@@ -41,9 +42,9 @@ export default class Board extends React.Component {
     return (
       <main>
         <div>
-          <button type="button">
+          <Link to="/myboards"><button type="button">
             Back
-          </button>
+          </button></Link>
         </div>
         <section>
           <div className="divTable">
@@ -57,44 +58,44 @@ export default class Board extends React.Component {
                 <div className="divTableCell"><input type="text" placeholder="Category" required /></div>
               </div>
               <div className="divTableRow">
-                <div className="divTableCell"><a href="/#">100</a></div>
-                <div className="divTableCell"><a href="/#">100</a></div>
-                <div className="divTableCell"><a href="/#">100</a></div>
-                <div className="divTableCell"><a href="/#">100</a></div>
-                <div className="divTableCell"><a href="/#">100</a></div>
-                <div className="divTableCell"><a href="/#">100</a></div>
+                <div className="divTableCell"><Link to="/question/100">100</Link></div>
+                <div className="divTableCell"><Link to="/question/100">100</Link></div>
+                <div className="divTableCell"><Link to="/question/100">100</Link></div>
+                <div className="divTableCell"><Link to="/question/100">100</Link></div>
+                <div className="divTableCell"><Link to="/question/100">100</Link></div>
+                <div className="divTableCell"><Link to="/question/100">100</Link></div>
               </div>
               <div className="divTableRow">
-                <div className="divTableCell"><a href="/#">200</a></div>
-                <div className="divTableCell"><a href="/#">200</a></div>
-                <div className="divTableCell"><a href="/#">200</a></div>
-                <div className="divTableCell"><a href="/#">200</a></div>
-                <div className="divTableCell"><a href="/#">200</a></div>
-                <div className="divTableCell"><a href="/#">200</a></div>
+                <div className="divTableCell"><Link to="/question/200">200</Link></div>
+                <div className="divTableCell"><Link to="/question/200">200</Link></div>
+                <div className="divTableCell"><Link to="/question/200">200</Link></div>
+                <div className="divTableCell"><Link to="/question/200">200</Link></div>
+                <div className="divTableCell"><Link to="/question/200">200</Link></div>
+                <div className="divTableCell"><Link to="/question/200">200</Link></div>
               </div>
               <div className="divTableRow">
-                <div className="divTableCell"><a href="/#">300</a></div>
-                <div className="divTableCell"><a href="/#">300</a></div>
-                <div className="divTableCell"><a href="/#">300</a></div>
-                <div className="divTableCell"><a href="/#">300</a></div>
-                <div className="divTableCell"><a href="/#">300</a></div>
-                <div className="divTableCell"><a href="/#">300</a></div>
+                <div className="divTableCell"><Link to="/question/300">300</Link></div>
+                <div className="divTableCell"><Link to="/question/300">300</Link></div>
+                <div className="divTableCell"><Link to="/question/300">300</Link></div>
+                <div className="divTableCell"><Link to="/question/300">300</Link></div>
+                <div className="divTableCell"><Link to="/question/300">300</Link></div>
+                <div className="divTableCell"><Link to="/question/300">300</Link></div>
               </div>
               <div className="divTableRow">
-                <div className="divTableCell"><a href="/#">400</a></div>
-                <div className="divTableCell"><a href="/#">400</a></div>
-                <div className="divTableCell"><a href="/#">400</a></div>
-                <div className="divTableCell"><a href="/#">400</a></div>
-                <div className="divTableCell"><a href="/#">400</a></div>
-                <div className="divTableCell"><a href="/#">400</a></div>
+                <div className="divTableCell"><Link to="/question/400">400</Link></div>
+                <div className="divTableCell"><Link to="/question/400">400</Link></div>
+                <div className="divTableCell"><Link to="/question/400">400</Link></div>
+                <div className="divTableCell"><Link to="/question/400">400</Link></div>
+                <div className="divTableCell"><Link to="/question/400">400</Link></div>
+                <div className="divTableCell"><Link to="/question/400">400</Link></div>
               </div>
               <div className="divTableRow">
-                <div className="divTableCell"><a href="/#">500</a></div>
-                <div className="divTableCell"><a href="/#">500</a></div>
-                <div className="divTableCell"><a href="/#">500</a></div>
-                <div className="divTableCell"><a href="/#">500</a></div>
-                <div className="divTableCell"><a href="/#">500</a></div>
-                <div className="divTableCell"><a href="/#">500</a></div>
+                <div className="divTableCell"><Link to="/question/500">500</Link></div>
+                <div className="divTableCell"><Link to="/question/500">500</Link></div>
+                <div className="divTableCell"><Link to="/question/500">500</Link></div>
+                <div className="divTableCell"><Link to="/question/500">500</Link></div>
+                <div className="divTableCell"><Link to="/question/500">500</Link></div>
+                <div className="divTableCell"><Link to="/question/500">500</Link></div>
               </div>
             </div>
           </div>

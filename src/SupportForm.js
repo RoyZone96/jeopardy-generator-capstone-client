@@ -18,8 +18,9 @@ export default class SupportForm extends Component {
     }
 
     handleSubmit(event) {
-        alert('Thank you for your submission. The admin will look over this as soon as possible')
-        event.preverntDefault();
+       
+        event.preventDefault();
+         alert('Thank you for your submission. The admin will look over this as soon as possible')
     }
 
     render() {

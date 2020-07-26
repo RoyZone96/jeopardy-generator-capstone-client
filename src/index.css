@@ -102,6 +102,25 @@ button{
   text-align: center
 }
 
+.scoreboard{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 25px;
+}
+
+.player{
+  margin-bottom: 25px
+}
+
+.add{
+  margin-bottom: 20px
+}
+
+.score{
+  width: 50px
+}
+
 .support{
   margin-right: auto;
   margin-left: auto;
