@@ -65,17 +65,17 @@ export default class LoginForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={ this.handleSubmit }>
                     <div className="wrapper">
                         <label htmlFor="username"> Username </label>
-                        <input type="text" className="username" required />
+                        <input type="text" className="username" name="username" required />
                     </div>
                     <div className="wrapper">
                         <label htmlFor="password"> Password </label>
-                        <input type="text" className="password" required />
+                        <input type="text" className="password" name="password" required />
                     </div>
                     <div className="wrapper">
-                        <button type="button"> Login </button>
+                        <button type="submit"> Login </button>
                         <Link to="/registration"><button type="button"> Register </button></Link>
                     </div>
                     <div className="error">

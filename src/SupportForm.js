@@ -21,23 +21,25 @@ export default class SupportForm extends Component {
        
         event.preventDefault();
          alert('Thank you for your submission. The admin will look over this as soon as possible')
+         const { email, subject, content } = event.target;
+         console.log('email:', email.value, 'subject:', subject.value, 'content', content.value);
     }
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit = { this.handleSubmit }>
                     <div className="wrapper">
-                        <input type="email" className="email" placeholder="E-mail" required />
+                        <input type="email" className="email" name="email" placeholder="E-mail" required />
                     </div>
                     <div className="wrapper">
-                        <input type="text" className="subject" placeholder="Subject" required />
+                        <input type="text" className="subject" name="subject" placeholder="Subject" required />
                     </div>
                     <div className="wrapper">
-                        <textarea value={this.state.content} onChange={this.handleChange} className="content" placeholder="Your content here" required />
+                        <textarea  name="content" onChange={this.handleChange} className="content" placeholder="Your content here" required />
                     </div>
                     <div className="wrapper">
-                        <button type="submit" onClick={this.handleSubmit}>
+                        <button type="submit">
                             Submit
                 </button>
                     </div>

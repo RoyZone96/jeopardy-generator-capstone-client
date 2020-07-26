@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Board from './Board'
-import CircleButton from './CircleButton'
 import BoardNav from './BoardNav'
 
 

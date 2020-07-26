@@ -14,6 +14,7 @@ import Welcome from './Welcome';
 import QuestionForm from './QuestionForm'
 import ApiContext from './ApiContext'
 import PlayBoard from './Playboard'
+import PlayQuestion from './PlayQuestion'
 import Board from './Board'
 
 
@@ -56,6 +57,7 @@ export default class App extends Component {
                 <Route path='/question/:value' component={QuestionForm} />
                 <Route path='/play' component={PlayBoard} />
                 <Route path='/newboard' component={Board} />
+                <Route path='/playquestion/:value' component={PlayQuestion} />
               </Switch>
             </main>
           </Router>
