@@ -7,7 +7,7 @@ import BoardNav from './BoardNav'
 export default function BoardList(props) {
   return (
     <div className="wrapper">
-          <h2>Board Title</h2>
+          <h2> Sample </h2>
           <p>Date Created/Updated</p>
           <div>
             <BoardNav />

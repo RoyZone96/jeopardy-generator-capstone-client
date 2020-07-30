@@ -16,12 +16,14 @@ import ApiContext from './ApiContext'
 import PlayBoard from './Playboard'
 import PlayQuestion from './PlayQuestion'
 import Board from './Board'
+// import { Data } from './dummy-store'
 
 
 export default class App extends Component {
   state = {
     loggedIn: false,
-    board: []
+    board: [],
+    // questions: Data
   }
 
   addBoard = (event) => {}
@@ -35,7 +37,8 @@ export default class App extends Component {
       board: this.state.board,
       addBoard: this.state.addBoard,
       deleteBoard: this.state.deleteBoard,
-      shareBoard: this.state.shareBoard
+      shareBoard: this.state.shareBoard,
+      // questions: this.state.questions
     }
     return (
       <ApiContext.Provider value={ value }>

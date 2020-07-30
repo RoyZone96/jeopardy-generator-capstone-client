@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-
+import ApiContext from './ApiContext'
 
 
 export default class PlayQuestion extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+  
+    state = {
             answer: {
                 value: ''
             },
         }
-    }
+    
+
+    
+    // static contextType = ApiContext 
 
     submitAnswer = event => {
         this.setState({
@@ -20,17 +22,20 @@ export default class PlayQuestion extends Component {
     
       handleSubmit = (event) => {
         event.preventDefault();
-        // function checkSubmission(input) {
-        //   const data = new FormData(event.target)
-        // }
+       
         const { answer } = event.target
         console.log(answer.value)
         console.log(this.props.match.params.value)
+
+         // function checkSubmission(input) {
+        //   const data = new FormData(event.target)
+        // }
       }
     
 
 
     render() {
+        // console.log(context.questions)
         return (
             <div>
                 <form onSubmit={ this.handleSubmit }>
