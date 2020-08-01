@@ -1,47 +1,53 @@
 import React, { Component } from 'react'
 import ApiContext from './ApiContext'
+import { Data } from "./dummy-store"
+import { Link } from "react-router-dom"
 
 
 export default class PlayQuestion extends Component {
   
     state = {
             answer: {
-                value: ''
-            },
+                show: false
+            }
         }
     
 
     
     // static contextType = ApiContext 
 
-    submitAnswer = event => {
+    toggleState = event => {
         this.setState({
-          answer: { value: event.target.value }
+          answer: { show: !this.state.show }
         });
       }
+      
     
-      handleSubmit = (event) => {
+      handleClick = (event) => {
         event.preventDefault();
        
         const { answer } = event.target
         console.log(answer.value)
         console.log(this.props.match.params.value)
 
-         // function checkSubmission(input) {
-        //   const data = new FormData(event.target)
-        // }
+         
       }
     
 
 
     render() {
-        // console.log(context.questions)
+        
+
+        let { category, value, id, show} = this.props.match.params
+        category = category.replace( /-/g, " ")
+        let cat = Data.data[id-1].questions[value/100-1]
+        console.log(cat)
         return (
             <div>
+                <Link to='/play'><button type="button">BACK</button></Link>
                 <form onSubmit={ this.handleSubmit }>
                     <div className="wrapper">
-                        <p>LOREM IPSUM
-                        Question Here.
+                        <p>{cat.question}
                     </p>
                     </div>
                     <div className="wrapper">
@@ -49,10 +55,7 @@ export default class PlayQuestion extends Component {
                         <input type="text" placeholder="Answer" name="answer" required />
                     </div>
                     <div>
-                        <button type="submit">Submit</button>
-                    </div>
-                    <div className="error">
-                        <p> Correct Answer Here </p>
+                        <button type="button" onClick={this.toggleState}>Reveal</button>
                     </div>
                 </form>
             </div >

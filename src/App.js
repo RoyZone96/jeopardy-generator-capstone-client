@@ -16,7 +16,7 @@ import ApiContext from './ApiContext'
 import PlayBoard from './Playboard'
 import PlayQuestion from './PlayQuestion'
 import Board from './Board'
-// import { Data } from './dummy-store'
+import { Data } from './dummy-store'
 
 
 export default class App extends Component {
@@ -60,7 +60,7 @@ export default class App extends Component {
                 <Route path='/question/:value' component={QuestionForm} />
                 <Route path='/play' component={PlayBoard} />
                 <Route path='/newboard' component={Board} />
-                <Route path='/playquestion/:value' component={PlayQuestion} />
+                <Route path='/playquestion/:category/:value/:id' component={PlayQuestion} />
               </Switch>
             </main>
           </Router>
