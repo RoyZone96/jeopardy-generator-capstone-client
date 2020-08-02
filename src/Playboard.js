@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import { Data } from './dummy-store'
 
 export default function Playboard(props) {
+
+function addPlayer(){
+    
+}
     return (
         <section>
             <div>
