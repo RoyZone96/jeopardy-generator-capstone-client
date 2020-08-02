@@ -10,7 +10,7 @@ export default class PlayQuestion extends Component {
 
     toggleState = () => {
         this.setState({
-            answer: { isShown: !this.state.isShown }
+            isShown: !this.state.isShown 
         });
     }
 
