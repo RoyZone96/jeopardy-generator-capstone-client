@@ -12,7 +12,8 @@ export default class Playboard extends Component {
     addPlayer = (event) => {
         event.preventDefault();
         this.setState({
-            players: [...this.state.players, this.state.name]
+            players: [...this.state.players, {name: this.state.name, score: this.state.score}],
+            name: ''
         })
     }
 
@@ -22,9 +23,34 @@ export default class Playboard extends Component {
         })
     }
 
+    updateScore = (e,idx) => {
+        console.log(e.target.value)
+        this.setState({
+            players: this.state.players.map((player, index) => (index === idx ? {...player, score: player.score + Number(e.target.value)} : player))
+        })
+    }
+
+    displayScore = (idx) => {
+        return (
+            <select  onChange={(e)=> this.updateScore(e, idx)}>
+                <option value=""></option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+            </select>
+        )
+    }
+
     render() {
         let categories = Data.data.map(cat => (<div className="divTableCell">{cat.category}</div>))
-        let players = this.state.players.map(player => (<p>{this.state.name}</p>))
+        let players = this.state.players.map((player, idx) => (
+        <div>
+            <p style={{display:'inline-block', margin: '2px 10px'}}>{player.name} - score: {player.score}</p>
+            {this.displayScore(idx)}
+        </div>
+        ))
         return (
             <section>
                 <div>
@@ -41,19 +67,13 @@ export default class Playboard extends Component {
                                 {players}
                             </div>
                         </div>
-
+​
                     </section>
                 </div>
                 <div className="divTable">
                     <div className="divTableBody">
                         <div className="divTableRow">
                             {categories}
-                            {/* <div className="divTableCell">{ categories.category }</div> */}
-                            {/* <div className="divTableCell">{ cat.category }</div> */}
-                            {/* <div className="divTableCell">{ cat.category }</div> */}
-                            {/* <div className="divTableCell">{ cat.category }</div> */}
-                            {/* <div className="divTableCell">{ cat.category }</div> */}
-                            {/* <div className="divTableCell">{ cat.category }</div> */}
                         </div>
                         <div className="divTableRow">
                             <div className="divTableCell"><Link to="/playquestion/tesla/100/1">100</Link></div>
