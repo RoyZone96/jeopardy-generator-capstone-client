@@ -16,7 +16,8 @@ import ApiContext from './ApiContext'
 import PlayBoard from './Playboard'
 import PlayQuestion from './PlayQuestion'
 import Board from './Board'
-import { Data } from './dummy-store'
+// import PrivateRoute from './PrivateRoute'
+// import PublicRoute from './PublicRoute'
 
 
 export default class App extends Component {
@@ -27,24 +28,24 @@ export default class App extends Component {
     // questions: Data
   }
 
-  setUser = (event) => {}
+  setUser = (event) => { }
 
-  addBoard = (event) => {}
+  addBoard = (event) => { }
 
-  deleteBoard = (event) => {}
+  deleteBoard = (event) => { }
 
-  shareBoard = (event) => {}
+  shareBoard = (event) => { }
 
   render() {
-    const value = { 
+    const value = {
       board: this.state.board,
       addBoard: this.state.addBoard,
       deleteBoard: this.state.deleteBoard,
       shareBoard: this.state.shareBoard,
-      // questions: this.state.questions
+
     }
     return (
-      <ApiContext.Provider value={ value }>
+      <ApiContext.Provider value={value}>
         <div>
           <Router>
             <Header />
@@ -53,17 +54,24 @@ export default class App extends Component {
               <Link to="/"><button type="button">Logout</button></Link>
               <NavLinks />
               <Switch>
-                <Route exact path="/" component={LandingPage} />
-                <Route path='/login' component={LoginForm} />
-                <Route path='/registration' component={RegistrationForm} />
-                <Route path='/myboards' component={MyBoards} />
-                <Route path='/popular' component={PopularBoards} />
-                <Route path='/recent' component={RecentBoards} />
-                <Route path='/support' component={Support} />
-                <Route path='/question/:value' component={QuestionForm} />
-                <Route path='/play' component={PlayBoard} />
-                <Route path='/newboard' component={Board} />
-                <Route path='/playquestion/:category/:value/:id' component={PlayQuestion} />
+                if(isLoggedIn){
+                  <div>
+                    <Route exact path="/" component={LandingPage} />
+                    <Route path='/login' component={LoginForm} />
+                    <Route path='/registration' component={RegistrationForm} />
+                  </div>
+                } else {
+                  <div>
+                    <Route path='/myboards' component={MyBoards} />
+                    <Route path='/popular' component={PopularBoards} />
+                    <Route path='/recent' component={RecentBoards} />
+                    <Route path='/support' component={Support} />
+                    <Route path='/question/:value' component={QuestionForm} />
+                    <Route path='/play' component={PlayBoard} />
+                    <Route path='/newboard' component={Board} />
+                    <Route path='/playquestion/:category/:value/:id' component={PlayQuestion} />
+                  </div>
+                }
               </Switch>
             </main>
           </Router>
