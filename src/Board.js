@@ -10,16 +10,16 @@ import config from './config'
 
 export default class Board extends React.Component {
   static defaultProps = {
-    onDeleteBoard: () => { },
+    onAddBoard: () => { },
   }
   static contextType = ApiContext;
 
-  handleClickDelete = e => {
+  handleClickSubmit = e => {
     e.preventDefault()
     const boardId = this.boardId.id
 
     fetch(`${config.API_ENDPOINT}/boards/${boardId}`, {
-      method: 'DELETE',
+      method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
@@ -30,8 +30,8 @@ export default class Board extends React.Component {
         return res.json()
       })
       .then(() => {
-        this.context.deleteBoard(boardId)
-        this.props.onDeleteBoard(boardId)
+        this.context.onAddBoard(boardId)
+        this.props.onAddBoard(boardId)
       })
       .catch(error => {
         console.error({ error })
@@ -45,6 +45,9 @@ export default class Board extends React.Component {
           <Link to="/myboards"><button type="button">
             Back
           </button></Link>
+        </div>
+        <div className="board-title">
+          <input type="text" placeholder="title"/>
         </div>
         <section>
           <div className="divTable">
@@ -102,7 +105,7 @@ export default class Board extends React.Component {
 
         </section>
         <div>
-          <button type="button">
+          <button type="button" onClick={this.handleClickSubmit}>
             Submit
           </button>
         </div>

@@ -43,7 +43,7 @@ export default class BoardNav extends Component {
       <div className='boardNav'>
         <div className="wrapper">
           <h2>{name}</h2>
-
+          <h2>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h2>
           <div>
             <Link to="/board"><button type="button"> EDIT </button></Link>
             <Link to="/play"><button type="button"> PLAY </button></Link>

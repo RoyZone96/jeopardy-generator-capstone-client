@@ -60,8 +60,9 @@ export default class RegistrationForm extends Component {
         console.log('username:', username.value, 'password:', password.value, 'email', email.value);
         this.setState({ error: null })
         AuthApiService.postUser({
-            user_name: username.value,
+            username: username.value,
             password: password.value,
+            email: email.value
         })
 
             .then(response => {
@@ -122,7 +123,7 @@ export default class RegistrationForm extends Component {
                     </div>
                     <div className="wrapper">
                         <label htmlFor="password"> Password </label>
-                        <input type="text" className="password" name="password" required />
+                        <input type="text" className="password" name="password" minLength="8" required />
                     </div>
                     <div className="wrapper">
                         <label htmlFor="confirmPassword"> Confirm Password </label>

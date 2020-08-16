@@ -23,8 +23,11 @@ export default class App extends Component {
   state = {
     loggedIn: false,
     board: [],
+    user: {}
     // questions: Data
   }
+
+  setUser = (event) => {}
 
   addBoard = (event) => {}
 
@@ -51,12 +54,12 @@ export default class App extends Component {
               <NavLinks />
               <Switch>
                 <Route exact path="/" component={LandingPage} />
+                <Route path='/login' component={LoginForm} />
+                <Route path='/registration' component={RegistrationForm} />
                 <Route path='/myboards' component={MyBoards} />
                 <Route path='/popular' component={PopularBoards} />
                 <Route path='/recent' component={RecentBoards} />
                 <Route path='/support' component={Support} />
-                <Route path='/login' component={LoginForm} />
-                <Route path='/registration' component={RegistrationForm} />
                 <Route path='/question/:value' component={QuestionForm} />
                 <Route path='/play' component={PlayBoard} />
                 <Route path='/newboard' component={Board} />

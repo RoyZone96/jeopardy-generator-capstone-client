@@ -6,5 +6,6 @@ export default React.createContext({
   questions: [],
   addBoard: () => {},
   deleteBoard: () => {},
-  shareBoard: () => {}
+  shareBoard: () => {},
+  setUser: () => {}
 })

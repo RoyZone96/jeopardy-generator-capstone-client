@@ -12,7 +12,7 @@ const UsersApiService = {
           : res.json()
       )
   },
-  getUsers(usersId) {
+  getUser(usersId) {
     return fetch(`${config.API_ENDPOINT}/users/${usersId}`, {
       headers: {
       },
