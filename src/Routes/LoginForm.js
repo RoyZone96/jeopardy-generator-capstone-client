@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import AuthApiService from './AuthApiService'
-import TokenService from './services/TokenService'
+import AuthApiService from '../services/AuthApiService'
+import TokenService from '../services/TokenService'
 
 
 
@@ -56,7 +56,6 @@ export default class LoginForm extends Component {
         password.value = ''
         TokenService.saveAuthToken(response.authToken)
         TokenService.saveUserId(response.password)
-        this.props.onLoginSuccess
         window.location = '/myboards'
       })
       .then(response => {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import NavLinks from './NavLinks'
-import Welcome from './Welcome'
-import SortSelect from './SortSelect'
-import BoardList from './components/BoardList'
+import NavLinks from '../components/NavLinks'
+import Welcome from '../components/Welcome'
+import SortSelect from '../components/SortSelect'
+import BoardList from '../components/BoardList'
 
 
 export default function MyBoards() {

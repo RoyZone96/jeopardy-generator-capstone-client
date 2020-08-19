@@ -2,11 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { format, parseISO } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ApiContext from './ApiContext'
+import ApiContext from '../ApiContext'
 import NavLinks from './NavLinks'
 import Welcome from './Welcome'
-import QuestionForm from './QuestionForm'
-import config from './config'
+import config from '../config'
 
 
 

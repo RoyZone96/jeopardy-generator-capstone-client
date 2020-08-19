@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { format, parseISO } from 'date-fns'
-import config from './config'
-import ApiContext from './ApiContext'
+import config from '../config'
+import ApiContext from '../ApiContext'
 
 
 export default class BoardNav extends Component {

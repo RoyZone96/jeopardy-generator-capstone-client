@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
-import MyBoards from '../MyBoards'
-import PopularBoards from '../Routes/PopularBoards'
-import RecentBoards from '../Routes/RecentBoards'
-import Support from '../Support'
-import LoginForm from '../LoginForm'
-import LandingPage from '../LandingPage';
-import RegistrationForm from '../RegistrationForm';
-import QuestionForm from '../Routes/QuestionForm'
-import ApiContext from '../ApiContext'
-import PlayBoard from '../Playboard'
-import PlayQuestion from '../PlayQuestion'
-import Board from './Board'
-import PrivateRoute from '../PrivateRoute'
-import PublicRoute from '../PublicRoute'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import MyBoards from './Routes/MyBoards'
+import PopularBoards from './Routes/PopularBoards'
+import RecentBoards from './Routes/RecentBoards'
+import Support from './Routes/Support'
+import LoginForm from './Routes/LoginForm'
+import LandingPage from './Routes/LandingPage';
+import RegistrationForm from './Routes/RegistrationForm';
+import QuestionForm from './Routes/QuestionForm'
+import ApiContext from './ApiContext'
+import PlayBoard from './Routes/Playboard'
+import PlayQuestion from './Routes/PlayQuestion'
+import Board from './components/Board'
+import PrivateRoute from './PrivateRoute'
+import PublicRoute from './PublicRoute'
 
 
 export default class App extends Component {
   state = {
-    loggedIn: false,
+    hasError: false,
     board: [],
     user: {}
   }
@@ -40,7 +40,7 @@ export default class App extends Component {
       deleteBoard: this.state.deleteBoard,
       shareBoard: this.state.shareBoard,
     }
-    loggedIn = this.state.loggedIn
+    
 
     return (
       <ApiContext.Provider value={value}>
