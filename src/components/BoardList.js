@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import BoardNav from './BoardNav'
-const { API_BASE_URL } = require('./config')
+const { API_BASE_URL } = require('../config')
 
 
 export default function BoardList(props) {

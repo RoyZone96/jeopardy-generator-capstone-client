@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { format, parseISO } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ApiContext from './ApiContext'
+import NavLinks from './NavLinks'
+import Welcome from './Welcome'
 import QuestionForm from './QuestionForm'
 import config from './config'
 
@@ -41,6 +43,7 @@ export default class Board extends React.Component {
   render() {
     return (
       <main>
+        
         <div>
           <Link to="/myboards"><button type="button">
             Back

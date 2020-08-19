@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Board from './Board'
-import ApiContext from './ApiContext'
+import ApiContext from '../ApiContext'
 import './NoteListMain.css'
 
 

@@ -133,7 +133,9 @@ button{
 .footer {
   text-align: center;
   background-color: black;
-  color: white
+  color: white;
+  position: relative;
+  bottom: 0px;
 }
 
 .content{

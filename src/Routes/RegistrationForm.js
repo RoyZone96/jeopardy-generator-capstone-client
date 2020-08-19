@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthApiService from './AuthApiService'
-import TokenService from './TokenService'
+import TokenService from './services/TokenService'
 
 
 export default class RegistrationForm extends Component {
@@ -64,7 +64,6 @@ export default class RegistrationForm extends Component {
             password: password.value,
             email: email.value
         })
-
             .then(response => {
                 console.log('user:', response)
                 username.value = ''
@@ -73,7 +72,7 @@ export default class RegistrationForm extends Component {
                 email.value = ''
                 TokenService.saveAuthToken(response.authToken)
                 TokenService.saveUserId(response.id)
-                window.location = '/user/login'
+                window.location = '/login'
             })
 
             .catch(res => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Data } from "./dummy-store"
+import { Data } from "./components/dummy-store"
 import { Link } from "react-router-dom"
 
 

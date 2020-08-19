@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Data } from './dummy-store'
+import { Data } from './components/dummy-store'
 
 export default class Playboard extends Component {
     state = {

@@ -1,5 +1,5 @@
 import config from '../config'
-
+import TokenService from './TokenService'
 const BoardsApiService = {
   getBoards() {
     return fetch(`${config.API_ENDPOINT}/boards`, {
@@ -15,6 +15,7 @@ const BoardsApiService = {
   getBoards(boardsId) {
     return fetch(`${config.API_ENDPOINT}/boards/${boardsId}`, {
       headers: {
+        'authorization': `basic ${TokenService.getAuthToken()}`
       },
     })
       .then(res =>

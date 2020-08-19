@@ -1,4 +1,7 @@
-import config from './config'
+import config from '../config'
+
+let _timeoutId
+const _TEN_SECONDS_IN_MS = 10000
 
 const TokenService = {
     saveAuthToken(token) {
@@ -15,15 +18,26 @@ const TokenService = {
         return !!TokenService.getAuthToken()
     },
     makeBasicAuthToken(userName, password) {
-        return window.btoa(`${userName}:${password}`)
+        return window.btoa(`${username}:${password}`)
     },
     saveUserId(userId) {
         return window.sessionStorage.setItem('user_id', userId);
     },
     getUserId(user_id) {
         return window.sessionStorage.getItem('user_id', user_id)
-    }
-
+    },
+    _getMsUntilExpiry(payload) {
+        return (payload.exp * 1000) - Date.now()
+    },
+    queueCallbackBeforeExpiry(callback) {
+        const msUntilExpiry = TokenService._getMsUntilExpiry(
+            TokenService.readJwtToken()
+        )
+        _timeoutId = setTimeout(callback, msUntilExpiry - _TEN_SECONDS_IN_MS)
+    },
+    clearCallbackBeforeExpiry() {
+        clearTimeout(_timeoutId)
+    },
 }
 
 export default TokenService

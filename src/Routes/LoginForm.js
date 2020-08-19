@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import AuthApiService from './AuthApiService'
-import TokenService from './TokenService'
+import TokenService from './services/TokenService'
 
 
 
 export default class LoginForm extends Component {
+  static defaultProps = {
+    onLoginSuccess: () => {}
+  }
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -17,11 +21,12 @@ export default class LoginForm extends Component {
       },
       LogInUserID: 0,
       error: null,
+
     };
   }
 
   handleLoginSuccess = () => {
-    window.location = '/user/dash'
+    window.location = '/myboards'
   }
 
   changeUsername(username) {
@@ -36,12 +41,12 @@ export default class LoginForm extends Component {
     console.log('Stateful component LogIn successfully mounted.');
   }
 
-  handleSubmit = (event) => {
+  handleSubmitJwtAuth = (event) => {
     event.preventDefault();
     const { username, password } = event.target
     console.log('username:', username.value, "password:", password.value);
     AuthApiService.postLogin({
-      userName: username.value,
+      username: username.value,
       password: password.value,
     })
 
@@ -50,11 +55,13 @@ export default class LoginForm extends Component {
         username.value = ''
         password.value = ''
         TokenService.saveAuthToken(response.authToken)
-        TokenService.saveUserId(response.userId)
-        window.location = '/user/dash'
+        TokenService.saveUserId(response.password)
+        this.props.onLoginSuccess
+        window.location = '/myboards'
       })
       .then(response => {
         console.log("response:", response)
+  
       })
       .catch(err => {
         console.log(err);
@@ -66,7 +73,7 @@ export default class LoginForm extends Component {
     const { error } = this.state
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmitJwtAuth}>
           <div className="wrapper">
             <label htmlFor="username"> Username </label>
             <input type="text" className="username" name="username" required />
