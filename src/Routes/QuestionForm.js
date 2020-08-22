@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import config from '../config'
+import ApiContext from '../ApiContext'
 
 
 export default class QuestionForm extends Component {
@@ -7,6 +9,9 @@ export default class QuestionForm extends Component {
     super(props);
     this.state = {
       question: {
+        value: ''
+      },
+      questionId: {
         value: ''
       },
       answer: {
@@ -30,10 +35,31 @@ export default class QuestionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // function checkSubmission(input) {
-    //   const data = new FormData(event.target)
-    // }
-    console.log(this.state)
-    console.log(this.props.match.params.value)
+    
+    const newQuestion = JSON.stringify({
+      question: this.state.question.value,
+      questionId: this.state.questionId.value,
+      answer: this.state.answer.value
+    })
+
+      fetch(`${config.API_ENDPOINT}/questions`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: newQuestion
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(response => this.context.addNote(response))
+      .then(
+        this.props.history.push('/')
+      )
+      .catch(error => {
+        alert(error.message)
+      })
   }
 
   render() {
