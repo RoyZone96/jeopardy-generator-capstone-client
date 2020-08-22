@@ -12,7 +12,7 @@ const BoardsApiService = {
           : res.json()
       )
   },
-  getBoards(boardsId) {
+  getBoard(boardsId) {
     return fetch(`${config.API_ENDPOINT}/boards/${boardsId}`, {
       headers: {
         'authorization': `basic ${TokenService.getAuthToken()}`
@@ -36,7 +36,7 @@ const BoardsApiService = {
       )
   },
   postQuestions(boardsId, text) {
-    return fetch(`${config.API_ENDPOINT}/boards`, {
+    return fetch(`${config.API_ENDPOINT}/questions`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

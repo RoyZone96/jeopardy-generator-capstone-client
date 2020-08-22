@@ -56,7 +56,7 @@ export default class LoginForm extends Component {
         password.value = ''
         TokenService.saveAuthToken(response.authToken)
         TokenService.saveUserId(response.password)
-        window.location = '/myboards'
+        this.props.history.push('/myBoards')
       })
       .then(response => {
         console.log("response:", response)

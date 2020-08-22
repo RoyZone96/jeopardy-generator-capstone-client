@@ -4,13 +4,14 @@ import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
 import SortSelect from '../components/SortSelect'
 import BoardList from '../components/BoardList'
+import LogoutButton from "../components/LogoutButton"
 
 
 export default function MyBoards() {
     return (
         <div>
             <Welcome />
-            <Link to="/"><button type="button">Logout</button></Link>
+            <LogoutButton />
             <NavLinks />
             <Link to="/newboard"><button type="button">
                 NEW BOARD +
