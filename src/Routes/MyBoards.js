@@ -6,7 +6,7 @@ import Welcome from '../components/Welcome'
 import SortSelect from '../components/SortSelect'
 import BoardListNav from '../components/BoardListNav'
 import LogoutButton from "../components/LogoutButton"
-import AddBoard from "../components/AddBoard"
+import AddBoard from "../AddBoard"
 import config from "../config"
 import Board from '../components/Board'
 

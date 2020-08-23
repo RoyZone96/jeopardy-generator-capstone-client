@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import config from '../config'
-import ApiContext from '../ApiContext'
-import ValidationError from '../ValidationError'
+import config from './config'
+import ApiContext from './ApiContext'
+import ValidationError from './ValidationError'
 
 export default class AddBoard extends Component {
     constructor(props) {
