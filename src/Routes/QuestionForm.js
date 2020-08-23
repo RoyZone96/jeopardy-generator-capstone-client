@@ -41,7 +41,7 @@ export default class QuestionForm extends Component {
     
     const newQuestion = JSON.stringify({
       question: this.state.question.value,
-      boardId: this.state.questionId.value,
+      boardId: this.state.boardId.value,
       answer: this.state.answer.value
     })
 
@@ -100,11 +100,11 @@ export default class QuestionForm extends Component {
         </button></Link>
         <form onSubmit= { this.handleSubmit }>
           <div className="wrapper">
-            <textarea value={this.state.question.value} onChange={this.updateQuestion} placeholder="Your content here" required />
+            <textarea value={this.state.question.value} onChange={event => this.updateQuestion(event.target.value)} placeholder="Your content here" required />
           </div>
           <div className="wrapper">
             <label htmlFor="answer"> What is </label>
-            <input type="text" value={this.state.answer.value} onChange={this.updateAnswer} placeholder="answer" required />
+            <input type="text" value={this.state.answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="answer" required />
           </div>
           <div>
             <button type="submit">Submit</button>

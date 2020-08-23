@@ -1,9 +1,9 @@
 import React from 'react'
-import BoardNav from './BoardNav'
+import BoardNav from './BoardListNav'
 const { API_BASE_URL } = require('../config')
 
 
-export default function BoardList(props) {
+export default function BoardListNav(props) {
 
   return (
     <div className="wrapper">
