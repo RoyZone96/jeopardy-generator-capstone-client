@@ -9,13 +9,16 @@ export default class QuestionForm extends Component {
     super(props);
     this.state = {
       question: {
-        value: ''
+        value: '',
+        touched: false
       },
-      questionId: {
-        value: ''
+      boardId: {
+        value: '',
+        touched: false
       },
       answer: {
-        value: ''
+        value: '',
+        touched: false
       },
     }
   }
@@ -38,7 +41,7 @@ export default class QuestionForm extends Component {
     
     const newQuestion = JSON.stringify({
       question: this.state.question.value,
-      questionId: this.state.questionId.value,
+      boardId: this.state.questionId.value,
       answer: this.state.answer.value
     })
 
@@ -62,6 +65,33 @@ export default class QuestionForm extends Component {
       })
   }
 
+  updateBoardId = (boardId) => {
+    this.setState({
+      boardId: {
+				value: boardId,
+				touched: true
+			}
+    })
+	}
+	
+	updateQuestion = (question) => {
+		this.setState({
+		  question: {
+				value: question,
+				touched: true
+			}
+		})
+	}
+
+	updateAnswer = (answer) => {
+		this.setState({
+			answer: {
+				value: answer,
+				touched: true
+			}
+		})
+	}
+
   render() {
     return (
       <section>
@@ -70,18 +100,18 @@ export default class QuestionForm extends Component {
         </button></Link>
         <form onSubmit= { this.handleSubmit }>
           <div className="wrapper">
-            <textarea value={this.state.question.value} onChange={this.submitQuestion} placeholder="Your content here" required />
+            <textarea value={this.state.question.value} onChange={this.updateQuestion} placeholder="Your content here" required />
           </div>
           <div className="wrapper">
             <label htmlFor="answer"> What is </label>
-            <input type="text" value={this.state.answer.value} onChange={this.submitAnswer} placeholder="answer" required />
+            <input type="text" value={this.state.answer.value} onChange={this.updateAnswer} placeholder="answer" required />
           </div>
           <div>
             <button type="submit">Submit</button>
           </div>
-          <div className="error">
-            <p> Error message shown here. </p>
-          </div>
+          {/* <div className="error">
+            <p>  </p>
+          </div> */}
         </form>
       </section >
     )

@@ -7,7 +7,7 @@ export default function BoardList(props) {
 
   return (
     <div className="wrapper">
-          <h2> {props.boards.map()} </h2>
+          <h2> {props.name} </h2>
           <p>Date Created/Updated</p>
           <div>
             <BoardNav />
