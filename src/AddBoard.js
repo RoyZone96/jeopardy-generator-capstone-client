@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import config from './config'
+import Board from './components/Board'
 import ApiContext from './ApiContext'
 import ValidationError from './ValidationError'
+import TokenService from './services/TokenService'
 
 export default class AddBoard extends Component {
     constructor(props) {
@@ -27,7 +29,8 @@ export default class AddBoard extends Component {
             {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: newBoard
+                body: newBoard,
+                user_id: TokenService.getUserId()
             })
             .then(res => {
                 if (!res.ok)
@@ -35,15 +38,18 @@ export default class AddBoard extends Component {
                 return res.json()
             })
             .then(response => this.context.addBoard(response))
-            .then(
+            .then(() => {
+
                 this.props.history.push('/')
-            )
+
+            })
             .catch(error => {
+                console.log(error);
                 alert(error.message)
             })
     }
 
-    updateBoardTitle = (title) => {
+    setBoardTitle = (title) => {
         this.setState({
             title: {
                 value: title,
@@ -60,17 +66,17 @@ export default class AddBoard extends Component {
     }
 
     render() {
-        return(
+        return (
             <form onSubmit={this.handleBoardCreate}>
                 <label htmlFor="board-title">Board title</label>
-				<input 
-				id="board-title" 
-				type="text" 
-				title="board-title"
-				onChange = {event => this.updateBoardTitle(event.target.value)}
-				></input>
-				{this.state.title.touched && (<ValidationError message = {this.validateBoardTitle()}/>)}
-				<button type="submit" disabled={this.validateBoardTitle()}>Save</button>
+                <input
+                    id="board-title"
+                    type="text"
+                    title="board-title"
+                    onChange={event => this.setBoardTitle(event.target.value)}
+                ></input>
+                {this.state.title.touched && (<ValidationError message={this.validateBoardTitle()} />)}
+                <button type="submit" disabled={this.validateBoardTitle()}>Post</button>
             </form>
         )
     }

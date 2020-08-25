@@ -50,7 +50,7 @@ renderNavRoutes() {
                 />
             ))}
             <Route path="/board/:boardId" component={Board} />
-            <Route path="/add-board" component={AddBoard} />
+            <Route path="/newboard" component={AddBoard} />
 			</>
 		);
 	}

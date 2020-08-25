@@ -16,6 +16,7 @@ import PlayQuestion from './Routes/PlayQuestion'
 import Board from './components/Board'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
+import AddBoard from './AddBoard';
 
 
 export default class App extends Component {
@@ -59,7 +60,8 @@ export default class App extends Component {
                     <PrivateRoute path='/support' component={Support} />
                     <PrivateRoute path='/question/:value' component={QuestionForm} />
                     <PrivateRoute path='/play' component={PlayBoard} />
-                    <PrivateRoute path='/newboard' component={Board} />
+                    <PrivateRoute path= '/newboard' component={AddBoard} />
+                    <PrivateRoute path='/board' component={Board} />
                     <PrivateRoute path='/playquestion/:category/:value/:id' component={PlayQuestion} />
                   </div>
               </Switch>

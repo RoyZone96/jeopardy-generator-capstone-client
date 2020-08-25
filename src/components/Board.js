@@ -13,16 +13,13 @@ export default class Board extends React.Component {
   }
   static contextType = ApiContext;
 
-  state={
-    
-  }
 
   handleClickSubmit = e => {
     e.preventDefault()
-    const boardId = this.boardId.id
+    const boardId = this.boardId
 
     fetch(`${config.API_ENDPOINT}/boards/${boardId}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
