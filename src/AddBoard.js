@@ -22,7 +22,10 @@ export default class AddBoard extends Component {
         event.preventDefault();
 
         const newBoard = JSON.stringify({
-            board_title: this.state.title.value
+            user_id: TokenService.getUserId(),
+            board_title: this.state.title.value,
+            times_played: 0,
+
         })
 
         fetch(`${config.API_ENDPOINT}/boards`,
@@ -30,7 +33,6 @@ export default class AddBoard extends Component {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: newBoard,
-                user_id: TokenService.getUserId()
             })
             .then(res => {
                 if (!res.ok)
@@ -39,11 +41,10 @@ export default class AddBoard extends Component {
             })
             .then(response => this.context.addBoard(response))
             .then(() => {
-
-                this.props.history.push('/')
-
+                this.props.history.push('/myBoards')
             })
             .catch(error => {
+                
                 console.log(error);
                 alert(error.message)
             })

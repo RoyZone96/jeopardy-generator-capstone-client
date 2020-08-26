@@ -42,7 +42,7 @@ export default class BoardNav extends Component {
     return (
       <div className='boardNav'>
         <div className="wrapper">
-          <h2>{name}</h2>
+          <h2>Sample</h2>
           <h2>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h2>
           <div>
             <Link to="/board/:boardId"><button type="button"> EDIT </button></Link>

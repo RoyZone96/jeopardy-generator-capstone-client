@@ -37,9 +37,9 @@ export default class App extends Component {
   render() {
     const value = {
       board: this.state.board,
-      addBoard: this.state.addBoard,
-      deleteBoard: this.state.deleteBoard,
-      shareBoard: this.state.shareBoard,
+      addBoard: this.addBoard,
+      deleteBoard: this.deleteBoard,
+      shareBoard: this.shareBoard,
     }
     
 
