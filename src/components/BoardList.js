@@ -1,9 +1,9 @@
 import React from 'react'
-import BoardNav from './BoardListNav'
+import BoardNav from './BoardNav'
 const { API_BASE_URL } = require('../config')
 
 
-export default function BoardListNav(props) {
+export default function BoardList(props) {
 
   return (
     <section className="board-list">

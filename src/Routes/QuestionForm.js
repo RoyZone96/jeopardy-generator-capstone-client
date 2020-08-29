@@ -95,7 +95,7 @@ export default class QuestionForm extends Component {
   render() {
     return (
       <section>
-        <Link to="/newboard"><button type="button">
+        <Link to="/board"><button type="button">
           BACK
         </button></Link>
         <form onSubmit= { this.handleSubmit }>

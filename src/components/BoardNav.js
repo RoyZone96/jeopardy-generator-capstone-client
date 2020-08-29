@@ -15,9 +15,9 @@ export default class BoardNav extends Component {
 
   handleClickDelete = e => {
     e.preventDefault()
-    const boardId = this.props.id
+    const { board_id } = this.props.match.params
 
-    fetch(`${config.API_ENDPOINT}/boards/${boardId}`, {
+    fetch(`${config.API_ENDPOINT}/boards/${board_id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -29,8 +29,8 @@ export default class BoardNav extends Component {
         return res.json()
       })
       .then(() => {
-        this.context.deleteBoard(boardId)
-        this.props.onDeleteBoard(boardId)
+        this.context.deleteBoard(board_id)
+        this.props.onDeleteBoard(board_id)
       })
       .catch(error => {
         console.error({ error })
@@ -38,17 +38,17 @@ export default class BoardNav extends Component {
   }
 
   render() {
-    const { name, modified } = this.props
+    const { board_title, id, modified } = this.props
     return (
       <div className='boardNav'>
         <div className="wrapper">
-          <h2>Sample</h2>
+          <h2>{board_title}</h2>
           <h2>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h2>
           <div>
-            <Link to="/board/:boardId"><button type="button"> EDIT </button></Link>
+            <Link to={`/board/${id}`}><button type="button"> EDIT </button></Link>
             <Link to="/play"><button type="button"> PLAY </button></Link>
             <button type="button"> SHARE </button>
-            <button type="button" onClick={this.handleClickDelete} > DELETE </button>
+            <button type="button" onClick={this.handleClickDelete}> DELETE </button>
           </div>
         </div>
       </div>

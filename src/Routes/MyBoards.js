@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
 import SortSelect from '../components/SortSelect'
-import BoardListNav from '../components/BoardListNav'
+import BoardNav from '../components/BoardNav'
 import LogoutButton from "../components/LogoutButton"
 import AddBoard from "../AddBoard"
 import config from "../config"
@@ -27,6 +27,7 @@ export default class MyBoards extends Component{
             })
             .then(([boards]) => {
                 this.setState({ boards });
+                console.log(boards)
             })
             .catch(error => {
                 console.error({ error });
@@ -46,7 +47,7 @@ renderNavRoutes() {
                         exact
                         key={path}
                         path={path}
-                        component={BoardListNav}
+                        component={BoardNav}
                 />
             ))}
             <Route path="/board/:boardId" component={Board} />
@@ -56,16 +57,18 @@ renderNavRoutes() {
 	}
 
 render() {
+    const boards = this.state.boards
     return (
         <div>
             <Welcome />
             <LogoutButton />
             <NavLinks />
-            <Link to="/newboard"><button type="button">
+            <Link to="/"><button type="button">
                 NEW BOARD +
                 </button></Link>
             <SortSelect />
-            <BoardListNav />
+            {boards.map(boards =>
+                <BoardNav />)}
         </div>
     )
 }
