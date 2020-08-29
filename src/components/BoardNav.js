@@ -15,7 +15,7 @@ export default class BoardNav extends Component {
 
   handleClickDelete = e => {
     e.preventDefault()
-    const { board_id } = this.props.match.params
+    const { board_id } = this.props.match.params.id
 
     fetch(`${config.API_ENDPOINT}/boards/${board_id}`, {
       method: 'DELETE',

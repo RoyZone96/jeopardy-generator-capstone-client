@@ -43,7 +43,7 @@ export default class MyBoards extends Component{
 renderNavRoutes() {
     return (
         <>
-            {['/', '/board/:boardId'].map(path => (
+            {['/', '/board/:board_id'].map(path => (
                 <Route
                         exact
                         key={path}
@@ -51,7 +51,7 @@ renderNavRoutes() {
                         component={BoardNav}
                 />
             ))}
-            <Route path="/board/:boardId" component={Board} />
+            <Route path="/board/:board_id" component={Board} />
             <Route path="/newboard" component={AddBoard} />
 			</>
 		);
