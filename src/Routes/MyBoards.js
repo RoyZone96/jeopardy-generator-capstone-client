@@ -9,6 +9,7 @@ import LogoutButton from "../components/LogoutButton"
 import AddBoard from "../AddBoard"
 import config from "../config"
 import Board from '../components/Board'
+import BoardList from '../components/BoardList'
 
 
 export default class MyBoards extends Component{
@@ -68,7 +69,7 @@ render() {
                 </button></Link>
             <SortSelect />
             {boards.map(boards =>
-                <BoardNav />)}
+                <BoardList />)}
         </div>
     )
 }
