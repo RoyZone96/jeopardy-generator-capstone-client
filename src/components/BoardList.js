@@ -8,13 +8,13 @@ export default function BoardList(props) {
   return (
     <section className="board-list">
       <ul>
-      <div className="wrapper">
-        <h2> {props.name} </h2>
-        <p>Date Created/Updated</p>
-        <div>
-          <BoardNav />
-        </div>
-      </div>
+        <li>
+          <div className="wrapper">
+            <div>
+              <BoardNav match={props.board_id}/>
+            </div>
+          </div>
+        </li>
       </ul>
     </section>
   )

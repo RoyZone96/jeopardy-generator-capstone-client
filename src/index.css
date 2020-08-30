@@ -121,7 +121,9 @@ button{
   width: 50px
 }
 
-
+li{
+  list-style: none;
+}
 
 .support{
   margin-right: auto;

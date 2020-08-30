@@ -7,7 +7,10 @@ import ApiContext from '../ApiContext'
 
 export default class BoardNav extends Component {
   static defaultProps = {
-    onDeleteNote: () => { },
+    onDeleteBoard: () => { },
+    match: {
+      params: {}
+    }
   }
   static contextType = ApiContext;
 
@@ -15,9 +18,9 @@ export default class BoardNav extends Component {
 
   handleClickDelete = e => {
     e.preventDefault()
-    const { board_id } = this.props.match.params.id
+    const { id } = this.props.match.params
 
-    fetch(`${config.API_ENDPOINT}/boards/${board_id}`, {
+    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -29,8 +32,8 @@ export default class BoardNav extends Component {
         return res.json()
       })
       .then(() => {
-        this.context.deleteBoard(board_id)
-        this.props.onDeleteBoard(board_id)
+        this.context.deleteBoard(id)
+        this.props.onDeleteBoard(id)
       })
       .catch(error => {
         console.error({ error })
@@ -38,7 +41,7 @@ export default class BoardNav extends Component {
   }
 
   render() {
-    const { board_title, id, modified } = this.props
+    const { board_title, id, modified } = this.props;
     return (
       <div className='boardNav'>
         <div className="wrapper">

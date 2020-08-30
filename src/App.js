@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MyBoards from './Routes/MyBoards'
@@ -19,7 +19,7 @@ import PublicRoute from './PublicRoute'
 import AddBoard from './AddBoard';
 
 
-export default class App extends Component {
+class App extends Component {
   state = {
     hasError: false,
     board: [],
@@ -61,7 +61,7 @@ export default class App extends Component {
                     <PrivateRoute path='/question/:value' component={QuestionForm} />
                     <PrivateRoute path='/play' component={PlayBoard} />
                     <PrivateRoute path= '/newboard' component={AddBoard} />
-                    <PrivateRoute path='/board' component={Board} />
+                    <PrivateRoute path='/board/:id' component={Board} />
                     <PrivateRoute path='/playquestion/:category/:value/:id' component={PlayQuestion} />
                   </div>
               </Switch>
@@ -73,3 +73,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withRouter(App)

@@ -30,6 +30,7 @@ export default class Playboard extends Component {
         })
     }
 
+
     displayScore = (idx) => {
         return (
             <select  onChange={(e)=> this.updateScore(e, idx)}>
@@ -41,6 +42,10 @@ export default class Playboard extends Component {
                 <option value="500">500</option>
             </select>
         )
+    }
+
+    componentDidMount() {
+        
     }
 
     render() {
