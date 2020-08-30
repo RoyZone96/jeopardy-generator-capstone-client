@@ -31,7 +31,7 @@ export default class MyBoards extends Component{
                 console.log(boards)
             })
             .catch(error => {
-                console.error({ error });
+                console.log({ error });
             });
     }
     handleAddBoard = (board) => {
@@ -40,31 +40,16 @@ export default class MyBoards extends Component{
         })
 }
 
-renderNavRoutes() {
-    return (
-        <>
-            {['/', '/board/:id'].map(path => (
-                <Route
-                        exact
-                        key={path}
-                        path={path}
-                        component={BoardNav}
-                />
-            ))}
-            <Route path="/board/:id" component={Board} />
-            <Route path="/newboard" component={AddBoard} />
-			</>
-		);
-	}
 
 render() {
     const boards = this.state.boards
+    console.log(this.props)
     return (
         <div>
             <Welcome />
             <LogoutButton />
             <NavLinks />
-            <Link to="/"><button type="button">
+            <Link to="/newboard"><button type="button">
                 NEW BOARD +
                 </button></Link>
             <SortSelect />
