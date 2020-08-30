@@ -14,7 +14,23 @@ export default class BoardNav extends Component {
   }
   static contextType = ApiContext;
 
-  
+  componentDidMount() {
+    Promise.all([
+        fetch(`${config.API_ENDPOINT}/boards`)
+    ])
+        .then(([boardsRes]) => {
+            if (!boardsRes.ok)
+                return boardsRes.json().then(e => Promise.reject(e));
+            return Promise.all([boardsRes.json()]);
+        })
+        .then(([boards]) => {
+            this.setState({ boards });
+            console.log(boards)
+        })
+        .catch(error => {
+            console.log({ error });
+        });
+}
 
   handleClickDelete = e => {
     e.preventDefault()
