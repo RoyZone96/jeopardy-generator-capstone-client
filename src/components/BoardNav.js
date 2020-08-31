@@ -14,27 +14,10 @@ export default class BoardNav extends Component {
   }
   static contextType = ApiContext;
 
-  componentDidMount() {
-    Promise.all([
-        fetch(`${config.API_ENDPOINT}/boards`)
-    ])
-        .then(([boardsRes]) => {
-            if (!boardsRes.ok)
-                return boardsRes.json().then(e => Promise.reject(e));
-            return Promise.all([boardsRes.json()]);
-        })
-        .then(([boards]) => {
-            this.setState({ boards });
-            console.log(boards)
-        })
-        .catch(error => {
-            console.log({ error });
-        });
-}
 
   handleClickDelete = e => {
     e.preventDefault()
-    const { id } = this.props.match.params
+    const { id } = this.props;
 
     fetch(`${config.API_ENDPOINT}/boards/${id}`, {
       method: 'DELETE',
@@ -45,7 +28,7 @@ export default class BoardNav extends Component {
       .then(res => {
         if (!res.ok)
           return res.json().then(e => Promise.reject(e))
-        return res.json()
+        return res
       })
       .then(() => {
         this.context.deleteBoard(id)
@@ -57,8 +40,8 @@ export default class BoardNav extends Component {
   }
 
   render() {
-    const { board_title, id, modified } = this.props;
-    console.log(this.props)
+    const { board_title, id, modified } = this.props.match;
+    console.log(this.props.match.params)
     return (
       <div className='boardNav'>
         <div className="wrapper">

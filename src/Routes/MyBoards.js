@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
@@ -12,7 +12,7 @@ import Board from '../components/Board'
 import BoardList from '../components/BoardList'
 
 
-export default class MyBoards extends Component{
+export default class MyBoards extends Component {
     state = {
         boards: []
     }
@@ -36,26 +36,26 @@ export default class MyBoards extends Component{
     }
     handleAddBoard = (board) => {
         this.setState({
-                boards: [...this.state.boards, board]
+            boards: [...this.state.boards, board]
         })
-}
+    }
 
 
-render() {
-    const boards = this.state.boards
-    console.log(this.props)
-    return (
-        <div>
-            <Welcome />
-            <LogoutButton />
-            <NavLinks />
-            <Link to="/newboard"><button type="button">
-                NEW BOARD +
+    render() {
+        const boards = this.state.boards
+        console.log(this.props)
+        return (
+            <div>
+                <Welcome />
+                <LogoutButton />
+                <NavLinks />
+                <Link to="/newboard"><button type="button">
+                    NEW BOARD +
                 </button></Link>
-            <SortSelect />
-            {boards.map(boards =>
-                <BoardList />)}
-        </div>
-    )
-}
+                <SortSelect />
+                {boards.map(boards =>
+                    <BoardList id={boards.id} />)}
+            </div>
+        )
+    }
 }
