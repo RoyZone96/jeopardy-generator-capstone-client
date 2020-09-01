@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { format, parseISO } from 'date-fns'
 import config from '../config'
 import ApiContext from '../ApiContext'

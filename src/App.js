@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MyBoards from './Routes/MyBoards'
-import PopularBoards from './Routes/PopularBoards'
-import RecentBoards from './Routes/RecentBoards'
+import CommunityBoards from './Routes/CommunityBoards'
 import Support from './Routes/Support'
 import LoginForm from './Routes/LoginForm'
 import LandingPage from './Routes/LandingPage';
@@ -55,8 +54,7 @@ class App extends Component {
                     <PublicRoute path='/login' component={LoginForm} />
                     <PublicRoute path='/registration' component={RegistrationForm} />
                     <PrivateRoute path='/myboards' component={MyBoards} />
-                    <PrivateRoute path='/popular' component={PopularBoards} />
-                    <PrivateRoute path='/recent' component={RecentBoards} />
+                    <PrivateRoute path='/community' component={CommunityBoards} />
                     <PrivateRoute path='/support' component={Support} />
                     <PrivateRoute path='/question/:value' component={QuestionForm} />
                     <PrivateRoute path='/play' component={PlayBoard} />
