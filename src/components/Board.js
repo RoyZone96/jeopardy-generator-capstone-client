@@ -27,7 +27,7 @@ export default class Board extends React.Component {
       .then(res => {
         if (!res.ok)
           return res.json().then(e => Promise.reject(e))
-        return res
+        return res.json()
       })
       .then((res) => {
         this.setState({
@@ -45,8 +45,8 @@ export default class Board extends React.Component {
 
 
   render() {
-    const { category_one, category_two, category_three, category_four, category_five, category_six } = this.state;
-    console.log(this.state)
+    const { category_one, category_two, category_three, category_four, category_five, category_six } = this.props.match;
+    console.log(this.props.match)
     return (
       <main>
         <div>

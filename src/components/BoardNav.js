@@ -13,7 +13,6 @@ export default class BoardNav extends Component {
     }
   }
 
-  state
   static contextType = ApiContext;
 
 
@@ -50,7 +49,7 @@ export default class BoardNav extends Component {
           <h2>{board_title}</h2>
           <h2>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h2>
           <div>
-            <Link to={`/board/${id}`}><button type="button"> EDIT </button></Link>
+            <Link to={`/board/${this.props.id}`}><button type="button"> EDIT </button></Link>
             <Link to="/play"><button type="button"> PLAY </button></Link>
             <button type="button"> SHARE </button>
             <button type="button" onClick={this.handleClickDelete}> DELETE </button>
