@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ApiContext from '../ApiContext'
 import config from '../config'
-import { id } from 'date-fns/locale'
-
 
 
 export default class Board extends React.Component {
@@ -21,7 +18,7 @@ export default class Board extends React.Component {
 
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
+    fetch(`${config.API_ENDPOINT}/boards/${this.props.match.params.id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
