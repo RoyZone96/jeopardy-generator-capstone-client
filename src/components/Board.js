@@ -7,16 +7,49 @@ import { id } from 'date-fns/locale'
 
 
 export default class Board extends React.Component {
-  static defaultProps = {
-    onEditBoard: () => { },
+  constructor(props) {
+    super(props);
+    this.state = {
+      category_one: "",
+      category_two: "",
+      category_three: "",
+      category_four: "",
+      category_five: "",
+      category_six: ""
+    }
   }
-  static contextType = ApiContext;
+
+
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res
+      })
+      .then((res) => {
+        this.setState({
+          category_one: res.category_one,
+          category_two: res.category_two,
+          category_three: res.category_three,
+          category_four: res.category_four,
+          category_five: res.category_five,
+          category_six: res.category_six
+        })
+      })
+  }
+
 
 
 
   render() {
-    const { category_one, category_two, category_three, category_four, category_five, category_six } = this.props
-    console.log(id)
+    const { category_one, category_two, category_three, category_four, category_five, category_six } = this.state;
+    console.log(this.state)
     return (
       <main>
         <div>
@@ -28,12 +61,12 @@ export default class Board extends React.Component {
           <div className="divTable">
             <div className="divTableBody">
               <div className="divTableRow">
-                <div className="divTableCell"><h3>{ category_one }</h3></div>
-                <div className="divTableCell"><h3>{ category_one }</h3></div>
-                <div className="divTableCell"><h3>{ category_one }</h3></div>
-                <div className="divTableCell"><h3>{ category_one }</h3></div>
-                <div className="divTableCell"><h3>{ category_one }</h3></div>
-                <div className="divTableCell"><h3>{ category_one }</h3></div>
+                <div className="divTableCell"><h3>{category_one}</h3></div>
+                <div className="divTableCell"><h3>{category_two}</h3></div>
+                <div className="divTableCell"><h3>{category_three}</h3></div>
+                <div className="divTableCell"><h3>{category_four}</h3></div>
+                <div className="divTableCell"><h3>{category_five}</h3></div>
+                <div className="divTableCell"><h3>{category_six}</h3></div>
               </div>
               <div className="divTableRow">
                 <div className="divTableCell"><Link to="/question/100/1">100</Link></div>
