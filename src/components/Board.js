@@ -8,36 +8,14 @@ import { id } from 'date-fns/locale'
 
 export default class Board extends React.Component {
   static defaultProps = {
-    onAddBoard: () => { },
+    onEditBoard: () => { },
   }
   static contextType = ApiContext;
 
 
-  handleClickSubmit = e => {
-    e.preventDefault()
-    const id = this.id
-
-    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(() => {
-        this.context.onAddBoard(id)
-        this.props.onAddBoard(id)
-      })
-      .catch(error => {
-        console.error({ error })
-      })
-  }   
 
   render() {
+    const { category_one, category_two, category_three, category_four, category_five, category_six } = this.props
     console.log(id)
     return (
       <main>
@@ -50,12 +28,12 @@ export default class Board extends React.Component {
           <div className="divTable">
             <div className="divTableBody">
               <div className="divTableRow">
-                <div className="divTableCell"> <input type="text" placeholder="Category" required /></div>
-                <div className="divTableCell"><input type="text" placeholder="Category" required /></div>
-                <div className="divTableCell"><input type="text" placeholder="Category" required /></div>
-                <div className="divTableCell"><input type="text" placeholder="Category" required /></div>
-                <div className="divTableCell"><input type="text" placeholder="Category" required /></div>
-                <div className="divTableCell"><input type="text" placeholder="Category" required /></div>
+                <div className="divTableCell"><h3>{ category_one }</h3></div>
+                <div className="divTableCell"><h3>{ category_one }</h3></div>
+                <div className="divTableCell"><h3>{ category_one }</h3></div>
+                <div className="divTableCell"><h3>{ category_one }</h3></div>
+                <div className="divTableCell"><h3>{ category_one }</h3></div>
+                <div className="divTableCell"><h3>{ category_one }</h3></div>
               </div>
               <div className="divTableRow">
                 <div className="divTableCell"><Link to="/question/100/1">100</Link></div>
