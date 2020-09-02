@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { format, parseISO } from 'date-fns'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ApiContext from '../ApiContext'
 import config from '../config'
+import { id } from 'date-fns/locale'
 
 
 
@@ -16,9 +15,9 @@ export default class Board extends React.Component {
 
   handleClickSubmit = e => {
     e.preventDefault()
-    const boardId = this.boardId
+    const id = this.id
 
-    fetch(`${config.API_ENDPOINT}/boards/${boardId}`, {
+    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -30,24 +29,22 @@ export default class Board extends React.Component {
         return res.json()
       })
       .then(() => {
-        this.context.onAddBoard(boardId)
-        this.props.onAddBoard(boardId)
+        this.context.onAddBoard(id)
+        this.props.onAddBoard(id)
       })
       .catch(error => {
         console.error({ error })
       })
-  }
+  }   
 
   render() {
+    console.log(id)
     return (
       <main>
         <div>
           <Link to="/myboards"><button type="button">
             Back
           </button></Link>
-        </div>
-        <div className="board-title">
-          <input type="text" placeholder="title"/>
         </div>
         <section>
           <div className="divTable">

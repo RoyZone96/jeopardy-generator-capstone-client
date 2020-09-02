@@ -93,9 +93,10 @@ export default class QuestionForm extends Component {
 	}
 
   render() {
+    const {id} = this.props
     return (
       <section>
-        <Link to="/board"><button type="button">
+        <Link to={`/board/:${id}`}><button type="button">
           BACK
         </button></Link>
         <form onSubmit= { this.handleSubmit }>

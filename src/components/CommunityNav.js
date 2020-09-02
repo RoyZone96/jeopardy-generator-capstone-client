@@ -12,7 +12,18 @@ export default class BoardNav extends Component {
       params: {}
     }
   }
+
+  state = {
+      isLiked: false
+  }
+
   static contextType = ApiContext;
+
+  toggleLike = () => {
+      this.setState({
+        isLiked: !this.state.isLiked
+      })
+  }
 
 
   handleClickDelete = e => {

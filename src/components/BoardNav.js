@@ -40,8 +40,8 @@ export default class BoardNav extends Component {
   }
 
   render() {
-    const { board_title, id, modified } = this.context;
-    
+    const { board_title, id, modified } = this.props.match;
+    console.log(this.props.match)
     return (
       <div className='boardNav'>
         <div className="wrapper">
