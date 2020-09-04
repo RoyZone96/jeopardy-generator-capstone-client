@@ -56,7 +56,7 @@ class App extends Component {
                     <PrivateRoute path='/myboards' component={MyBoards} />
                     <PrivateRoute path='/community' component={CommunityBoards} />
                     <PrivateRoute path='/support' component={Support} />
-                    <PrivateRoute path='/question/:value' component={QuestionForm} />
+                    <PrivateRoute path='/questions/:value' component={QuestionForm} />
                     <PrivateRoute path='/play' component={PlayBoard} />
                     <PrivateRoute path= '/newboard' component={AddBoard} />
                     <PrivateRoute path='/board/:id' component={Board} />

@@ -13,14 +13,39 @@ export default class BoardNav extends Component {
     }
   }
 
+  state = {
+    board_title: "",
+    modified: ''
+  }
+
   static contextType = ApiContext;
+
+  componentDidMount(){
+    fetch(`${config.API_ENDPOINT}/boards/${this.props.id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res
+      })
+      .then((res) => {
+        this.setState({
+         board_title: res.board_title,
+         modified: res.date_modified
+        })
+      })
+  }
 
 
   handleClickDelete = e => {
     e.preventDefault()
     const { id } = this.props;
 
-    fetch(`${config.API_ENDPOINT}/boards/${this.props.match.params.id}`, {
+    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -41,13 +66,12 @@ export default class BoardNav extends Component {
   }
 
   render() {
-    const { board_title, id, modified } = this.props.match;
-    console.log(this.props.match)
+    const { board_title, modified } = this.state;
+    
     return (
       <div className='boardNav'>
         <div className="wrapper">
           <h2>{board_title}</h2>
-          <h2>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h2>
           <div>
             <Link to={`/board/${this.props.id}`}><button type="button"> EDIT </button></Link>
             <Link to="/play"><button type="button"> PLAY </button></Link>
