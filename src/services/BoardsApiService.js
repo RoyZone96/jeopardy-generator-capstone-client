@@ -12,8 +12,8 @@ const BoardsApiService = {
           : res.json()
       )
   },
-  getBoard(boardsId) {
-    return fetch(`${config.API_ENDPOINT}/boards/${boardsId}`, {
+  getBoard(boards_id) {
+    return fetch(`${config.API_ENDPOINT}/boards/${boards_id}`, {
       headers: {
         'authorization': `basic ${TokenService.getAuthToken()}`
       },
@@ -24,8 +24,8 @@ const BoardsApiService = {
           : res.json()
       )
   },
-  getBoardsQuestions(boardsId) {
-    return fetch(`${config.API_ENDPOINT}/boards/${boardsId}/questions/${questionsId}`, {
+  getBoardsQuestions(boards_id) {
+    return fetch(`${config.API_ENDPOINT}/boards/${boards_id}/questions`, {
       headers: {
       },
     })
@@ -35,14 +35,14 @@ const BoardsApiService = {
           : res.json()
       )
   },
-  postQuestions(boardsId, text) {
+  postQuestions(boards_id, text) {
     return fetch(`${config.API_ENDPOINT}/questions`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        boards_id: boardsId,
+        boards_id: boards_id,
         text,
       }),
     })

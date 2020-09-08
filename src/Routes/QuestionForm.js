@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import config from '../config'
+import BoardsService from '../services/BoardsApiService'
 import ApiContext from '../ApiContext'
+import TokenService from '../services/TokenService'
+import BoardsApiService from '../services/BoardsApiService'
 
 
 export default class QuestionForm extends Component {
@@ -17,6 +20,10 @@ export default class QuestionForm extends Component {
         touched: false
       },
     }
+  }
+
+  componentDidMount(){
+
   }
 
   submitQuestion = event => {
@@ -36,6 +43,7 @@ export default class QuestionForm extends Component {
     // function checkSubmission(input) {
     
     const newQuestion = JSON.stringify({
+      board_id: BoardsApiService.getBoardId(),
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value
     })
@@ -53,6 +61,7 @@ export default class QuestionForm extends Component {
       })
       .then(response => this.context.addQuestion(response))
       .then(
+        console.log(newQuestion),
         this.props.history.push('/')
       )
       .catch(error => {
