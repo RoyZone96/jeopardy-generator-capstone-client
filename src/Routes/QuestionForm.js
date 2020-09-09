@@ -5,6 +5,7 @@ import BoardsService from '../services/BoardsApiService'
 import ApiContext from '../ApiContext'
 import TokenService from '../services/TokenService'
 import BoardsApiService from '../services/BoardsApiService'
+import { id } from 'date-fns/locale'
 
 
 export default class QuestionForm extends Component {
@@ -43,7 +44,7 @@ export default class QuestionForm extends Component {
     // function checkSubmission(input) {
     
     const newQuestion = JSON.stringify({
-      board_id: BoardsApiService.getBoardId(),
+      board_id: BoardsApiService.getBoardsId(),
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value
     })

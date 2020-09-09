@@ -12,7 +12,8 @@ const BoardsApiService = {
           : res.json()
       )
   },
-  getBoard(boards_id) {
+  getBoardsId(boards_id) {
+    console.log(boards_id)
     return fetch(`${config.API_ENDPOINT}/boards/${boards_id}`, {
       headers: {
         'authorization': `basic ${TokenService.getAuthToken()}`
