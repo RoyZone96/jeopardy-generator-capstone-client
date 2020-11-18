@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Error from './components/Error'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MyBoards from './Routes/MyBoards'
@@ -13,8 +14,6 @@ import ApiContext from './ApiContext'
 import PlayBoard from './Routes/Playboard'
 import PlayQuestion from './Routes/PlayQuestion'
 import Board from './components/Board'
-import PrivateRoute from './PrivateRoute'
-import PublicRoute from './PublicRoute'
 import AddBoard from './AddBoard';
 
 
@@ -40,31 +39,30 @@ class App extends Component {
       deleteBoard: this.deleteBoard,
       shareBoard: this.shareBoard,
     }
-    
+    console.log(value)
 
     return (
       <ApiContext.Provider value={value}>
         <div>
-          <Router>
+          <BrowserRouter>
             <Header />
             <main className='App'>
               <Switch>
-                  <div>
-                    <PublicRoute exact path="/" component={LandingPage} />
-                    <PublicRoute path='/login' component={LoginForm} />
-                    <PublicRoute path='/registration' component={RegistrationForm} />
-                    <PrivateRoute path='/myboards' component={MyBoards} />
-                    <PrivateRoute path='/community' component={CommunityBoards} />
-                    <PrivateRoute path='/support' component={Support} />
-                    <PrivateRoute path='/questions/:value' component={QuestionForm} />
-                    <PrivateRoute path='/play' component={PlayBoard} />
-                    <PrivateRoute path= '/newboard' component={AddBoard} />
-                    <PrivateRoute path='/board/:id' component={Board} />
-                    <PrivateRoute path='/playquestion/:category/:value/:id' component={PlayQuestion} />
-                  </div>
+                  <Route exact path="/" component={LandingPage} />
+                  <Route path='/login' component={LoginForm} />
+                  <Route path='/registration' component={RegistrationForm} />
+                  <Route path='/myboards' component={MyBoards} />
+                  <Route path='/community' component={CommunityBoards} />
+                  <Route path='/support' component={Support} />
+                  <Route path='/questions/:value' component={QuestionForm} />
+                  <Route path='/play' component={PlayBoard} />
+                  <Route path='/newboard' component={AddBoard} />
+                  <Route path='/board/:id' component={Board} />
+                  <Route path='/playquestion/:category/:value/:id' component={PlayQuestion} />
+                  <Route component={Error}/>
               </Switch>
             </main>
-          </Router>
+          </BrowserRouter>
           <Footer />
         </div>
       </ApiContext.Provider>
@@ -72,4 +70,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App)
+export default App

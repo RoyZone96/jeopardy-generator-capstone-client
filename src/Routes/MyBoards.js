@@ -43,7 +43,24 @@ export default class MyBoards extends Component {
 
     render() {
         const boards = this.state.boards
-        console.log(this.props)
+        console.log(boards)
+        let boardsOutput = boards.map(boards =>
+            {
+                console.log(boards)
+                return(
+                    <section key = {boards.id} className="board-list">
+                    <ul>
+                      <li>
+                        <div className="wrapper">
+                          <div>
+                            <BoardNav id={boards.id}/>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </section>
+                )
+            })
         return (
             <div>
                 <Welcome />
@@ -53,8 +70,7 @@ export default class MyBoards extends Component {
                     NEW BOARD +
                 </button></Link>
                 <SortSelect />
-                {boards.map(boards =>
-                    <BoardList id={boards.id} />)}
+                {boardsOutput}
             </div>
         )
     }

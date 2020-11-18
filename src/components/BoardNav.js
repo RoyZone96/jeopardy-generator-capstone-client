@@ -20,7 +20,7 @@ export default class BoardNav extends Component {
 
   static contextType = ApiContext;
 
-  componentDidMount(){
+  componentDidMount() {
     fetch(`${config.API_ENDPOINT}/boards/${this.props.id}`, {
       method: 'GET',
       headers: {
@@ -34,8 +34,8 @@ export default class BoardNav extends Component {
       })
       .then((res) => {
         this.setState({
-         board_title: res.board_title,
-         modified: res.date_modified
+          board_title: res.board_title,
+          modified: res.date_modified
         })
       })
   }
@@ -67,15 +67,14 @@ export default class BoardNav extends Component {
 
   render() {
     const { board_title, modified } = this.state;
-    
+
     return (
       <div className='boardNav'>
         <div className="wrapper">
           <h2>{board_title}</h2>
           <div>
             <Link to={`/board/${this.props.id}`}><button type="button"> EDIT </button></Link>
-            <Link to="/play"><button type="button"> PLAY </button></Link>
-            <button type="button"> SHARE </button>
+            <Link to={`/play/${this.props.id}`}><button type="button"> PLAY </button></Link>
             <button type="button" onClick={this.handleClickDelete}> DELETE </button>
           </div>
         </div>

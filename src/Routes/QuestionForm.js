@@ -23,13 +23,13 @@ export default class QuestionForm extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
   }
 
   submitQuestion = event => {
     this.setState({
-      question_text: {value: event.target.value}
+      question_text: { value: event.target.value }
     });
   }
 
@@ -42,18 +42,19 @@ export default class QuestionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // function checkSubmission(input) {
-    
-    const newQuestion = JSON.stringify({
-      board_id: BoardsApiService.getBoardsId(),
+
+    const newQuestion = {
+      boards_id: BoardsApiService.getBoardsId(),
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value
-    })
+    }
+    console.log(newQuestion)
 
-      fetch(`${config.API_ENDPOINT}/questions`,
+    fetch(`${config.API_ENDPOINT}/questions`,
       {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: newQuestion
+        body: JSON.stringify(newQuestion),
       })
       .then(res => {
         if (!res.ok)
@@ -70,33 +71,33 @@ export default class QuestionForm extends Component {
       })
   }
 
-	
-	updateQuestion = (question_text) => {
-		this.setState({
-		  question_text: {
-				value: question_text,
-				touched: true
-			}
-		})
-	}
 
-	updateAnswer = (question_answer) => {
-		this.setState({
-			question_answer: {
-				value: question_answer,
-				touched: true
-			}
-		})
-	}
+  updateQuestion = (question_text) => {
+    this.setState({
+      question_text: {
+        value: question_text,
+        touched: true
+      }
+    })
+  }
+
+  updateAnswer = (question_answer) => {
+    this.setState({
+      question_answer: {
+        value: question_answer,
+        touched: true
+      }
+    })
+  }
 
   render() {
-    const {id} = this.props
+    const { id } = this.props
     return (
       <section>
         <Link to={`/board/:${id}`}><button type="button">
           BACK
         </button></Link>
-        <form onSubmit= { this.handleSubmit }>
+        <form onSubmit={this.handleSubmit}>
           <div className="wrapper">
             <textarea value={this.state.question_text.value} onChange={event => this.updateQuestion(event.target.value)} placeholder="Your content here" required />
           </div>

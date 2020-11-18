@@ -7,7 +7,7 @@ export default function BoardList(props) {
   
 
   return (
-    <section className="board-list">
+    <section key = {props.id} className="board-list">
       <ul>
         <li>
           <div className="wrapper">
