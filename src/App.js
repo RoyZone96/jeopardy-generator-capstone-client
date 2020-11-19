@@ -32,6 +32,7 @@ class App extends Component {
 
   shareBoard = (event) => { }
 
+
   render() {
     const value = {
       board: this.state.board,
@@ -54,7 +55,7 @@ class App extends Component {
                   <Route path='/myboards' component={MyBoards} />
                   <Route path='/community' component={CommunityBoards} />
                   <Route path='/support' component={Support} />
-                  <Route path='/questions/:value' component={QuestionForm} />
+                  <Route path='/questions/:category_id/:question_id/:board_id' component={QuestionForm} />
                   <Route path='/play' component={PlayBoard} />
                   <Route path='/newboard' component={AddBoard} />
                   <Route path='/board/:id' component={Board} />

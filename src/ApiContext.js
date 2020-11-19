@@ -5,6 +5,7 @@ export default React.createContext({
   category: "",
   questions: [],
   addBoard: () => {},
+  addQuestion: () => {},
   editBoard: () => {},
   deleteBoard: () => {},
   shareBoard: () => {},

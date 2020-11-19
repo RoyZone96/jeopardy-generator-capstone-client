@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import config from '../config'
-import BoardsService from '../services/BoardsApiService'
 import ApiContext from '../ApiContext'
-import TokenService from '../services/TokenService'
-import BoardsApiService from '../services/BoardsApiService'
-import { id } from 'date-fns/locale'
 
 
 export default class QuestionForm extends Component {
@@ -23,9 +19,14 @@ export default class QuestionForm extends Component {
     }
   }
 
-  componentDidMount() {
+  static contextType = ApiContext;
 
-  }
+  componentDidMount() {
+    const category_id = this.props.match.params.category_id
+    const question_id = this.props.match.params.question_id
+    const board_id = this.props.match.params.board_id
+    console.log(category_id, question_id, board_id)
+      }
 
   submitQuestion = event => {
     this.setState({
@@ -41,10 +42,9 @@ export default class QuestionForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // function checkSubmission(input) {
 
     const newQuestion = {
-      boards_id: BoardsApiService.getBoardsId(),
+      boards_id: this.props.match.params.board_id,
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value
     }
@@ -91,10 +91,9 @@ export default class QuestionForm extends Component {
   }
 
   render() {
-    const { id } = this.props
     return (
       <section>
-        <Link to={`/board/:${id}`}><button type="button">
+        <Link to={`/board/${this.props.match.params.board_id}`}><button type="button">
           BACK
         </button></Link>
         <form onSubmit={this.handleSubmit}>
@@ -106,6 +105,9 @@ export default class QuestionForm extends Component {
             <input type="text" value={this.state.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
           </div>
           <div>
+          <input type='hidden' name='boardId' defaultValue={this.props.match.params.board_id}></input>
+          <input type='hidden' name='questionId' defaultValue={this.props.match.params.question_id}></input>
+          <input type='hidden' name='categoryId' defaultValue={this.props.match.params.category_id}></input>
             <button type="submit">Submit</button>
           </div>
           {/* <div className="error">

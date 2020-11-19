@@ -12,7 +12,7 @@ const BoardsApiService = {
           : res.json()
       )
   },
-  getBoardsId(boards_id) {
+  getBoardsById(boards_id) {
     console.log(boards_id)
     return fetch(`${config.API_ENDPOINT}/boards/${boards_id}`, {
       headers: {
