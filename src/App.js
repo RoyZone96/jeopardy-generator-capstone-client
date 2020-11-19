@@ -32,6 +32,7 @@ class App extends Component {
 
   shareBoard = (event) => { }
 
+  addQuestion = (event) => { }
 
   render() {
     const value = {
@@ -39,6 +40,7 @@ class App extends Component {
       addBoard: this.addBoard,
       deleteBoard: this.deleteBoard,
       shareBoard: this.shareBoard,
+      addQuestion: this.addQuestion
     }
     console.log(value)
 

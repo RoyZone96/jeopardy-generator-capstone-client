@@ -61,7 +61,9 @@ export default class QuestionForm extends Component {
           return res.json().then(e => Promise.reject(e))
         return res.json()
       })
-      .then(response => this.context.addQuestion(response))
+      .then(response => 
+        this.context.addQuestion(response),
+        console.log(ApiContext))
       .then(
         console.log(newQuestion),
         this.props.history.push('/')
