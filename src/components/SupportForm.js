@@ -7,16 +7,16 @@ export default class SupportForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
-            subject: '',
-            content: ''
+            email: "",
+            subject: "",
+            content: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-
+    static contextType = ApiContext
 
     handleChange(event) {
         this.setState({ value: event.target.value })
@@ -26,9 +26,9 @@ export default class SupportForm extends Component {
         event.preventDefault();
 
         const newSupport = {
-            email: this.state.email.value,
-            subject: this.state.subject.value,
-            content: this.state.content.value
+            email: this.state.email,
+            subject: this.state.subject,
+            content: this.state.content
         }
 
         console.log(newSupport)
@@ -45,8 +45,8 @@ export default class SupportForm extends Component {
                 return res.json()
             })
             .then(response =>
-                this.context.addQuestion(response),
-                console.log(ApiContext))
+                this.context.requestSupport(response)
+            )
             .then(
                 console.log(newSupport),
                 this.props.history.push('/')
@@ -63,13 +63,13 @@ export default class SupportForm extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="wrapper">
-                        <input type="text" value = {this.state.email.value} onChange={this.handleChange} className="email" name="email" placeholder="E-mail" required />
+                        <input type="text" value={this.state.email.value} onChange={this.handleChange} className="email" name="email" placeholder="E-mail" required />
                     </div>
                     <div className="wrapper">
-                        <input type="text" value = { this.state.subject.value} onChange={this.handleChange} className="subject" name="subject" placeholder="Subject" required />
+                        <input type="text" value={this.state.subject.value} onChange={this.handleChange} className="subject" name="subject" placeholder="Subject" required />
                     </div>
                     <div className="wrapper">
-                        <textarea name="content" value = {this.state.content.value} onChange={this.handleChange} className="content" placeholder="Your content here" required />
+                        <textarea name="content" value={this.state.content.value} onChange={this.handleChange} className="content" placeholder="Your content here" required />
                     </div>
                     <div className="wrapper">
                         <button type="submit">

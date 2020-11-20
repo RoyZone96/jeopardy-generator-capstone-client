@@ -24,6 +24,8 @@ class App extends Component {
     user: {}
   }
 
+  requestSupport = (event) => { }
+
   setUser = (event) => { }
 
   addBoard = (event) => { }
