@@ -3,6 +3,7 @@ import config from '../config'
 import ApiContext from '../ApiContext'
 
 
+
 export default class SupportForm extends Component {
     constructor(props) {
         super(props)
@@ -49,13 +50,28 @@ export default class SupportForm extends Component {
             )
             .then(
                 console.log(newSupport),
-                this.props.history.push('/')
+                window.location = "/"
             )
             .catch(error => {
                 alert(error.message)
             })
         alert('Thank you for your submission. The admin will look over this as soon as possible')
 
+    }
+
+    validateSubmission(){
+        const email = this.state.email.trim()
+        const subject = this.state.subject.trim()
+        const content = this.state.content.trim()
+        if (email.length === 0) {
+            return <p className='input-error'>.</p>;
+          } 
+        else if (subject.length === 0) {
+            return <p className='input-error'>.</p>;
+        }
+        else if (content.length === 0) {
+            return <p className='input-error'>.</p>;
+        }
     }
 
     render() {

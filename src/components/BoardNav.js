@@ -75,6 +75,7 @@ export default class BoardNav extends Component {
           <div>
             <Link to={`/board/${this.props.id}`}><button type="button"> EDIT </button></Link>
             <Link to={`/play/${this.props.id}`}><button type="button"> PLAY </button></Link>
+            <button type="submit"> SHARE </button>
             <button type="button" onClick={this.handleClickDelete}> DELETE </button>
           </div>
         </div>
