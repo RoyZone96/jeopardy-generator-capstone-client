@@ -129,7 +129,7 @@ The app's functionality includes:
     * question_text (alphabetical, text)
     * question_answer (alphabetical, text)
     * question_points (numerical, default 100)
-    * question_category (enumeration: )
+    * question_category (enumeration: 1-6 )
 * Scores
     * id (auto-generated)
     * user_id (auto-generated)

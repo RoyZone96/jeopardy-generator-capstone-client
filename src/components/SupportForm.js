@@ -20,6 +20,7 @@ export default class SupportForm extends Component {
     static contextType = ApiContext
 
     handleChange(event) {
+        event.preventDefault()
         this.setState({ value: event.target.value })
     }
 

@@ -83,7 +83,9 @@ export default class LoginForm extends Component {
           </div>
           <div className="wrapper">
             <button type="submit"> Login </button>
-            <Link to="/registration"><button type="button"> Register </button></Link>
+            <Link to="/registration"><
+              button type="button"> Register </button>
+              </Link>
           </div>
           <div role='alert'>
             {error && <p className='red'>{error}</p>}

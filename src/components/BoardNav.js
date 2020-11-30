@@ -72,9 +72,14 @@ export default class BoardNav extends Component {
       <div className='boardNav'>
         <div className="wrapper">
           <h2>{board_title}</h2>
+          <h3>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h3>
           <div>
-            <Link to={`/board/${this.props.id}`}><button type="button"> EDIT </button></Link>
-            <Link to={`/play/${this.props.id}`}><button type="button"> PLAY </button></Link>
+            <Link to={`/board/${this.props.id}`}>
+              <button type="button"> EDIT </button>
+            </Link>
+            <Link to={`/play/${this.props.id}`}>
+              <button type="button"> PLAY </button>
+            </Link>
             <button type="submit"> SHARE </button>
             <button type="button" onClick={this.handleClickDelete}> DELETE </button>
           </div>
