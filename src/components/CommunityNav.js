@@ -5,6 +5,7 @@ import config from '../config'
 import ApiContext from '../ApiContext'
 
 
+
 export default class BoardNav extends Component {
   static defaultProps = {
     onDeleteBoard: () => { },
@@ -14,24 +15,18 @@ export default class BoardNav extends Component {
   }
 
   state = {
-      isLiked: false
+    board_title: '',
+    isLiked: false,
+    likes: 0
   }
 
   static contextType = ApiContext;
 
-  toggleLike = () => {
-      this.setState({
-        isLiked: !this.state.isLiked
-      })
-  }
+  
 
-
-  handleClickDelete = e => {
-    e.preventDefault()
-    const { id } = this.props;
-
-    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
-      method: 'DELETE',
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/communityBoards/${this.props.id}`, {
+      method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
@@ -41,29 +36,37 @@ export default class BoardNav extends Component {
           return res.json().then(e => Promise.reject(e))
         return res
       })
-      .then(() => {
-        this.context.deleteBoard(id)
-        this.props.onDeleteBoard(id)
-      })
-      .catch(error => {
-        console.error({ error })
+      .then((res) => {
+        this.setState({
+          board_title: res.board_title,
+          day_posted: res.day_posted,
+          likes: 0
+        })
       })
   }
 
+
+  toggleLike = (event) => {
+    this.setState({
+      isLiked: !this.state.isLiked,
+      likes: 0 + 1
+    })
+  }
+
   render() {
-    const { board_title, id, modified } = this.context;
-    
+    const { board_title, day_posted, likes } = this.state;
+
     return (
       <div className='boardNav'>
         <div className="wrapper">
           <h2>{board_title}</h2>
-          <h2>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h2>
+          <h2>{day_posted && format(parseISO(day_posted), 'MMM d, yyyy')}</h2>
           <div>
-            
+
             <Link to="/play">
               <button type="button"> PLAY </button>
-              </Link>
-          
+            </Link>
+            <button onChange={this.toggleLike()}> LIKE: {likes}</button>
           </div>
         </div>
       </div>

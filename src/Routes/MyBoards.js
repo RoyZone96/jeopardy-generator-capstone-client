@@ -13,6 +13,8 @@ import BoardList from '../components/BoardList'
 
 
 export default class MyBoards extends Component {
+   
+   
     state = {
         boards: []
     }

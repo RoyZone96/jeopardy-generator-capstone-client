@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import SortSelect from '../components/SortSelect'
-import BoardList from '../components/BoardList'
 import config from '../config'
+import CommunityList from '../components/CommunityList'
+import LogoutButton from '../components/LogoutButton'
+import NavLinks from '../components/NavLinks'
+
 
 export default class CommunityBoards extends Component {
     state = {
@@ -10,7 +13,7 @@ export default class CommunityBoards extends Component {
 
     componentDidMount() {
         Promise.all([
-            fetch(`${config.API_ENDPOINT}/boards`)
+            fetch(`${config.API_ENDPOINT}/communityBoards`)
         ])
             .then(([boardsRes]) => {
                 if (!boardsRes.ok)
@@ -29,8 +32,10 @@ export default class CommunityBoards extends Component {
     render() {
         return (
             <div>
+                <LogoutButton />
+                <NavLinks />
                 <SortSelect />
-                <BoardList />
+                <CommunityList />
             </div>
         )
     }

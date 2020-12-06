@@ -10,6 +10,10 @@ export default class BoardNav extends Component {
     onDeleteBoard: () => { },
     match: {
       params: {}
+    },
+    onShareBoard: () => { },
+    match: {
+      params: {}
     }
   }
 
@@ -40,6 +44,36 @@ export default class BoardNav extends Component {
       })
   }
 
+  handlePost = e => {
+    e.preventDefault()
+    const { id } = this.props;
+    const sharedBoard = {
+      board_title: this.board_title
+    }
+
+    fetch(`${config.API_ENDPOINT}/communityBoards`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(sharedBoard),
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(response =>
+        this.context.shareBoard(response),
+        console.log(ApiContext))
+      .then(
+        console.log(sharedBoard),
+        this.props.history.push('/')
+      )
+      .catch(error => {
+        alert(error.message)
+      })
+  }
+
 
   handleClickDelete = e => {
     e.preventDefault()
@@ -67,6 +101,8 @@ export default class BoardNav extends Component {
 
   render() {
     const { board_title, modified } = this.state;
+    console.log({board_title})
+    console.log({modified})
 
     return (
       <div className='boardNav'>
@@ -80,7 +116,7 @@ export default class BoardNav extends Component {
             <Link to={`/play/${this.props.id}`}>
               <button type="button"> PLAY </button>
             </Link>
-            <button type="submit"> SHARE </button>
+            <button type="submit" onClick={this.handlePost}> SHARE </button>
             <button type="button" onClick={this.handleClickDelete}> DELETE </button>
           </div>
         </div>

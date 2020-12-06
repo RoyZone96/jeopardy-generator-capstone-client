@@ -60,7 +60,7 @@ class App extends Component {
                   <Route path='/community' component={CommunityBoards} />
                   <Route path='/support' component={Support} />
                   <Route path='/questions/:category_id/:question_id/:board_id' component={QuestionForm} />
-                  <Route path='/play' component={PlayBoard} />
+                  <Route path='/play/:id' component={PlayBoard} />
                   <Route path='/newboard' component={AddBoard} />
                   <Route path='/board/:id' component={Board} />
                   <Route path='/playquestion/:category/:value/:id' component={PlayQuestion} />
