@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import SortSelect from '../components/SortSelect'
 import config from '../config'
-import CommunityList from '../components/CommunityList'
+import CommunityNav from '../components/CommunityNav'
 import LogoutButton from '../components/LogoutButton'
 import NavLinks from '../components/NavLinks'
 
 
 export default class CommunityBoards extends Component {
     state = {
-        boards: []
+        communityBoards: []
     }
 
     componentDidMount() {
@@ -20,9 +20,9 @@ export default class CommunityBoards extends Component {
                     return boardsRes.json().then(e => Promise.reject(e));
                 return Promise.all([boardsRes.json()]);
             })
-            .then(([boards]) => {
-                this.setState({ boards });
-                console.log(boards)
+            .then(([communityBoards]) => {
+                this.setState({ communityBoards });
+                console.log(communityBoards)
             })
             .catch(error => {
                 console.log({ error });
@@ -30,12 +30,30 @@ export default class CommunityBoards extends Component {
     }
 
     render() {
+        let communityListHtml = <p>No Results</p>
+
+
+        //If the question was edited before display the last text for it in text area
+        if (this.state.communityBoards.length != 0) {
+             communityListHtml = this.state.communityBoards.map((communityBoard, key) => (
+                <section key={key} className="community-list">
+                <ul>
+                    <li>
+                        <div className="wrapper">
+                              {communityBoard.board_title}   
+                              <CommunityNav id={communityBoard.id}/> 
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            ))
+        }
         return (
             <div>
                 <LogoutButton />
                 <NavLinks />
                 <SortSelect />
-                <CommunityList />
+                {communityListHtml}
             </div>
         )
     }

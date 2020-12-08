@@ -87,7 +87,7 @@ export default class LoginForm extends Component {
               button type="button"> Register </button>
               </Link>
           </div>
-          <div role='alert'>
+          <div role='console.log'>
             {error && <p className='red'>{error}</p>}
           </div>
         </form>

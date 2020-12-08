@@ -75,7 +75,7 @@ export default class AddBoard extends Component {
             .catch(error => {
 
                 console.log(error);
-                alert(error.message)
+                console.log(error.message)
             })
     }
 

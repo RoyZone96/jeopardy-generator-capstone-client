@@ -25,7 +25,10 @@ export default class BoardNav extends Component {
   
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/communityBoards/${this.props.id}`, {
+    console.log(this.props)
+    let url = `${config.API_ENDPOINT}/communityBoards/${this.props.id}`
+    console.log(url)
+    fetch(url, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -37,36 +40,40 @@ export default class BoardNav extends Component {
         return res
       })
       .then((res) => {
+        console.log(res)
         this.setState({
           board_title: res.board_title,
-          day_posted: res.day_posted,
           likes: 0
         })
+      })
+      .catch(error => {
+        console.log(error.message)
       })
   }
 
 
-  toggleLike = (event) => {
-    this.setState({
-      isLiked: !this.state.isLiked,
-      likes: 0 + 1
-    })
-  }
+  // toggleLike = (event) => {
+  //   // event.preventDefault()
+  //   let existingLikes = parseInt(this.state.likes)
+  //   this.setState({
+  //     isLiked: !this.state.isLiked,
+  //     likes: existingLikes++
+  //   })
+  // }
 
   render() {
-    const { board_title, day_posted, likes } = this.state;
+    const { day_posted, likes } = this.state;
 
     return (
       <div className='boardNav'>
         <div className="wrapper">
-          <h2>{board_title}</h2>
           <h2>{day_posted && format(parseISO(day_posted), 'MMM d, yyyy')}</h2>
           <div>
 
             <Link to="/play">
               <button type="button"> PLAY </button>
             </Link>
-            <button onChange={this.toggleLike()}> LIKE: {likes}</button>
+            <button> LIKE: {likes}</button>
           </div>
         </div>
       </div>

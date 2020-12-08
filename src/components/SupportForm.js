@@ -54,9 +54,9 @@ export default class SupportForm extends Component {
                 window.location = "/"
             )
             .catch(error => {
-                alert(error.message)
+                console.log(error.message)
             })
-        alert('Thank you for your submission. The admin will look over this as soon as possible')
+        console.log('Thank you for your submission. The admin will look over this as soon as possible')
 
     }
 

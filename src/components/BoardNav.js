@@ -70,7 +70,7 @@ export default class BoardNav extends Component {
         this.props.history.push('/')
       )
       .catch(error => {
-        alert(error.message)
+        console.log(error.message)
       })
   }
 

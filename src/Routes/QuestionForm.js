@@ -113,10 +113,10 @@ export default class QuestionForm extends Component {
     //     this.props.history.push('/')
     //   )
     //   .catch(error => {
-    //     alert(error.message)
+    //     console.log(error.message)
     //   })
 
-    fetch(`${config.API_ENDPOINT}/questions/:${questions_id}`,
+    fetch(`${config.API_ENDPOINT}/questions/${questions_id}`,
       {
         method: 'PATCH',
         headers: { 'content-type': 'application/json' },
@@ -135,7 +135,7 @@ export default class QuestionForm extends Component {
         this.props.history.push('/')
       )
       .catch(error => {
-        alert(error.message)
+        console.log(error.message)
       })
   }
 

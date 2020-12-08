@@ -6,15 +6,12 @@ import Welcome from '../components/Welcome'
 import SortSelect from '../components/SortSelect'
 import BoardNav from '../components/BoardNav'
 import LogoutButton from "../components/LogoutButton"
-import AddBoard from "../AddBoard"
 import config from "../config"
-import Board from '../components/Board'
-import BoardList from '../components/BoardList'
 
 
 export default class MyBoards extends Component {
-   
-   
+
+
     state = {
         boards: []
     }
@@ -43,6 +40,8 @@ export default class MyBoards extends Component {
     }
 
 
+
+
     render() {
         const boards = this.state.boards
         console.log(boards)
@@ -54,6 +53,7 @@ export default class MyBoards extends Component {
                         <li>
                             <div className="wrapper">
                                 <div>
+                                    <p>{boards.board_title}</p>
                                     <BoardNav id={boards.id} />
                                 </div>
                             </div>
