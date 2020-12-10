@@ -86,6 +86,7 @@ export default class QuestionForm extends Component {
     }
 
     const updatedQuestion = {
+      boards_id: board_id,
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value,
       question_points: this.state.question_points,

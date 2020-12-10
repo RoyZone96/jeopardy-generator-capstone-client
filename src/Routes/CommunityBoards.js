@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SortSelect from '../components/SortSelect'
+import CommunitySortSelect from '../components/CommunitySortSelect'
 import config from '../config'
 import CommunityNav from '../components/CommunityNav'
 import LogoutButton from '../components/LogoutButton'
@@ -52,7 +52,7 @@ export default class CommunityBoards extends Component {
             <div>
                 <LogoutButton />
                 <NavLinks />
-                <SortSelect />
+                <CommunitySortSelect />
                 {communityListHtml}
             </div>
         )

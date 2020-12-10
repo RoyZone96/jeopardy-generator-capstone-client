@@ -19,13 +19,25 @@ export default class BoardNav extends Component {
 
   state = {
     board_title: "",
-    modified: ''
+    category_five: "",
+    category_four: "",
+    category_one: "",
+    category_six: "",
+    category_three: "",
+    category_two: "",
+    date_created: "",
+    date_updated: "",
+    id: 0,
+    times_played: 0,
+    user_id: 0
   }
 
   static contextType = ApiContext;
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/boards/${this.props.id}`, {
+    const url = `${config.API_ENDPOINT}/boards/${this.props.id}`
+    console.log(url)
+    fetch(url, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -34,12 +46,23 @@ export default class BoardNav extends Component {
       .then(res => {
         if (!res.ok)
           return res.json().then(e => Promise.reject(e))
-        return res
+        return res.json()
       })
-      .then((res) => {
+      .then((responseJson) => {
+        console.log(responseJson)
         this.setState({
-          board_title: res.board_title,
-          modified: res.date_modified
+          board_title: responseJson.board_title,
+          category_five: responseJson.category_five,
+          category_four: responseJson.category_four,
+          category_one: responseJson.category_one,
+          category_six: responseJson.category_six,
+          category_three: responseJson.category_three,
+          category_two: responseJson.category_two,
+          date_created: responseJson.date_created,
+          date_updated: responseJson.date_updated,
+          id: responseJson.id,
+          times_played: responseJson.times_played,
+          user_id: responseJson.user_id
         })
       })
   }
@@ -48,9 +71,22 @@ export default class BoardNav extends Component {
     e.preventDefault()
     const { id } = this.props;
     const sharedBoard = {
-      board_title: this.board_title
+      board_title: this.state.board_title,
+      category_five: this.state.category_five,
+      category_four: this.state.category_four,
+      category_one: this.state.category_one,
+      category_six: this.state.category_six,
+      category_three: this.state.category_three,
+      category_two: this.state.category_two,
+      // date_created: this.state.date_created,
+      // date_updated: this.state.date_updated,
+      // id: id,
+      // times_played: this.state.times_played,
+      user_id: this.state.user_id,
+      likes: 0
     }
-
+    console.log(sharedBoard)
+    
     fetch(`${config.API_ENDPOINT}/communityBoards`,
       {
         method: 'POST',
@@ -67,7 +103,7 @@ export default class BoardNav extends Component {
         console.log(ApiContext))
       .then(
         console.log(sharedBoard),
-        this.props.history.push('/')
+        window.location = '/'
       )
       .catch(error => {
         console.log(error.message)
@@ -100,15 +136,9 @@ export default class BoardNav extends Component {
   }
 
   render() {
-    const { board_title, modified } = this.state;
-    console.log({board_title})
-    console.log({modified})
-
     return (
       <div className='boardNav'>
         <div className="wrapper">
-          <h2>{board_title}</h2>
-          <h3>{modified && format(parseISO(modified), 'MMM d, yyyy')}</h3>
           <div>
             <Link to={`/board/${this.props.id}`}>
               <button type="button"> EDIT </button>
