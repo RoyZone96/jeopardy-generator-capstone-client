@@ -97,7 +97,7 @@ export default class Playboard extends Component {
 
     render() {
         const { category_one, category_two, category_three, category_four, category_five, category_six } = this.state
-        const currentBoardId = this.props.match.params.id
+        const currentBoardId = this.props.match.params.id;
         let questionCategory = 1
         let questionId = 1
         let linkUrlOutput = `/playquestion/questions/${questionCategory}/${questionId}/${currentBoardId}`

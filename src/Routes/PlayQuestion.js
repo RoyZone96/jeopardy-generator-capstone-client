@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Data } from "../components/dummy-store"
 import { Link } from "react-router-dom"
 import config from '../config'
 
@@ -12,7 +11,11 @@ export default class PlayQuestion extends Component {
   }
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/question/${this.props.match.params.id}`, {
+    const category_id = this.props.match.params.category_id
+    const question_id = this.props.match.params.question_id
+    const board_id = this.props.match.params.board_id
+    console.log(category_id, question_id, board_id)
+    fetch(`${config.API_ENDPOINT}/questions/${this.props.match.params.id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -24,11 +27,13 @@ export default class PlayQuestion extends Component {
         return res.json()
       })
       .then((res) => {
+        console.log(res)
         this.setState({
           question_text: res.question_text,
           question_answer: res.question_answer
         })
       })
+      .catch(error => console.log({ error }))
   }
 
   toggleState = () => {
@@ -39,21 +44,21 @@ export default class PlayQuestion extends Component {
 
 
   render() {
-    let { category, value, id } = this.props.match.params
-    category = category.replace(/-/g, " ")
-    let cat = Data.data[id - 1].questions[value / 100 - 1]
+    let currentQuestion = this.state.question_text
+    let currentAnswer = this.state.question_answer
+    let currentBoardId = this.props.match.params.id
     return (
       <div>
-        <Link to={`/board/${this.props.match.params.board_id}`}>
+        <Link to={`/play/${currentBoardId}`}>
           <button type="button">BACK</button>
         </Link>
         <div>
           <div className="wrapper">
-            <p>{cat.question}</p>
+            <p>{currentQuestion}</p>
           </div>
           {this.state.isShown && (
             <div className="wrapper">
-              <p>What is <p className="answer">{cat.answer}</p> ?</p>
+              <p>What is <p className="answer">{currentAnswer}</p> ?</p>
             </div>
           )}
           <div>

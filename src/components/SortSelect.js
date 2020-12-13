@@ -5,6 +5,7 @@ export default class SortSelect extends Component {
         isSorted: false
     }
 
+
     handleToggle = () => {
         if (this.state.sorted) {
             this.props.sort('asc')
@@ -19,7 +20,6 @@ export default class SortSelect extends Component {
         return (
             <select name="sorting" id="sort-bar">
             <option value="name">A - Z</option> 
-            <option value="name-reverse">Z - A</option>
             <option value="recent">Recent</option>
            </select>
         )
