@@ -52,14 +52,14 @@ export default class BoardNav extends Component {
   }
 
 
-  // toggleLike = (event) => {
-  //   // event.preventDefault()
-  //   let existingLikes = parseInt(this.state.likes)
-  //   this.setState({
-  //     isLiked: !this.state.isLiked,
-  //     likes: existingLikes++
-  //   })
-  // }
+  toggleLike = (event) => {
+    // event.preventDefault()
+    let existingLikes = parseInt(this.state.likes)
+    this.setState({
+      isLiked: !this.state.isLiked,
+      likes: existingLikes++
+    })
+  }
 
   render() {
     const { day_posted, likes } = this.state;
@@ -70,10 +70,10 @@ export default class BoardNav extends Component {
           <h2>{day_posted && format(parseISO(day_posted), 'MMM d, yyyy')}</h2>
           <div>
 
-            <Link to="/play">
+            <Link to={`/play/${this.props.id}`}>
               <button type="button"> PLAY </button>
             </Link>
-            <button> LIKE: {likes}</button>
+            <button onClick={this.toggleLike}> LIKE: {likes}</button>
           </div>
         </div>
       </div>

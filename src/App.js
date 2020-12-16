@@ -63,7 +63,7 @@ class App extends Component {
                   <Route path='/play/:id' component={PlayBoard} />
                   <Route path='/newboard' component={AddBoard} />
                   <Route path='/board/:id' component={Board} />
-                  <Route path='/playquestion/:category/:value/:id' component={PlayQuestion} />
+                  <Route path='/playquestion/:category_id/:question_id/:board_id' component={PlayQuestion} />
                   <Route component={Error}/>
               </Switch>
             </main>

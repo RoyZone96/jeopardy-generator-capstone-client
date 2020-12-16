@@ -51,7 +51,9 @@ export default class Playboard extends Component {
     }
 
     componentDidMount() {
-        fetch(`${config.API_ENDPOINT}/boards/${this.props.match.params.id}`, {
+        const url = `${config.API_ENDPOINT}/boards/${this.props.match.params.id}`
+        console.log(url)
+        fetch( url, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
@@ -100,7 +102,7 @@ export default class Playboard extends Component {
         const currentBoardId = this.props.match.params.id;
         let questionCategory = 1
         let questionId = 1
-        let linkUrlOutput = `/playquestion/questions/${questionCategory}/${questionId}/${currentBoardId}`
+        let linkUrlOutput = `/playquestion/${questionCategory}/${questionId}/${currentBoardId}`
         // let categories = Data.data.map(cat => (<div className="divTableCell">{cat.category}</div>))
         let players = this.state.players.map((player, idx) => (
             <div>

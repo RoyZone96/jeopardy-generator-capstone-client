@@ -3,6 +3,7 @@ body {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: goldenrod;
 }
 
 code {
@@ -48,7 +49,11 @@ h1{
 
 .wrapper{
     margin: 30px;
+    width: 500px;
+    height: 150px;
     text-align: center;
+    background-color: blue;
+    border: 2pt solid;
   }
 
 
@@ -91,6 +96,18 @@ button{
  
 }
 
+a{
+  color: goldenrod;
+}
+
+.divTableBody a {
+  color:goldenrod
+}
+
+.divTableBody a:visited {
+  color:grey
+}
+
 .question-area{
   width: 450px;
   height: 300;
@@ -130,6 +147,14 @@ li{
   list-style: none;
 }
 
+
+.divTableCell{
+  color: white;
+  height: 50px;
+  width: 50px;
+  background-color:blue;
+} 
+
 .support{
   margin-right: auto;
   margin-left: auto;
@@ -142,6 +167,7 @@ li{
   background-color: black;
   color: white;
   position: relative;
+  margin-top: 290px;
   bottom: 0px;
 }
 

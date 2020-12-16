@@ -11,11 +11,14 @@ export default class PlayQuestion extends Component {
   }
 
   componentDidMount() {
-    const category_id = this.props.match.params.category_id
+    // const category_id = this.props.match.params.category_id
     const question_id = this.props.match.params.question_id
     const board_id = this.props.match.params.board_id
-    console.log(category_id, question_id, board_id)
-    fetch(`${config.API_ENDPOINT}/questions/${this.props.match.params.id}`, {
+    console.log(question_id, board_id)
+    let url = `${config.API_ENDPOINT}/questions/${question_id}`
+    
+    console.log(url)
+    fetch(url, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -46,21 +49,22 @@ export default class PlayQuestion extends Component {
   render() {
     let currentQuestion = this.state.question_text
     let currentAnswer = this.state.question_answer
-    let currentBoardId = this.props.match.params.id
+    const board_id = this.props.match.params.board_id
+    console.log(board_id)
     return (
-      <div>
-        <Link to={`/play/${currentBoardId}`}>
+      <div className="wrapper">
+        <Link to={`/play/${board_id}`}>
           <button type="button">BACK</button>
         </Link>
         <div>
-          <div className="wrapper">
+          <div >
             <p>{currentQuestion}</p>
           </div>
-          {this.state.isShown && (
-            <div className="wrapper">
-              <p>What is <p className="answer">{currentAnswer}</p> ?</p>
+         
+            <div>
+              <p>What is  {this.state.isShown && (<p className="answer">{currentAnswer}</p> )} ?</p>
             </div>
-          )}
+         
           <div>
             <button type="button" onClick={this.toggleState}>
               Reveal

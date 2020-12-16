@@ -138,7 +138,7 @@ export default class BoardNav extends Component {
   render() {
     return (
       <div className='boardNav'>
-        <div className="wrapper">
+        <div>
           <div>
             <Link to={`/board/${this.props.id}`}>
               <button type="button"> EDIT </button>
