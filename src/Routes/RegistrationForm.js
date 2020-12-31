@@ -114,25 +114,25 @@ export default class RegistrationForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className="wrapper">
                 <form className="registration" onSubmit={this.handleSubmit}>
-                    <div className="wrapper">
+                    <div className="spacer">
                         <label htmlFor="username"> username </label>
                         <input type="text" className="username" name="username" required />
                     </div>
-                    <div className="wrapper">
+                    <div className="spacer">
                         <label htmlFor="password"> Password </label>
                         <input type="text" className="password" name="password" minLength="8" required />
                     </div>
-                    <div className="wrapper">
+                    <div className="spacer">
                         <label htmlFor="confirmPassword"> Confirm Password </label>
                         <input type="text" className="confirmPassword" name="confirmPassword" required />
                     </div>
-                    <div className="wrapper">
+                    <div className="spacer">
                         <label htmlFor="email"> E-mail </label>
                         <input type="text" className="email" name="email" required />
                     </div>
-                    <div className="wrapper">
+                    <div className="spacer">
                         <button type="submit"> Submit </button>
                     </div>
                 </form>

@@ -7,9 +7,9 @@ import TokenService from '../services/TokenService'
 
 export default class LoginForm extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {}
+    onLoginSuccess: () => { }
   }
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +60,7 @@ export default class LoginForm extends Component {
       })
       .then(response => {
         console.log("response:", response)
-  
+
       })
       .catch(err => {
         console.log(err);
@@ -71,21 +71,23 @@ export default class LoginForm extends Component {
   render() {
     const { error } = this.state
     return (
-      <div>
+      <div className="wrapper">
         <form onSubmit={this.handleSubmitJwtAuth}>
-          <div className="wrapper">
+          <div className="spacer">
             <label htmlFor="username"> Username </label>
             <input type="text" className="username" name="username" required />
           </div>
-          <div className="wrapper">
+          <div className="spacer">
             <label htmlFor="password"> Password </label>
             <input type="text" className="password" name="password" required />
           </div>
-          <div className="wrapper">
+          <div className="button-spacer">
             <button type="submit"> Login </button>
-            <Link to="/registration"><
-              button type="button"> Register </button>
-              </Link>
+          </div>
+          <div className="button-spacer">
+            <Link to="/registration">
+              <button type="button"> Register </button>
+            </Link>
           </div>
           <div role='console.log'>
             {error && <p className='red'>{error}</p>}

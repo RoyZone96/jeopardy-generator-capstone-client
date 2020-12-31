@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class SortSelect extends Component {
-    state={
+    state = {
         isSorted: false
     }
 
@@ -17,11 +17,12 @@ export default class SortSelect extends Component {
 
     render() {
         return (
+            <div className="sorter">
             <select name="sorting" id="sort-bar">
-            <option value="name">Alphabetical</option> 
-            <option value="recent">Recent</option>
-            <option value="Popular">Popular</option>
-           </select>
+                <option value="name">Alphabetical</option>
+                <option value="recent">Recent</option>
+                <option value="Popular">Popular</option>
+            </select></div>
         )
     }
 }

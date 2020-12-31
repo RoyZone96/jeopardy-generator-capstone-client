@@ -192,20 +192,20 @@ export default class QuestionForm extends Component {
       // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
       currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
     }
-     
-    
-    
+
+
+
     //toDo: dynamically enter question points make sure patch payload is populated with all variables
     //if the answer wasn't editted display default in input area
     //  let currentAnswersHtml = <input type="text" defaultValue={this.state.question_answer.value} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
 
-     //if answer was edited display the last text for it in input
+    //if answer was edited display the last text for it in input
     //  console.log((this.state.currentQuestions))
     //  if (Object.keys(this.state.currentQuestions).length != 0) {
     //    console.log(this.state.currentQuestions.question_answer)
-       // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
-      //  currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
-     
+    // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
+    //  currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
+
 
 
     return (
@@ -213,8 +213,9 @@ export default class QuestionForm extends Component {
         <Link to={`/board/${this.props.match.params.board_id}`}>
           <button type="button">BACK</button>
         </Link>
-        <form onSubmit={this.handleSubmit}>
-          {/* <div>
+        <div className="wrapper">
+          <form onSubmit={this.handleSubmit}>
+            {/* <div>
           <select onChange={(event) => this.updateCategoryId(event)}>
                 <option value=""></option>
                 <option value="1">1</option>
@@ -225,34 +226,35 @@ export default class QuestionForm extends Component {
                 <option value="6">6</option>
             </select>
           </div>  */}
-          <div>
-          <select onChange={(event) => this.updatePoints(event)}>
+            <div>
+              <select onChange={(event) => this.updatePoints(event)}>
                 <option value=""></option>
                 <option value="100">100</option>
                 <option value="200">200</option>
                 <option value="300">300</option>
                 <option value="400">400</option>
                 <option value="500">500</option>
-            </select>
-          </div>
-          <div className="wrapper">
-            {currentQuestionsHtml}
-          </div>
-          <div className="wrapper">
-            <label htmlFor="question_answer"> What is </label>
-            {currentAnswersHtml}
-          </div>
-          <div>
-            <input type='hidden' name='boardId' defaultValue={this.props.match.params.board_id}></input>
-            <input type='hidden' name='questionId' defaultValue={this.props.match.params.question_id}></input>
-            <input type='hidden' name='categoryId' defaultValue={this.props.match.params.category_id}></input>
-            <input type='hidden' name='points' defaultValue={this.props.match.params.question_points}></input>
-            <button type="submit">Submit</button>
-          </div>
-          {/* <div className="error">
+              </select>
+            </div>
+            <div className="question-container">
+              {currentQuestionsHtml}
+            </div>
+            <div className="answer-container">
+              <label htmlFor="question_answer"> What is </label>
+              {currentAnswersHtml}
+            </div>
+            <div>
+              <input type='hidden' name='boardId' defaultValue={this.props.match.params.board_id}></input>
+              <input type='hidden' name='questionId' defaultValue={this.props.match.params.question_id}></input>
+              <input type='hidden' name='categoryId' defaultValue={this.props.match.params.category_id}></input>
+              <input type='hidden' name='points' defaultValue={this.props.match.params.question_points}></input>
+              <button type="submit">Submit</button>
+            </div>
+            {/* <div className="error">
             <p>  </p>
           </div> */}
-        </form>
+          </form>
+        </div>
       </section >
     )
   }

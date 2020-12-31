@@ -86,7 +86,7 @@ export default class BoardNav extends Component {
       likes: 0
     }
     console.log(sharedBoard)
-    
+
     fetch(`${config.API_ENDPOINT}/communityBoards`,
       {
         method: 'POST',
@@ -140,14 +140,22 @@ export default class BoardNav extends Component {
       <div className='boardNav'>
         <div>
           <div>
-            <Link to={`/board/${this.props.id}`}>
-              <button type="button"> EDIT </button>
-            </Link>
-            <Link to={`/play/${this.props.id}`}>
-              <button type="button"> PLAY </button>
-            </Link>
-            <button type="submit" onClick={this.handlePost}> SHARE </button>
-            <button type="button" onClick={this.handleClickDelete}> DELETE </button>
+            <div className="button-spacer">
+              <Link to={`/board/${this.props.id}`}>
+                <button type="button"> EDIT </button>
+              </Link>
+            </div>
+            <div className="button-spacer">
+              <Link to={`/play/${this.props.id}`}>
+                <button type="button"> PLAY </button>
+              </Link>
+            </div>
+            <div className="button-spacer">
+              <button type="submit" onClick={this.handlePost}> SHARE </button>
+            </div>
+            <div className="button-spacer">
+              <button type="button" onClick={this.handleClickDelete}> DELETE </button>
+            </div>
           </div>
         </div>
       </div>

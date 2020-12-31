@@ -39,7 +39,7 @@ export default class CommunityBoards extends Component {
                 <section key={key} className="community-list">
                 <ul>
                     <li>
-                        <div className="wrapper">
+                        <div className="menu-wrapper">
                               {communityBoard.board_title}   
                               <CommunityNav id={communityBoard.id}/> 
                         </div>

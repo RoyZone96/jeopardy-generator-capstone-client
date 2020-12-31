@@ -18,10 +18,12 @@ export default class SortSelect extends Component {
 
     render() {
         return (
+        <div className="sorter">
             <select name="sorting" id="sort-bar">
             <option value="name">A - Z</option> 
             <option value="recent">Recent</option>
            </select>
+        </div>
         )
     }
 }

@@ -12,7 +12,8 @@ export default class Playboard extends Component {
         category_three: "",
         category_four: "",
         category_five: "",
-        category_six: ""
+        category_six: "",
+        existingBoardQuestions: []
     }
 
     addPlayer = (event) => {
@@ -53,7 +54,7 @@ export default class Playboard extends Component {
     componentDidMount() {
         const url = `${config.API_ENDPOINT}/boards/${this.props.match.params.id}`
         console.log(url)
-        fetch( url, {
+        fetch(url, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
@@ -101,8 +102,8 @@ export default class Playboard extends Component {
         const { category_one, category_two, category_three, category_four, category_five, category_six } = this.state
         const currentBoardId = this.props.match.params.id;
         let questionCategory = 1
-        let questionId = 1
-        let linkUrlOutput = `/playquestion/${questionCategory}/${questionId}/${currentBoardId}`
+        const question_points = 100
+       
         // let categories = Data.data.map(cat => (<div className="divTableCell">{cat.category}</div>))
         let players = this.state.players.map((player, idx) => (
             <div>
@@ -110,131 +111,48 @@ export default class Playboard extends Component {
                 {this.displayScore(idx)}
             </div>
         ))
-        let tableHtmlOutput = <div className="divTable">
-            <div className="divTableBody">
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        <h3>{category_one}</h3>
-                    </div>
-                    <div className="divTableCell">
-                        <h3>{category_two}</h3>
-                    </div>
-                    <div className="divTableCell">
-                        <h3>{category_three}</h3>
-                    </div>
-                    <div className="divTableCell">
-                        <h3>{category_four}</h3>
-                    </div>
-                    <div className="divTableCell">
-                        <h3>{category_five}</h3>
-                    </div>
-                    <div className="divTableCell">
-                        <h3>{category_six}</h3>
-                    </div>
-                </div>
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        {/* <Link to="/questions/100/1">100</Link> */}
-                        <Link to={linkUrlOutput}>100</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>100</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>100</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>100</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>100</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>100</Link>
-                    </div>
-                </div>
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>200</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>200</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>200</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>200</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>200</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>200</Link>
-                    </div>
-                </div>
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>300</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>300</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>300</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>300</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>300</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>300</Link>
-                    </div>
-                </div>
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>400</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>400</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>400</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>400</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>400</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>400</Link>
-                    </div>
-                </div>
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>500</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>500</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>500</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>500</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>500</Link>
-                    </div>
-                    <div className="divTableCell">
-                        <Link to={linkUrlOutput}>500</Link>
-                    </div>
-                </div>
-            </div>
+        const currentQuestions = this.state.existingBoardQuestions;
+
+    console.log(currentQuestions)
+    // console.log(currentBoardId)
+
+    let questionsForBoardMap = ''
+    //by default show there are no items
+    if (currentQuestions.length === 0) {
+      questionsForBoardMap = <p>No items here</p>
+    }
+    // if there are items 
+    else {
+      // display details for each one of the items
+      questionsForBoardMap = currentQuestions.map((question, key) => {
+        // console.log(question)
+        let linkUrlOutput = `/playquestion/${questionCategory}/${question.id}/${currentBoardId}/${question_points}`;
+        let tableHtmlOutput =  <div className="divTableRow">
+        <div className="divTableCell">
+          {/* <Link to="/questions/100/1">100</Link> */}
+          <Link to={linkUrlOutput}>100</Link>
         </div>
+        <div className="divTableCell">
+          <Link to={linkUrlOutput}>100</Link>
+        </div>
+        <div className="divTableCell">
+          <Link to={linkUrlOutput}>100</Link>
+        </div>
+        <div className="divTableCell">
+          <Link to={linkUrlOutput}>100</Link>
+        </div>
+        <div className="divTableCell">
+          <Link to={linkUrlOutput}>100</Link>
+        </div>
+        <div className="divTableCell">
+          <Link to={linkUrlOutput}>100</Link>
+        </div>
+      </div>
+     
+        return tableHtmlOutput
+      })
+    }
+        
         return (
             <section>
                 <div>
@@ -254,7 +172,33 @@ export default class Playboard extends Component {
                     </section>
                 </div>
                 <section>
-                    {tableHtmlOutput}
+                <div className="tableWrapper">
+          <div className="divTable">
+            <div className="divTableBody">
+              <div className="divTableRow">
+                <div className="divTableCell">
+                  <h3>{category_one}</h3>
+                </div>
+                <div className="divTableCell">
+                  <h3>{category_two}</h3>
+                </div>
+                <div className="divTableCell">
+                  <h3>{category_three}</h3>
+                </div>
+                <div className="divTableCell">
+                  <h3>{category_four}</h3>
+                </div>
+                <div className="divTableCell">
+                  <h3>{category_five}</h3>
+                </div>
+                <div className="divTableCell">
+                  <h3>{category_six}</h3>
+                </div>
+              </div>
+               {questionsForBoardMap}
+            </div>
+          </div>
+        </div>
                 </section>
             </section>
         )

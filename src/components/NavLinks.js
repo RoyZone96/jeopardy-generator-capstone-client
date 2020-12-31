@@ -4,15 +4,21 @@ import { NavLink } from 'react-router-dom'
 export default function Navigation() {
     return (
         <div className="navigation">
-            <NavLink to='/myboards'>
-                <p> MY BOARDS | </p>
-            </NavLink>
-            <NavLink to='/community'>
-                <p> COMMUNITY BOARDS | </p>
-            </NavLink>
-            <NavLink to='/support'>
-                <p> SUPPORT |</p>
-            </NavLink>
+            <ul className="menu">
+                <li>
+                    <NavLink to='/myboards'>
+                        <p> MY BOARDS | </p>
+                    </NavLink></li>
+                <li>
+                    <NavLink to='/community'>
+                        <p> COMMUNITY BOARDS | </p>
+                    </NavLink></li>
+                <li>
+                    <NavLink to='/support'>
+                        <p> SUPPORT |</p>
+                    </NavLink>
+                </li>
+            </ul>
         </div>
     )
 }

@@ -57,16 +57,16 @@ export default class PlayQuestion extends Component {
           <button type="button">BACK</button>
         </Link>
         <div>
-          <div >
+          <div className="question-container">
             <p>{currentQuestion}</p>
           </div>
          
-            <div>
+            <div className="answer-container">
               <p>What is  {this.state.isShown && (<p className="answer">{currentAnswer}</p> )} ?</p>
             </div>
          
           <div>
-            <button type="button" onClick={this.toggleState}>
+            <button type="button" className="reveal" onClick={this.toggleState}>
               Reveal
                   </button>
           </div>

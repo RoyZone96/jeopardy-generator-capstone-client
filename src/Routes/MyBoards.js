@@ -87,7 +87,7 @@ export default class MyBoards extends Component {
                 <section key={boards.id} className="board-list">
                     <ul>
                         <li>
-                            <div className="wrapper">
+                            <div className="menu-wrapper">
                                 <div>
                                     <p>{boards.board_title}</p>
                                     <BoardNav id={boards.id} />

@@ -1,166 +1,243 @@
 body {
+  background: rgba(0, 0, 0, 0) url("./images/bg1.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   margin: 0;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: "Walter Turncoat", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: goldenrod;
+  width: 1400px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-*{
+* {
   box-sizing: border-box
 }
 
-.Board{
-  width: 100%;
-  border: 1px solid aqua; 
+#borderimg {
+  width: 250px;
+  border: 5px solid transparent;
+  padding: 15px;
+  border-image: url("images/chalk-ribbon.png") 2 round;
+  margin-left: auto;
+  margin-right: auto
 }
 
-html{
+.Board {
+  width: 100%;
+  border: 10px solid white;
+}
+
+html {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
-h1{
+li {
+  padding-left: 10px;
+}
+
+.spacer {
+  text-align: center;
+  padding: 30px
+}
+
+h1 {
   text-align: center
 }
-.navigation{
-  margin-bottom: 50px;
+
+.navigation {
+  margin-bottom: 20px;
   background-color: gray;
+  height: 100px;
+  text-align: center;
+  font-size: 18pt;
+}
+
+.menu {
+  padding: 15px;
+  display: inline-flex
+}
+
+.LoginForm {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  padding-top: 55px
+}
+
+.RegistrationForm {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  padding-top: 55px
+}
+
+.wrapper {
+  margin: 30px;
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  border: 2pt solid;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.menu-wrapper {
+  margin: 30px;
+  width: 500px;
+  height: 250px;
+  text-align: center;
+  border: 2pt solid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tableWrapper {
+  width: 1300px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+section {
   text-align: center
 }
 
-.LoginForm{
-  margin-right: auto;
-  margin-left: auto;
- text-align: center;
- padding-top: 55px
-}
-
-.RegistrationForm{
-  margin-right: auto;
-  margin-left: auto;
- text-align: center;
- padding-top: 55px
-}
-
-.wrapper{
-    margin: 30px;
-    width: 500px;
-    height: 150px;
-    text-align: center;
-    background-color: blue;
-    border: 2pt solid;
-  }
-
-
-section{
-  text-align: center
-}
-
-.divTable{
-	display: table;
-	width: 100%;
-}
-.divTableRow {
-	display: table-row;
-}
-.divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
-}
-.divTableCell, .divTableHead {
-	border: 1px solid #999999;
-	display: table-cell;
-	padding: 3px 10px;
-}
-.divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
-	font-weight: bold;
-}
-.divTableFoot {
-	background-color: #EEE;
-	display: table-footer-group;
-	font-weight: bold;
-}
-.divTableBody {
-	display: table-row-group;
-}
-
-button{
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
- 
-}
-
-a{
-  color: goldenrod;
+.divTable, .divTableBody {
+  display: block;
+  width: 100%;
 }
 
 .divTableBody a {
-  color:goldenrod
+  color: goldenrod
 }
 
 .divTableBody a:visited {
-  color:grey
+  color: grey
 }
 
-.question-area{
+.divTableRow, .divTableHeading {
+  display: block;
+  width: 100%
+}
+
+.divTableHeading {
+  background-color: #EEE;
+}
+
+.divTableCell, .divTableHead {
+  border: 3px solid white;
+  display: inline-block;
+  padding: 10px 10px;
+  width: 15%;
+  color: white;
+}
+
+.divTable .lastCell {
+  display: inline-block;
+}
+
+button {
+  font-family: "Walter Turncoat", cursive;
+  padding: 5px;
+  display: inline-block;
+  border-radius: 9px;
+  border-color: goldenrod;
+  color: goldenrod;
+  background-color: blue;
+}
+
+button:hover {
+  color: white
+}
+
+.button-spacer {
+  display: inline-flex;
+  margin: 5px;
+}
+
+a {
+  color: goldenrod;
+}
+
+a:hover {
+  color: white;
+}
+
+.question-container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.answer-container {
+  padding-bottom: 15px;
+}
+
+.question-area {
   width: 450px;
-  height: 300;
+  height: 300px;
 }
 
-.add-board{
-    width: 150px;
+.reveal {
+  font-size: 24pt;
+}
+
+.add-board {
+  width: 150px;
   height: 100px;
-   font-size: 18pt;
+  font-size: 18pt;
   margin-bottom: 50px
 }
 
-.boards{
+.boards {
   text-align: center
 }
 
-.scoreboard{
+.scoreboard {
   display: inline-block;
   width: 100%;
   margin-bottom: 50px;
   margin-top: 25px;
 }
 
-.player{
+.player {
   margin-bottom: 25px
 }
 
-.add{
+.add {
   margin-bottom: 20px
 }
 
-.score{
+.score {
   width: 50px
 }
 
-li{
+li {
   list-style: none;
+  margin-bottom: 30px;
 }
 
+.category-box {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-.divTableCell{
-  color: white;
-  height: 50px;
-  width: 50px;
-  background-color:blue;
-} 
-
-.support{
+.support {
   margin-right: auto;
   margin-left: auto;
   padding-top: 15px
 }
 
+.sorter {
+  float: right;
+}
 
 .footer {
   text-align: center;
@@ -171,11 +248,50 @@ li{
   bottom: 0px;
 }
 
-.content{
+.content {
   width: 500px;
   height: 250px;
 }
 
-@media only screen and (max-width: 600px){
-
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    margin: 30px;
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    border: 2pt solid;
+    margin-left: auto;
+    margin-right: auto
+  }
+  .menu-wrapper {
+    margin: 30px;
+    width: 300px;
+    height: 150px;
+    text-align: center;
+    border: 2pt solid;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .tableWrapper {
+    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .content {
+    width: 500px;
+    height: 250px;
+  }
+  .footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    position: relative;
+    margin-top: 290px;
+    bottom: 0px;
+  }
+  .support {
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 15px
+  }
 }

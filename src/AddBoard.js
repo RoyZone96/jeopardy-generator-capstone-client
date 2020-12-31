@@ -157,59 +157,81 @@ export default class AddBoard extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleBoardCreate}>
-                <label htmlFor="board-title">Board title</label>
-                <input
-                    id="board-title"
-                    type="text"
-                    title="board-title"
-                    onChange={event => this.setBoardTitle(event.target.value)}
-                />
-                 <label htmlFor="category-title">Category title</label>
-                <input
-                    id="category-title"
-                    type="text"
-                    title="category-title"
-                    onChange={event => this.setCategoryOne(event.target.value)}
-                />
-                 <label htmlFor="categories-title">Category title</label>
-                <input
-                    id="categories-title"
-                    type="text"
-                    title="categories-title"
-                    onChange={event => this.setCategoryTwo(event.target.value)}
-                />
-                 <label htmlFor="categories-title">Category title</label>
-                <input
-                    id="categories-title"
-                    type="text"
-                    title="categories-title"
-                    onChange={event => this.setCategoryThree(event.target.value)}
-                /> 
-                 <label htmlFor="categories-title">Category title</label>
-                <input
-                    id="categories-title"
-                    type="text"
-                    title="categories-title"
-                    onChange={event => this.setCategoryFour(event.target.value)}
-                /> 
-                 <label htmlFor="categories-title">Category title</label>
-                <input
-                    id="categories-title"
-                    type="text"
-                    title="categories-title"
-                    onChange={event => this.setCategoryFive(event.target.value)}
-                />
-                 <label htmlFor="categories-title">Category title</label>
-                 <input
-                    id="categories-title"
-                    type="text"
-                    title="categories-title"
-                    onChange={event => this.setCategorySix(event.target.value)}
-                />
-                {this.state.title.touched && (<ValidationError message={this.validateBoardTitle()} />)}
-                <button type="submit" disabled={this.validateBoardTitle()}>Post</button>
-            </form>
+            <div>
+            <div className="wrapper">
+                <form onSubmit={this.handleBoardCreate}>
+                    <div className="title-box">
+                        <label htmlFor="board-title">Board title</label>
+                        <input
+                            id="board-title"
+                            type="text"
+                            title="board-title"
+                            onChange={event => this.setBoardTitle(event.target.value)}
+                        />
+                    </div>
+                    <div className="category-box">
+                        <ul>
+                            <li>
+                                <label htmlFor="category-title">Category title</label>
+                                <input
+                                    id="category-title"
+                                    type="text"
+                                    title="category-title"
+                                    onChange={event => this.setCategoryOne(event.target.value)}
+                                />
+                            </li>
+                            <li>
+                                <label htmlFor="categories-title">Category title</label>
+                                <input
+                                    id="categories-title"
+                                    type="text"
+                                    title="categories-title"
+                                    onChange={event => this.setCategoryTwo(event.target.value)}
+                                />
+                            </li>
+                            <li>
+                                <label htmlFor="categories-title">Category title</label>
+                                <input
+                                    id="categories-title"
+                                    type="text"
+                                    title="categories-title"
+                                    onChange={event => this.setCategoryThree(event.target.value)}
+                                />
+                            </li>
+                            <li>
+                                <label htmlFor="categories-title">Category title</label>
+                                <input
+                                    id="categories-title"
+                                    type="text"
+                                    title="categories-title"
+                                    onChange={event => this.setCategoryFour(event.target.value)}
+                                />
+                            </li>
+                            <li>
+                                <label htmlFor="categories-title">Category title</label>
+                                <input
+                                    id="categories-title"
+                                    type="text"
+                                    title="categories-title"
+                                    onChange={event => this.setCategoryFive(event.target.value)}
+                                />
+                            </li>
+                            <li>
+                                <label htmlFor="categories-title">Category title</label>
+                                <input
+                                    id="categories-title"
+                                    type="text"
+                                    title="categories-title"
+                                    onChange={event => this.setCategorySix(event.target.value)}
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                    {this.state.title.touched && (<ValidationError message={this.validateBoardTitle()} />)}
+                    <button  className="post-button" type="submit" disabled={this.validateBoardTitle()}>Post</button>
+                </form>
+            </div>
+            </div>
         )
     }
 }
