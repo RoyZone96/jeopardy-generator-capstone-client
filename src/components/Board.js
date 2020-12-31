@@ -190,32 +190,8 @@ export default class Board extends React.Component {
     else {
       // display details for each one of the items
       questionsForBoardMap = currentQuestions.map((question, key) => {
-        // console.log(question)
-        let linkUrlOutput = `/questions/${question.question_category}/${question.id}/${question.board_id}/${question.question_points}`;
-        // let tableHtmlOutput = <div className="divTableRow">
-        //   <div className="divTableCell">
-        //     {/* <Link to="/questions/100/1">100</Link> */}
-        //     <Link to={linkUrlOutput}>{question.question_points}</Link>
-        //   </div>
-        //   <div className="divTableCell">
-        //     <Link to={linkUrlOutput}>{question.question_points}</Link>
-        //   </div>
-        //   <div className="divTableCell">
-        //     <Link to={linkUrlOutput}>{question.question_points}</Link>
-        //   </div>
-        //   <div className="divTableCell">
-        //     <Link to={linkUrlOutput}>{question.question_points}</Link>
-        //   </div>
-        //   <div className="divTableCell">
-        //     <Link to={linkUrlOutput}>{question.question_points}</Link>
-        //   </div>
-        //   <div className="divTableCell">
-        //     <Link to={linkUrlOutput}>{question.question_points}</Link>
-        //   </div>
-        // </div>
-
-        // If the points equal 100 output 100 row 
-        
+      
+        let linkUrlOutput = `/questions/${question.question_category}/${question.id}/${question.board_id}/${question.question_points}`; 
 
         let tableHtmlOutput = ''
         // if this is the last cell break the row on the next cell

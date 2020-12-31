@@ -126,29 +126,22 @@ export default class Playboard extends Component {
       // display details for each one of the items
       questionsForBoardMap = currentQuestions.map((question, key) => {
         // console.log(question)
-        let linkUrlOutput = `/playquestion/${questionCategory}/${question.id}/${currentBoardId}/${question_points}`;
-        let tableHtmlOutput =  <div className="divTableRow">
-        <div className="divTableCell">
-          {/* <Link to="/questions/100/1">100</Link> */}
-          <Link to={linkUrlOutput}>100</Link>
-        </div>
-        <div className="divTableCell">
-          <Link to={linkUrlOutput}>100</Link>
-        </div>
-        <div className="divTableCell">
-          <Link to={linkUrlOutput}>100</Link>
-        </div>
-        <div className="divTableCell">
-          <Link to={linkUrlOutput}>100</Link>
-        </div>
-        <div className="divTableCell">
-          <Link to={linkUrlOutput}>100</Link>
-        </div>
-        <div className="divTableCell">
-          <Link to={linkUrlOutput}>100</Link>
-        </div>
-      </div>
-     
+        let linkUrlOutput = `/playquestion/${question.question_category}/${question.id}/${question.board_id}/${question.question_points}`;
+        let tableHtmlOutput = ''
+        // if this is the last cell break the row on the next cell
+        if ((key + 1) % 6) {
+          tableHtmlOutput =
+            <div className="divTableCell">
+              <Link to={linkUrlOutput}>{question.question_points}</Link>
+            </div>
+        }
+        else {
+          tableHtmlOutput =
+            <div className="divTableCell lastCell">
+              <Link to={linkUrlOutput}>{question.question_points}</Link>
+            </div>
+        }
+
         return tableHtmlOutput
       })
     }
