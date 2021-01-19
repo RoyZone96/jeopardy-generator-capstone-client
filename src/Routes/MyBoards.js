@@ -84,18 +84,16 @@ export default class MyBoards extends Component {
         let boardsOutput = boards.map(boards => {
             console.log(boards)
             return (
-                <section key={boards.id} className="board-list">
-                    <ul>
-                        <li>
-                            <div className="menu-wrapper">
-                                <div>
-                                    <p>{boards.board_title}</p>
-                                    <BoardNav id={boards.id} />
-                                </div>
+                <ul>
+                    <li className="menu-select">
+                        <div className="menu-wrapper">
+                            <div>
+                                <p className="title">{boards.board_title}</p>
+                                <BoardNav id={boards.id} />
                             </div>
-                        </li>
-                    </ul>
-                </section>
+                        </div>
+                    </li>
+                </ul>
             )
         })
         return (
@@ -103,11 +101,15 @@ export default class MyBoards extends Component {
                 <Welcome />
                 <LogoutButton />
                 <NavLinks />
-                <Link to="/newboard">
-                    <button type="button">NEW BOARD +</button>
-                </Link>
                 <SortSelect />
-                {boardsOutput}
+                <section key={boards.id} className="board-list">
+                    {boardsOutput}
+                </section>
+                <section className="new-wrapper">
+                    <Link to="/newboard">
+                        <button className="new-board" type="button">NEW BOARD +</button>
+                    </Link>
+                </section>
             </div>
         )
     }

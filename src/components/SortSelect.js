@@ -18,7 +18,7 @@ export default class SortSelect extends Component {
 
     render() {
         return (
-        <div className="sorter">
+        <div className="sorter clearfix">
             <select name="sorting" id="sort-bar">
             <option value="name">A - Z</option> 
             <option value="recent">Recent</option>

@@ -15,7 +15,7 @@ export default function Navigation() {
                     </NavLink></li>
                 <li>
                     <NavLink to='/support'>
-                        <p> SUPPORT |</p>
+                        <p> SUPPORT </p>
                     </NavLink>
                 </li>
             </ul>

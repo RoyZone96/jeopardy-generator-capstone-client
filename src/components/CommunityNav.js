@@ -66,17 +66,15 @@ export default class BoardNav extends Component {
 
     return (
       <div className='boardNav'>
-        <div>
           <h2>{day_posted && format(parseISO(day_posted), 'MMM d, yyyy')}</h2>
-          <div className="button-wrapper">
+          <div className="button-spacer">
             <Link to={`/play/${this.props.id}`}>
               <button type="button"> PLAY </button>
             </Link>
             </div>
-            <div className="button-wrapper">
+            <div className="button-spacer">
             <button onClick={this.toggleLike}> LIKE: {likes}</button>
           </div>
-        </div>
       </div>
     )
   }

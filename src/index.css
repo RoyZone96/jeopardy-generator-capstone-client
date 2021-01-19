@@ -9,7 +9,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: goldenrod;
-  width: 1400px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -18,17 +17,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table
+}
+
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
 }
 
 #borderimg {
   width: 250px;
-  border: 5px solid transparent;
-  padding: 15px;
-  border-image: url("images/chalk-ribbon.png") 2 round;
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
+  font-size: 20px;
 }
 
 .Board {
@@ -38,6 +45,10 @@ code {
 
 html {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.logout{
+  margin-left: 45px;
 }
 
 li {
@@ -50,19 +61,29 @@ li {
 }
 
 h1 {
-  text-align: center
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.app-title {
+  font-size: 35px;
+}
+
+h2 {
+  font-size: 35px;
 }
 
 .navigation {
+  background: url(images/weclome-back.jpg) no-repeat center;
+  margin-top: 20px;
   margin-bottom: 20px;
-  background-color: gray;
-  height: 100px;
+  height: 80px;
   text-align: center;
-  font-size: 18pt;
+  font-size: 12pt;
 }
 
 .menu {
-  padding: 15px;
+  padding: 25px;
   display: inline-flex
 }
 
@@ -80,6 +101,10 @@ h1 {
   padding-top: 55px
 }
 
+form {
+  padding-top: 100px;
+}
+
 .wrapper {
   margin: 30px;
   width: 500px;
@@ -92,7 +117,7 @@ h1 {
 
 .menu-wrapper {
   margin: 30px;
-  width: 500px;
+  width: 300px;
   height: 250px;
   text-align: center;
   border: 2pt solid;
@@ -100,14 +125,27 @@ h1 {
   margin-right: auto;
 }
 
+.board-list{
+  margin-top: 70px;
+}
+
 .tableWrapper {
-  width: 1300px;
+  padding-top: 50px;
+  width: 800px;
   margin-left: auto;
   margin-right: auto
 }
 
 section {
   text-align: center
+}
+
+.menu-select{
+  background: url(images/download.jpeg) no-repeat center;
+}
+
+.title {
+  padding-bottom: 40px;
 }
 
 .divTable, .divTableBody {
@@ -151,7 +189,17 @@ button {
   border-radius: 9px;
   border-color: goldenrod;
   color: goldenrod;
-  background-color: blue;
+  background-color: black;
+}
+
+.new-board {
+  font-size: 24pt;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.submit {
+  font-size: 24pt;
 }
 
 button:hover {
@@ -230,27 +278,31 @@ li {
 }
 
 .support {
+  background: url(images/1991998.jpg) no-repeat center;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 15px
+  padding-top: 15px;
+  width: 80
+}
+
+.content {
+  width: 250px;
+  height: 250px;
 }
 
 .sorter {
   float: right;
 }
 
+
+
 .footer {
   text-align: center;
   background-color: black;
   color: white;
-  position: relative;
-  margin-top: 290px;
+  position: fixed;
+  /* margin-top: 290px; */
   bottom: 0px;
-}
-
-.content {
-  width: 500px;
-  height: 250px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -273,9 +325,37 @@ li {
     margin-right: auto;
   }
   .tableWrapper {
-    width: 1300px;
+    width: 1200px;
     margin-left: auto;
     margin-right: auto;
+  }
+ 
+  .divTable, .divTableBody {
+    display: block;
+    width: 100%;
+  }
+  .divTableBody a {
+    color: goldenrod
+  }
+  .divTableBody a:visited {
+    color: grey
+  }
+  .divTableRow, .divTableHeading {
+    display: block;
+    width: 100%
+  }
+  .divTableHeading {
+    background-color: #EEE;
+  }
+  .divTableCell, .divTableHead {
+    border: 3px solid white;
+    display: inline-block;
+    padding: 10px 10px;
+    width: 15%;
+    color: white;
+  }
+  .divTable .lastCell {
+    display: inline-block;
   }
   .content {
     width: 500px;
@@ -295,3 +375,5 @@ li {
     padding-top: 15px
   }
 }
+
+@media only screen and (min-width: 1024px) {}

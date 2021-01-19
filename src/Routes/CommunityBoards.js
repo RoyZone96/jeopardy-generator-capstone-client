@@ -38,9 +38,9 @@ export default class CommunityBoards extends Component {
              communityListHtml = this.state.communityBoards.map((communityBoard, key) => (
                 <section key={key} className="community-list">
                 <ul>
-                    <li>
+                    <li className="menu-select">
                         <div className="menu-wrapper">
-                              {communityBoard.board_title}   
+                              <p className="title">{communityBoard.board_title}</p>   
                               <CommunityNav id={communityBoard.id}/> 
                         </div>
                     </li>

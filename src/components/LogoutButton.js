@@ -19,7 +19,7 @@ export default class LougoutButton extends React.Component {
             return <Redirect to="/" push={true} />
         }
 
-        return <button onClick={this.logout}>Log Out</button>
+        return <button className="logout" onClick={this.logout}>Log Out</button>
     }
 
 

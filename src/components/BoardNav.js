@@ -133,13 +133,30 @@ export default class BoardNav extends Component {
       .catch(error => {
         console.error({ error })
       })
+
+      fetch(`${config.API_ENDPOINT}/communityBoards/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        },
+      })
+        .then(res => {
+          if (!res.ok)
+            return res.json().then(e => Promise.reject(e))
+          return res
+        })
+        .then(() => {
+          this.context.deleteBoard(id)
+          this.props.onDeleteBoard(id)
+        })
+        .catch(error => {
+          console.error({ error })
+        })
   }
 
   render() {
     return (
       <div className='boardNav'>
-        <div>
-          <div>
             <div className="button-spacer">
               <Link to={`/board/${this.props.id}`}>
                 <button type="button"> EDIT </button>
@@ -156,8 +173,6 @@ export default class BoardNav extends Component {
             <div className="button-spacer">
               <button type="button" onClick={this.handleClickDelete}> DELETE </button>
             </div>
-          </div>
-        </div>
       </div>
     )
   }

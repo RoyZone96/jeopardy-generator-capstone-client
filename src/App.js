@@ -53,22 +53,24 @@ class App extends Component {
             <Header />
             <main className='App'>
               <Switch>
-                  <Route exact path="/" component={LandingPage} />
-                  <Route path='/login' component={LoginForm} />
-                  <Route path='/registration' component={RegistrationForm} />
-                  <Route path='/myboards' component={MyBoards} />
-                  <Route path='/community' component={CommunityBoards} />
-                  <Route path='/support' component={Support} />
-                  <Route path='/questions/:category_id/:question_id/:board_id' component={QuestionForm} />
-                  <Route path='/play/:id' component={PlayBoard} />
-                  <Route path='/newboard' component={AddBoard} />
-                  <Route path='/board/:id' component={Board} />
-                  <Route path='/playquestion/:category_id/:question_id/:board_id' component={PlayQuestion} />
-                  <Route component={Error}/>
+                <Route exact path="/" component={LandingPage} />
+                <Route path='/login' component={LoginForm} />
+                <Route path='/registration' component={RegistrationForm} />
+                <Route path='/myboards' component={MyBoards} />
+                <Route path='/community' component={CommunityBoards} />
+                <Route path='/support' component={Support} />
+                <Route path='/questions/:category_id/:question_id/:board_id' component={QuestionForm} />
+                <Route path='/play/:id' component={PlayBoard} />
+                <Route path='/newboard' component={AddBoard} />
+                <Route path='/board/:id' component={Board} />
+                <Route path='/playquestion/:category_id/:question_id/:board_id' component={PlayQuestion} />
+                <Route component={Error} />
               </Switch>
             </main>
           </BrowserRouter>
-          <Footer />
+          <div className="footer">
+            <Footer />
+          </div>
         </div>
       </ApiContext.Provider>
     );

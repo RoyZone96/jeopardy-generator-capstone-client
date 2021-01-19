@@ -77,21 +77,21 @@ export default class SupportForm extends Component {
 
     render() {
         return (
-            <div className="wrapper">
-                <form onSubmit={this.handleSubmit}>
+            <div>
+                <form className="support" onSubmit={this.handleSubmit}>
                     <div className="spacer">
                         <input type="text" value={this.state.email.value} onChange={this.handleChange} className="email" name="email" placeholder="E-mail" required />
                     </div>
                     <div className="spacer">
                         <input type="text" value={this.state.subject.value} onChange={this.handleChange} className="subject" name="subject" placeholder="Subject" required />
                     </div>
-                    <div>
+                    <div className="spacer">
                         <textarea name="content" value={this.state.content.value} onChange={this.handleChange} className="content" placeholder="Your content here" required />
                     </div>
-                    <div>
+                    <div className="spacer">
                         <button type="submit">
                             Submit
-                </button>
+                         </button>
                     </div>
                 </form>
             </div>

@@ -78,45 +78,48 @@ export default class QuestionForm extends Component {
     const questions_id = this.props.match.params.questions_id
     const board_id = this.props.match.params.board_id
     const newQuestion = {
-      boards_id: board_id,
+      board_id: board_id,
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value,
       question_points: this.state.question_points,
-      category_id: category_id
+      question_category: category_id
     }
 
+    console.log(this.state.question_points)
+
     const updatedQuestion = {
-      boards_id: board_id,
+      board_id: board_id,
       question_text: this.state.question_text.value,
       question_answer: this.state.question_answer.value,
       question_points: this.state.question_points,
-      category_id: category_id
+      question_category: category_id
     }
     console.log(newQuestion)
     console.log(updatedQuestion)
 
-    // fetch(`${config.API_ENDPOINT}/questions`,
-    //   {
-    //     method: 'POST',
-    //     headers: { 'content-type': 'application/json' },
-    //     body: JSON.stringify(newQuestion),
-    //   })
-    //   .then(res => {
-    //     if (!res.ok)
-    //       return res.json().then(e => Promise.reject(e))
-    //     return res.json()
-    //   })
-    //   .then(response =>
-    //     this.context.addQuestion(response),
-    //     console.log(ApiContext))
-    //   .then(
-    //     console.log(newQuestion),
-    //     this.props.history.push('/')
-    //   )
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
+    fetch(`${config.API_ENDPOINT}/questions`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(newQuestion),
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(response =>
+        this.context.addQuestion(response),
+        console.log(ApiContext))
+      .then(
+        console.log(newQuestion),
+        this.props.history.push('/')
+      )
+      .catch(error => {
+        console.log(error.message)
+      })
 
+    console.log(updatedQuestion)
     fetch(`${config.API_ENDPOINT}/questions/${questions_id}`,
       {
         method: 'PATCH',
@@ -141,15 +144,17 @@ export default class QuestionForm extends Component {
   }
 
 
-  updatePoints = (question_points) => {
+  updatePoints = (event) => {
+    console.log(event.target.value)
     this.setState({
-      question_points: question_points
+      question_points: event.target.value
     })
   }
 
-  updateCategoryId = (category_id) => {
+  updateCategoryId = (event) => {
+    console.log(event.target.value)
     this.setState({
-      category_id: category_id
+      category_id: event.target.value
     })
   }
 
@@ -179,7 +184,7 @@ export default class QuestionForm extends Component {
 
     //If the question was edited before display the last text for it in text area
     if (Object.keys(this.state.currentQuestions).length != 0) {
-      console.log(this.state.currentQuestions.question_text)
+      // console.log(this.state.currentQuestions.question_text)
       currentQuestionsHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_text} onChange={event => this.updateQuestion(event.target.value)} placeholder="Your content here" required />
     }
     //if the answer wasn't editted display default in input area
@@ -215,8 +220,8 @@ export default class QuestionForm extends Component {
         </Link>
         <div className="wrapper">
           <form onSubmit={this.handleSubmit}>
-            {/* <div>
-          <select onChange={(event) => this.updateCategoryId(event)}>
+            <div>
+              <select onChange={(event) => this.updateCategoryId(event)}>
                 <option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -224,8 +229,8 @@ export default class QuestionForm extends Component {
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
-            </select>
-          </div>  */}
+              </select>
+            </div>
             <div>
               <select onChange={(event) => this.updatePoints(event)}>
                 <option value=""></option>
@@ -250,9 +255,6 @@ export default class QuestionForm extends Component {
               <input type='hidden' name='points' defaultValue={this.props.match.params.question_points}></input>
               <button type="submit">Submit</button>
             </div>
-            {/* <div className="error">
-            <p>  </p>
-          </div> */}
           </form>
         </div>
       </section >
