@@ -84,41 +84,41 @@ export default class Board extends React.Component {
     //by default show there are no items
     if (currentQuestions.length < 30) {
       console.log('nothing here')
-      let linkUrlOutput100_1 = `/questions/1/1/${currentBoardId}/100`;
-      let linkUrlOutput200_1 = `/questions/1/1/${currentBoardId}/200`
-      let linkUrlOutput300_1 = `/questions/1/1/${currentBoardId}/300`
-      let linkUrlOutput400_1 = `/questions/1/1/${currentBoardId}/400`
-      let linkUrlOutput500_1 = `/questions/1/1/${currentBoardId}/500`
+      let linkUrlOutput100_1 = `/questions/1/0/${currentBoardId}/100`;
+      let linkUrlOutput200_1 = `/questions/1/0/${currentBoardId}/200`
+      let linkUrlOutput300_1 = `/questions/1/0/${currentBoardId}/300`
+      let linkUrlOutput400_1 = `/questions/1/0/${currentBoardId}/400`
+      let linkUrlOutput500_1 = `/questions/1/0/${currentBoardId}/500`
 
-      let linkUrlOutput100_2 = `/questions/2/1/${currentBoardId}/100`;
-      let linkUrlOutput200_2 = `/questions/2/1/${currentBoardId}/200`
-      let linkUrlOutput300_2 = `/questions/2/1/${currentBoardId}/300`
-      let linkUrlOutput400_2 = `/questions/2/1/${currentBoardId}/400`
-      let linkUrlOutput500_2 = `/questions/2/1/${currentBoardId}/500`
+      let linkUrlOutput100_2 = `/questions/2/0/${currentBoardId}/100`;
+      let linkUrlOutput200_2 = `/questions/2/0/${currentBoardId}/200`
+      let linkUrlOutput300_2 = `/questions/2/0/${currentBoardId}/300`
+      let linkUrlOutput400_2 = `/questions/2/0/${currentBoardId}/400`
+      let linkUrlOutput500_2 = `/questions/2/0/${currentBoardId}/500`
 
-      let linkUrlOutput100_3 = `/questions/3/1/${currentBoardId}/100`;
-      let linkUrlOutput200_3 = `/questions/3/1/${currentBoardId}/200`
-      let linkUrlOutput300_3 = `/questions/3/1/${currentBoardId}/300`
-      let linkUrlOutput400_3 = `/questions/3/1/${currentBoardId}/400`
-      let linkUrlOutput500_3 = `/questions/3/1/${currentBoardId}/500`
+      let linkUrlOutput100_3 = `/questions/3/0/${currentBoardId}/100`;
+      let linkUrlOutput200_3 = `/questions/3/0/${currentBoardId}/200`
+      let linkUrlOutput300_3 = `/questions/3/0/${currentBoardId}/300`
+      let linkUrlOutput400_3 = `/questions/3/0/${currentBoardId}/400`
+      let linkUrlOutput500_3 = `/questions/3/0/${currentBoardId}/500`
 
-      let linkUrlOutput100_4 = `/questions/4/1/${currentBoardId}/100`;
-      let linkUrlOutput200_4 = `/questions/4/1/${currentBoardId}/200`
-      let linkUrlOutput300_4 = `/questions/4/1/${currentBoardId}/300`
-      let linkUrlOutput400_4 = `/questions/4/1/${currentBoardId}/400`
-      let linkUrlOutput500_4 = `/questions/4/1/${currentBoardId}/500`
+      let linkUrlOutput100_4 = `/questions/4/0/${currentBoardId}/100`;
+      let linkUrlOutput200_4 = `/questions/4/0/${currentBoardId}/200`
+      let linkUrlOutput300_4 = `/questions/4/0/${currentBoardId}/300`
+      let linkUrlOutput400_4 = `/questions/4/0/${currentBoardId}/400`
+      let linkUrlOutput500_4 = `/questions/4/0/${currentBoardId}/500`
 
-      let linkUrlOutput100_5 = `/questions/5/1/${currentBoardId}/100`;
-      let linkUrlOutput200_5 = `/questions/5/1/${currentBoardId}/200`
-      let linkUrlOutput300_5 = `/questions/5/1/${currentBoardId}/300`
-      let linkUrlOutput400_5 = `/questions/5/1/${currentBoardId}/400`
-      let linkUrlOutput500_5 = `/questions/5/1/${currentBoardId}/500`
+      let linkUrlOutput100_5 = `/questions/5/0/${currentBoardId}/100`;
+      let linkUrlOutput200_5 = `/questions/5/0/${currentBoardId}/200`
+      let linkUrlOutput300_5 = `/questions/5/0/${currentBoardId}/300`
+      let linkUrlOutput400_5 = `/questions/5/0/${currentBoardId}/400`
+      let linkUrlOutput500_5 = `/questions/5/0/${currentBoardId}/500`
 
-      let linkUrlOutput100_6 = `/questions/6/1/${currentBoardId}/100`;
-      let linkUrlOutput200_6 = `/questions/6/1/${currentBoardId}/200`
-      let linkUrlOutput300_6 = `/questions/6/1/${currentBoardId}/300`
-      let linkUrlOutput400_6 = `/questions/6/1/${currentBoardId}/400`
-      let linkUrlOutput500_6 = `/questions/6/1/${currentBoardId}/500`
+      let linkUrlOutput100_6 = `/questions/6/0/${currentBoardId}/100`;
+      let linkUrlOutput200_6 = `/questions/6/0/${currentBoardId}/200`
+      let linkUrlOutput300_6 = `/questions/6/0/${currentBoardId}/300`
+      let linkUrlOutput400_6 = `/questions/6/0/${currentBoardId}/400`
+      let linkUrlOutput500_6 = `/questions/6/0/${currentBoardId}/500`
 
       questionsForBoardMap =
         <div className="divTableBody emptyTable">

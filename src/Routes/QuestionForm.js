@@ -75,7 +75,8 @@ export default class QuestionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const category_id = this.props.match.params.category_id
-    const questions_id = this.props.match.params.questions_id
+    const question_id = this.props.match.params.question_id
+    console.log(question_id, "id is here")
     const board_id = this.props.match.params.board_id
     const newQuestion = {
       board_id: board_id,
@@ -94,53 +95,66 @@ export default class QuestionForm extends Component {
       question_points: this.state.question_points,
       question_category: category_id
     }
-    console.log(newQuestion)
-    console.log(updatedQuestion)
 
-    fetch(`${config.API_ENDPOINT}/questions`,
-      {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(newQuestion),
-      })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(response =>
-        this.context.addQuestion(response),
-        console.log(ApiContext))
-      .then(
-        console.log(newQuestion),
-        this.props.history.push('/')
-      )
-      .catch(error => {
-        console.log(error.message)
-      })
 
-    console.log(updatedQuestion)
-    fetch(`${config.API_ENDPOINT}/questions/${questions_id}`,
-      {
-        method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(updatedQuestion),
-      })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(response =>
-        this.context.addQuestion(response),
-        console.log(ApiContext))
-      .then(
-        console.log(updatedQuestion),
-        this.props.history.push('/')
-      )
-      .catch(error => {
-        console.log(error.message)
-      })
+    console.log(Object.keys(this.state.currentQuestions).length)
+
+    // if question is created do this
+    if (Object.keys(this.state.currentQuestions).length < 30) {
+
+      console.log(newQuestion)
+      console.log("created")
+      fetch(`${config.API_ENDPOINT}/questions`,
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(newQuestion),
+        })
+        .then(res => {
+          if (!res.ok)
+            return res.json().then(e => Promise.reject(e))
+          return res.json()
+        })
+        .then(response => {
+          this.context.addQuestion(response)
+          console.log(ApiContext)
+          console.log(newQuestion)
+          // this.props.history.push('/')
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
+    }
+
+    // if question is updated do this
+    else {
+      console.log(updatedQuestion)
+      console.log("updated")
+      if(question_id == 0){
+        // get logic for question id that is to be updated
+      }
+
+      fetch(`${config.API_ENDPOINT}/questions/${question_id}`,
+        {
+          method: 'PATCH',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(updatedQuestion),
+        })
+        .then(res => {
+          if (!res.ok)
+            return res.json().then(e => Promise.reject(e))
+          return res.json()
+        })
+        .then(response => {
+          this.context.addQuestion(response)
+          console.log(ApiContext)
+          console.log(updatedQuestion)
+          // this.props.history.push('/')
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
+    }
   }
 
 
@@ -191,9 +205,9 @@ export default class QuestionForm extends Component {
     let currentAnswersHtml = <input type="text" defaultValue={this.state.question_answer.value} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
 
     //if answer was edited display the last text for it in input
-    console.log((this.state.currentQuestions))
+    // console.log((this.state.currentQuestions))
     if (Object.keys(this.state.currentQuestions).length != 0) {
-      console.log(this.state.currentQuestions.question_answer)
+      // console.log(this.state.currentQuestions.question_answer)
       // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
       currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
     }

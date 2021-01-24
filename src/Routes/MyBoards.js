@@ -99,9 +99,7 @@ export default class MyBoards extends Component {
         return (
             <div>
                 <Welcome />
-                <LogoutButton />
                 <NavLinks />
-                <SortSelect />
                 <section key={boards.id} className="board-list">
                     {boardsOutput}
                 </section>

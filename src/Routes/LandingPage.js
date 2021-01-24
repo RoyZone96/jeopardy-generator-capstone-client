@@ -7,7 +7,12 @@ export default function LandingPage() {
         <div className="wrapper">
             <h2> This is the</h2>
             <h1 className="app-title">Jeopardy Generator!</h1>
-            <div></div>
+            <div>
+                <p>Make you own Jeopardy boards and share them across the globe
+                    <br></br>
+                    Perfect for study sessions or parties
+                </p>
+            </div>
             <div className="menu">
                 <div className="spacer">
                 <Link to="/login">Login</Link>{' '}
