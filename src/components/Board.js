@@ -84,6 +84,19 @@ export default class Board extends React.Component {
     //by default show there are no items
     if (currentQuestions.length < 30) {
       console.log('nothing here')
+//       board_id: 18
+// id: 40
+// question_answer: "Ameterasu"
+// question_category: 1
+// question_points: 100
+// question_text: "This is the chief goddess of 
+      // '/questions/:category_id/:question_id/:board_id'
+      console.log(currentQuestions.id)
+      console.log(currentQuestions.board_id)
+      console.log(currentQuestions.question_category)
+      console.log(currentQuestions.question_points)
+      // for loop to current questions
+      // if currentQuestion category and points are matching url below display question else display 0
       let linkUrlOutput100_1 = `/questions/1/0/${currentBoardId}/100`;
       let linkUrlOutput200_1 = `/questions/1/0/${currentBoardId}/200`
       let linkUrlOutput300_1 = `/questions/1/0/${currentBoardId}/300`
