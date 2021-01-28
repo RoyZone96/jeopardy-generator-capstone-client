@@ -78,6 +78,7 @@ export default class QuestionForm extends Component {
     const question_id = this.props.match.params.question_id
     console.log(question_id, "id is here")
     const board_id = this.props.match.params.board_id
+
     const newQuestion = {
       board_id: board_id,
       question_text: this.state.question_text.value,
@@ -100,8 +101,7 @@ export default class QuestionForm extends Component {
     console.log(Object.keys(this.state.currentQuestions).length)
 
     // if question is created do this
-    if (Object.keys(this.state.currentQuestions).length < 30) {
-
+    if (question_id == 0) {
       console.log(newQuestion)
       console.log("created")
       fetch(`${config.API_ENDPOINT}/questions`,
@@ -130,10 +130,6 @@ export default class QuestionForm extends Component {
     else {
       console.log(updatedQuestion)
       console.log("updated")
-      if(question_id == 0){
-        // get logic for question id that is to be updated
-      }
-
       fetch(`${config.API_ENDPOINT}/questions/${question_id}`,
         {
           method: 'PATCH',
@@ -225,7 +221,19 @@ export default class QuestionForm extends Component {
     // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
     //  currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
 
+    let renderCategoryId = this.props.match.params.category_id;
+    let categorySelectOutput =
+      <select onChange={(event) => this.updateCategoryId(event)}>
+        <option value=""></option>
+        {renderCategoryId==1 ? <option value="1" selected>1</option> : <option value="1">1</option>}
+        {renderCategoryId==2 ? <option value="2" selected>2</option> : <option value="2">2</option>}
 
+
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
 
     return (
       <section>
@@ -235,15 +243,7 @@ export default class QuestionForm extends Component {
         <div className="wrapper">
           <form onSubmit={this.handleSubmit}>
             <div>
-              <select onChange={(event) => this.updateCategoryId(event)}>
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
+              {categorySelectOutput}
             </div>
             <div>
               <select onChange={(event) => this.updatePoints(event)}>

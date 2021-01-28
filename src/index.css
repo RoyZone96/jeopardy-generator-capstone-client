@@ -157,6 +157,8 @@ section {
   color: goldenrod
 }
 
+
+
 .divTableBody a:visited {
   color: grey
 }
@@ -303,7 +305,10 @@ li {
   float: right;
 }
 
-
+.existingGame{
+  color: red !important;
+  font-weight: bold
+}
 
 .footer {
   text-align: center;
