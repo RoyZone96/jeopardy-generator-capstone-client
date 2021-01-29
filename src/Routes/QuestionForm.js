@@ -119,7 +119,7 @@ export default class QuestionForm extends Component {
           this.context.addQuestion(response)
           console.log(ApiContext)
           console.log(newQuestion)
-          // this.props.history.push('/')
+          this.props.history.push(`/board/${board_id}`)
         })
         .catch(error => {
           console.log(error.message)
@@ -145,7 +145,7 @@ export default class QuestionForm extends Component {
           this.context.addQuestion(response)
           console.log(ApiContext)
           console.log(updatedQuestion)
-          // this.props.history.push('/')
+          this.props.history.push(`/board/${board_id}`)
         })
         .catch(error => {
           console.log(error.message)
@@ -225,15 +225,22 @@ export default class QuestionForm extends Component {
     let categorySelectOutput =
       <select onChange={(event) => this.updateCategoryId(event)}>
         <option value=""></option>
-        {renderCategoryId==1 ? <option value="1" selected>1</option> : <option value="1">1</option>}
-        {renderCategoryId==2 ? <option value="2" selected>2</option> : <option value="2">2</option>}
-
-
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+        {renderCategoryId == 1 ? <option value="1" selected>1</option> : <option value="1">1</option>}
+        {renderCategoryId == 2 ? <option value="2" selected>2</option> : <option value="2">2</option>}
+        {renderCategoryId == 3 ? <option value="3" selected>3</option> : <option value="3">3</option>}
+        {renderCategoryId == 2 ? <option value="4" selected>4</option> : <option value="4">4</option>}
+        {renderCategoryId == 2 ? <option value="5" selected>5</option> : <option value="5">5</option>}
+        {renderCategoryId == 2 ? <option value="6" selected>6</option> : <option value="6">6</option>}
       </select>
+    let renderPointValue = this.state.question_points
+    let pointSelectOutput = <select onChange={(event) => this.updatePoints(event)}>
+      <option value=""></option>
+      {renderPointValue == 100 ? <option value="100" selected>100</option> : <option value="100">100</option>}
+      {renderPointValue == 200 ? <option value="200" selected>200</option> : <option value="200">200</option>}
+      {renderPointValue == 300 ? <option value="300" selected>300</option> : <option value="300">300</option>}
+      {renderPointValue == 400 ? <option value="400" selected>400</option> : <option value="400">400</option>}
+      {renderPointValue == 500 ? <option value="500" selected>500</option> : <option value="500">500</option>}
+    </select>
 
     return (
       <section>
@@ -242,18 +249,11 @@ export default class QuestionForm extends Component {
         </Link>
         <div className="wrapper">
           <form onSubmit={this.handleSubmit}>
-            <div>
+            <div className="selector">
+              <label for="select">Category</label>
               {categorySelectOutput}
-            </div>
-            <div>
-              <select onChange={(event) => this.updatePoints(event)}>
-                <option value=""></option>
-                <option value="100">100</option>
-                <option value="200">200</option>
-                <option value="300">300</option>
-                <option value="400">400</option>
-                <option value="500">500</option>
-              </select>
+              <label for="select">Points</label>
+              {pointSelectOutput}
             </div>
             <div className="question-container">
               {currentQuestionsHtml}

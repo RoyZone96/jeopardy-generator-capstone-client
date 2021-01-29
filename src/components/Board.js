@@ -144,22 +144,118 @@ export default class Board extends React.Component {
                 if ((currentQuestions[i].question_category == 1) && (currentQuestions[i].question_points == 200)) {
                     linkUrlOutput200_1 = `/questions/1/${currentQuestions[i].id}/${currentBoardId}/200`
                     selectedStyleOutput = "existingGame"
-
                 }
                 if ((currentQuestions[i].question_category == 1) && (currentQuestions[i].question_points == 300)) {
                     linkUrlOutput300_1 = `/questions/1/${currentQuestions[i].id}/${currentBoardId}/300`
                     selectedStyleOutput = "existingGame"
-
                 }
                 if ((currentQuestions[i].question_category == 1) && (currentQuestions[i].question_points == 400)) {
                     linkUrlOutput400_1 = `/questions/1/${currentQuestions[i].id}/${currentBoardId}/400`
                     selectedStyleOutput = "existingGame"
-
                 }
                 if ((currentQuestions[i].question_category == 1) && (currentQuestions[i].question_points == 500)) {
                     linkUrlOutput500_1 = `/questions/1/${currentQuestions[i].id}/${currentBoardId}/500`
                     selectedStyleOutput = "existingGame"
-
+                }
+                if ((currentQuestions[i].question_category == 2) && (currentQuestions[i].question_points == 100)) {
+                    linkUrlOutput100_2 = `/questions/2/${currentQuestions[i].id}/${currentBoardId}/100`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 2) && (currentQuestions[i].question_points == 200)) {
+                    linkUrlOutput200_2 = `/questions/2/${currentQuestions[i].id}/${currentBoardId}/200`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 2) && (currentQuestions[i].question_points == 300)) {
+                    linkUrlOutput300_2 = `/questions/2/${currentQuestions[i].id}/${currentBoardId}/300`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 2) && (currentQuestions[i].question_points == 400)) {
+                    linkUrlOutput400_2 = `/questions/2/${currentQuestions[i].id}/${currentBoardId}/400`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 2) && (currentQuestions[i].question_points == 500)) {
+                    linkUrlOutput500_2 = `/questions/2/${currentQuestions[i].id}/${currentBoardId}/500`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 3) && (currentQuestions[i].question_points == 100)) {
+                    linkUrlOutput100_3 = `/questions/3/${currentQuestions[i].id}/${currentBoardId}/100`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 3) && (currentQuestions[i].question_points == 200)) {
+                    linkUrlOutput200_3 = `/questions/3/${currentQuestions[i].id}/${currentBoardId}/200`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 3) && (currentQuestions[i].question_points == 300)) {
+                    linkUrlOutput300_3 = `/questions/3/${currentQuestions[i].id}/${currentBoardId}/300`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 3) && (currentQuestions[i].question_points == 400)) {
+                    linkUrlOutput400_3 = `/questions/3/${currentQuestions[i].id}/${currentBoardId}/400`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 3) && (currentQuestions[i].question_points == 500)) {
+                    linkUrlOutput500_3 = `/questions/3/${currentQuestions[i].id}/${currentBoardId}/500`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 4) && (currentQuestions[i].question_points == 100)) {
+                    linkUrlOutput100_4 = `/questions/4/${currentQuestions[i].id}/${currentBoardId}/100`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 4) && (currentQuestions[i].question_points == 200)) {
+                    linkUrlOutput200_4 = `/questions/4/${currentQuestions[i].id}/${currentBoardId}/200`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 4) && (currentQuestions[i].question_points == 300)) {
+                    linkUrlOutput300_4 = `/questions/4/${currentQuestions[i].id}/${currentBoardId}/300`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 4) && (currentQuestions[i].question_points == 400)) {
+                    linkUrlOutput400_4 = `/questions/4/${currentQuestions[i].id}/${currentBoardId}/400`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 4) && (currentQuestions[i].question_points == 500)) {
+                    linkUrlOutput500_4 = `/questions/4/${currentQuestions[i].id}/${currentBoardId}/500`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 5) && (currentQuestions[i].question_points == 100)) {
+                    linkUrlOutput100_5 = `/questions/5/${currentQuestions[i].id}/${currentBoardId}/100`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 5) && (currentQuestions[i].question_points == 200)) {
+                    linkUrlOutput200_5 = `/questions/5/${currentQuestions[i].id}/${currentBoardId}/200`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 5) && (currentQuestions[i].question_points == 300)) {
+                    linkUrlOutput300_5 = `/questions/5/${currentQuestions[i].id}/${currentBoardId}/300`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 5) && (currentQuestions[i].question_points == 400)) {
+                    linkUrlOutput400_5 = `/questions/5/${currentQuestions[i].id}/${currentBoardId}/400`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 5) && (currentQuestions[i].question_points == 500)) {
+                    linkUrlOutput500_5 = `/questions/5/${currentQuestions[i].id}/${currentBoardId}/500`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 6) && (currentQuestions[i].question_points == 100)) {
+                    linkUrlOutput100_6 = `/questions/6/${currentQuestions[i].id}/${currentBoardId}/100`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 6) && (currentQuestions[i].question_points == 200)) {
+                    linkUrlOutput200_6 = `/questions/6/${currentQuestions[i].id}/${currentBoardId}/200`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 6) && (currentQuestions[i].question_points == 300)) {
+                    linkUrlOutput300_6 = `/questions/6/${currentQuestions[i].id}/${currentBoardId}/300`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 6) && (currentQuestions[i].question_points == 400)) {
+                    linkUrlOutput400_6 = `/questions/6/${currentQuestions[i].id}/${currentBoardId}/400`;
+                    selectedStyleOutput = "existingGame"
+                }
+                if ((currentQuestions[i].question_category == 6) && (currentQuestions[i].question_points == 500)) {
+                    linkUrlOutput500_6 = `/questions/6/${currentQuestions[i].id}/${currentBoardId}/500`;
+                    selectedStyleOutput = "existingGame"
                 }
             }
             questionsForBoardMap =
@@ -167,22 +263,22 @@ export default class Board extends React.Component {
                     <div className="divTableRow">
                         <div className="divTableCell ">
                             {/* <Link to="/questions/100/1">100</Link> */}
-                            <Link  className={selectedStyleOutput}  to={linkUrlOutput100_1}>100</Link>
+                            <Link className={selectedStyleOutput} to={linkUrlOutput100_1}>100</Link>
                         </div>
                         <div className="divTableCell">
-                            <Link  className={selectedStyleOutput}  to={linkUrlOutput100_2}>100</Link>
+                            <Link className={selectedStyleOutput} to={linkUrlOutput100_2}>100</Link>
                         </div>
                         <div className="divTableCell">
-                            <Link className={selectedStyleOutput}  to={linkUrlOutput100_3}>100</Link>
+                            <Link className={selectedStyleOutput} to={linkUrlOutput100_3}>100</Link>
                         </div>
                         <div className="divTableCell">
-                            <Link  className={selectedStyleOutput} to={linkUrlOutput100_4}>100</Link>
+                            <Link className={selectedStyleOutput} to={linkUrlOutput100_4}>100</Link>
                         </div>
                         <div className="divTableCell">
-                            <Link  className={selectedStyleOutput} to={linkUrlOutput100_5}>100</Link>
+                            <Link className={selectedStyleOutput} to={linkUrlOutput100_5}>100</Link>
                         </div>
                         <div className="divTableCell">
-                            <Link  className={selectedStyleOutput} to={linkUrlOutput100_6}>100</Link>
+                            <Link className={selectedStyleOutput} to={linkUrlOutput100_6}>100</Link>
                         </div>
                     </div>
                     <div className="divTableRow">
