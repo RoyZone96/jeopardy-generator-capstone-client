@@ -51,7 +51,6 @@ export default class CommunityBoards extends Component {
         return (
             <div>
                 <NavLinks />
-                <CommunitySortSelect />
                 {communityListHtml}
             </div>
         )

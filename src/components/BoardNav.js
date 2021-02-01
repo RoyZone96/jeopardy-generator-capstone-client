@@ -102,8 +102,7 @@ export default class BoardNav extends Component {
         this.context.shareBoard(response),
         console.log(ApiContext))
       .then(
-        console.log(sharedBoard),
-        window.location = '/'
+        console.log(sharedBoard)
       )
       .catch(error => {
         console.log(error.message)
@@ -129,6 +128,7 @@ export default class BoardNav extends Component {
       .then(() => {
         this.context.deleteBoard(id)
         this.props.onDeleteBoard(id)
+        this.props.history.push('/myBoards')
       })
       .catch(error => {
         console.error({ error })

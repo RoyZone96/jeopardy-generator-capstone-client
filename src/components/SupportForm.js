@@ -51,7 +51,7 @@ export default class SupportForm extends Component {
             )
             .then(
                 console.log(newSupport),
-                window.location = "/"
+                window.location = "/myboards"
             )
             .catch(error => {
                 console.log(error.message)

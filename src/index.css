@@ -149,7 +149,7 @@ select{
   margin-right: 20px;
 }
 
-.title {
+.title-box {
   padding-bottom: 40px;
 }
 
@@ -162,16 +162,15 @@ select{
   color: goldenrod
 }
 
-
+.divTableRow, .divTableHeading {
+  display: block;
+  width: 100%
+}
 
 .divTableBody a:visited {
   color: grey
 }
 
-.divTableRow, .divTableHeading {
-  display: block;
-  width: 100%
-}
 
 .divTableHeading {
   background-color: #EEE;
@@ -181,7 +180,8 @@ select{
   border: 3px solid white;
   display: inline-block;
   padding: 10px 10px;
-  width: 15%;
+  width: 200px;
+
   color: white;
 }
 
@@ -310,6 +310,10 @@ li {
   float: right;
 }
 
+label{
+  margin-right: 12px;
+}
+
 .existingGame{
   color: red !important;
   font-weight: bold
@@ -359,23 +363,10 @@ li {
   .divTableBody a:visited {
     color: grey
   }
-  .divTableRow, .divTableHeading {
-    display: block;
-    width: 100%
-  }
-  .divTableHeading {
-    background-color: #EEE;
-  }
-  .divTableCell, .divTableHead {
-    border: 3px solid white;
-    display: inline-block;
-    padding: 10px 10px;
-    width: 15%;
-    color: white;
-  }
-  .divTable .lastCell {
-    display: inline-block;
-  }
+
+  
+ 
+  
   .content {
     width: 500px;
     height: 250px;

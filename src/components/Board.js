@@ -434,11 +434,11 @@ export default class Board extends React.Component {
                         </div>
                     </div>
                 </section>
-                <div className="button-wrapper">
+                {/* <div className="button-wrapper">
                     <button type="button" className="submit" onClick={this.handleClickSubmit}>
                         Submit
           </button>
-                </div>
+                </div> */}
 
             </section>
         )
