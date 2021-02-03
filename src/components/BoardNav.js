@@ -71,6 +71,7 @@ export default class BoardNav extends Component {
     e.preventDefault()
     const { id } = this.props;
     const sharedBoard = {
+      id: this.props.id,
       board_title: this.state.board_title,
       category_five: this.state.category_five,
       category_four: this.state.category_four,
@@ -78,10 +79,6 @@ export default class BoardNav extends Component {
       category_six: this.state.category_six,
       category_three: this.state.category_three,
       category_two: this.state.category_two,
-      // date_created: this.state.date_created,
-      // date_updated: this.state.date_updated,
-      // id: id,
-      // times_played: this.state.times_played,
       user_id: this.state.user_id,
       likes: 0
     }
