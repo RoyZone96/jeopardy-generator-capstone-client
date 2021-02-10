@@ -104,7 +104,7 @@ export default class CommunityPlayboard extends Component {
         let questionCategory = 1
         const question_points = 100
        
-        // let categories = Data.data.map(cat => (<div className="divTableCell">{cat.category}</div>))
+        
         let players = this.state.players.map((player, idx) => (
             <div>
                 <p style={{ display: 'inline-block', margin: '2px 10px' }}>{player.name} - score: {player.score}</p>
@@ -113,8 +113,8 @@ export default class CommunityPlayboard extends Component {
         ))
         const currentQuestions = this.state.existingBoardQuestions;
 
-    console.log(currentQuestions)
-    // console.log(currentBoardId)
+  
+  
 
     let questionsForBoardMap = ''
     //by default show there are no items

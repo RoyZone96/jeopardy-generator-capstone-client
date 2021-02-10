@@ -29,7 +29,7 @@ export default class BoardNav extends Component {
   componentDidMount() {
     console.log(this.props)
     let url = `${config.API_ENDPOINT}/communityBoards/${this.props.id}`
-    // console.log(url)
+   
     fetch(url, {
       method: 'GET',
       headers: {
@@ -42,13 +42,13 @@ export default class BoardNav extends Component {
         return res.json()
       })
       .then((responseJson) => {
-        // console.log(responseJson)
+        
         this.setState({
           board_id: responseJson.id,
           board_title: responseJson.board_title,
           likes: responseJson.likes
         })
-        // console.log(this.state)
+       
       })
       .catch(error => {
         console.log(error.message)
@@ -57,7 +57,7 @@ export default class BoardNav extends Component {
 
 
   toggleLike = (event) => {
-    // event.preventDefault()
+    event.preventDefault()
     let existingLikes = this.state.likes + 1
 
     let updateLikes = {
@@ -65,7 +65,7 @@ export default class BoardNav extends Component {
     }
 
 
-    // console.log(updateLikes)
+    
 
     fetch(`${config.API_ENDPOINT}/communityBoards/${this.props.id}`,
       {
@@ -79,7 +79,6 @@ export default class BoardNav extends Component {
         return res.json()
       })
       .then(response => {
-        // console.log(response)
         window.location = "/community"
       })
       .catch(error => {

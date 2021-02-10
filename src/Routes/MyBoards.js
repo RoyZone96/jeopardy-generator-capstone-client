@@ -3,9 +3,7 @@ import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
-import SortSelect from '../components/SortSelect'
 import BoardNav from '../components/BoardNav'
-import LogoutButton from "../components/LogoutButton"
 import config from "../config"
 import ApiContext from '../ApiContext'
 import TokenService from '../services/TokenService'

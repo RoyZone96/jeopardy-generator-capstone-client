@@ -78,7 +78,7 @@ export default class Board extends React.Component {
         const currentQuestions = this.state.existingBoardQuestions;
 
         console.log(currentQuestions)
-        // console.log(currentBoardId)
+      
 
         let questionsForBoardMap = ''
         //by default show there are no items
@@ -122,20 +122,11 @@ export default class Board extends React.Component {
             let linkUrlOutput400_6 = `/questions/6/0/${currentBoardId}/400`
             let linkUrlOutput500_6 = `/questions/6/0/${currentBoardId}/500`
 
-            //       board_id: 18
-            // id: 40
-            // question_answer: "Ameterasu"
-            // question_category: 1
-            // question_points: 100
-            // question_text: "This is the chief goddess of 
-            // '/questions/:category_id/:question_id/:board_id'
+            
 
             // for loop to current questions
             for (let i = 0; i < currentQuestions.length; i++) {
-                // console.log(currentQuestions[i].id)
-                // console.log(currentQuestions[i].board_id)
-                // console.log(currentQuestions[i].question_category)
-                // console.log(currentQuestions[i].question_points)
+                
                 // if currentQuestion category and points are matching url below display question else display 0
                 if ((currentQuestions[i].question_category == 1) && (currentQuestions[i].question_points == 100)) {
                     linkUrlOutput100_1 = `/questions/1/${currentQuestions[i].id}/${currentBoardId}/100`;

@@ -203,8 +203,6 @@ export default class QuestionForm extends Component {
     //if answer was edited display the last text for it in input
     // console.log((this.state.currentQuestions))
     if (Object.keys(this.state.currentQuestions).length != 0) {
-      // console.log(this.state.currentQuestions.question_answer)
-      // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
       currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
     }
 
@@ -212,15 +210,9 @@ export default class QuestionForm extends Component {
 
     //toDo: dynamically enter question points make sure patch payload is populated with all variables
     //if the answer wasn't editted display default in input area
-    //  let currentAnswersHtml = <input type="text" defaultValue={this.state.question_answer.value} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
-
+    
     //if answer was edited display the last text for it in input
-    //  console.log((this.state.currentQuestions))
-    //  if (Object.keys(this.state.currentQuestions).length != 0) {
-    //    console.log(this.state.currentQuestions.question_answer)
-    // currentAnswersHtml = <textarea className="question-area" defaultValue={this.state.currentQuestions.question_answer.value} onChange={event => this.updateAnswer(event.target.value)} placeholder="Your content here" required />
-    //  currentAnswersHtml = <input type="text" defaultValue={this.state.currentQuestions.question_answer} name="question_answers" onChange={event => this.updateAnswer(event.target.value)} placeholder="question_answer" required />
-
+   
     let renderCategoryId = this.props.match.params.category_id;
     let categorySelectOutput =
       <select onChange={(event) => this.updateCategoryId(event)}>
