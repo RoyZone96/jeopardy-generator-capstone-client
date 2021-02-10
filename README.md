@@ -98,14 +98,11 @@ The app's functionality includes:
                 * __Board.js__(stateless)
                 * __BoardNav.js__(stateless)
             * __PlayBoard.js__(stateful)
-            * __Popular.js__(statless) -
+                *__PlayQuestion.js
+            * __CommunityBoards.js__(statless) -
                 * __BoardList.js__(stateless)
                     * __Board.js__(stateless)
                     * __BoardNav.js__(stateless)
-            * __Recent.js__(stateless) -
-                   *  __BoardList.js__(stateless)
-                        * __Board.js__(stateless)
-                        * __BoardNav.js__(stateless)
             * __Support.js__(stateless) -
                 * __SupportForm.js__(stateful)
 
@@ -145,7 +142,9 @@ App is built to be usable on mobile devices, as well as responsive across mobile
 
 ## Development Roadmap???
 This is v1.0 of the app, but future enhancements are expected to include:
-* add more functionality
+* being able to update categories from edit board
+* implementing double and final jeopardy
+* aesthetic changes
 
 ## How to run it
 Use command line to navigate into the project folder and run the following in terminal
