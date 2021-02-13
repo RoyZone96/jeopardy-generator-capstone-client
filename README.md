@@ -1,9 +1,8 @@
 # Jeopardy Generator
-Whether for exam review or entertainment, build your own Jeopardy board.
+Whether for exam review or for pure entertainment, generate and share full functioning Jeopardy boards for all to enjoy.
 
-## Working Prototype???
-You can access a working prototype of the React app here: https://your-app-client.herokuapp.com/ and Node app here: https://your-app-server.herokuapp.com/
-
+## Working Prototype
+You can access a working prototype of the React app here:https://jeopardy-generator.vercel.app/ and Node app here: https://guarded-woodland-98056.herokuapp.com/
 
 ## User Stories
 This app is for two types of users: a visitor and a logged-in user
@@ -120,27 +119,60 @@ The app's functionality includes:
     * times_played (integer, default 0)
     * date_created ( date-time )
     * date_updated ( date-time )
+    * category_one (text)
+    * category_two (text)
+    * category_three (text)
+    * category_four (text)
+    * category_five (text)
+    * category_six (text)
+* CommunityBoards
+    * id (auto-generated)
+    * user_id (auto-generated)
+    * board_title (25 chars maximum, alphabetical)
+    * likes (integer, default 0)
+    * date_created ( date-time )
+    * category_one (text)
+    * category_two (text)
+    * category_three (text)
+    * category_four (text)
+    * category_five (text)
+    * category_six (text)
 * Questions
     * id (auto-generated)
     * board_id (auto-generated)
     * question_text (alphabetical, text)
     * question_answer (alphabetical, text)
-    * question_points (numerical, default 100)
+    * question_points (numerical, default 100, enumeration: 100-500)
     * question_category (enumeration: 1-6 )
-* Scores
+* Support
     * id (auto-generated)
     * user_id (auto-generated)
-    * board_id (auto-generated)
-    * score_value ()
+    * e-mail (text)
+    * subject (text)
+    * content (text)
 
-## API Documentation???
+## API Documentation
 API Documentation details:
-* get all users
-
+    /api
+    .
+    ├── /auth
+    │   └── POST
+    │       ├── /login
+    ├── /users
+    │   └── POST
+    │       └── /
+    |__ /boards
+    |   └──POST
+    |       └── /questions
+    |__/communityBoards
+    |    └──POST
+    |       └──/questions
+    |__/Support
+        └──POST
 ## Responsive
 App is built to be usable on mobile devices, as well as responsive across mobile, tablet, laptop, and desktop screen resolutions.
 
-## Development Roadmap???
+## Development Roadmap
 This is v1.0 of the app, but future enhancements are expected to include:
 * being able to update categories from edit board
 * implementing double and final jeopardy
