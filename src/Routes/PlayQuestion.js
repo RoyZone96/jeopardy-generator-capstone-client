@@ -62,7 +62,7 @@ export default class PlayQuestion extends Component {
           </div>
          
             <div className="answer-container">
-              <p>What is  {this.state.isShown && (<p className="answer">{currentAnswer}</p> )} ?</p>
+              <span>What is  {this.state.isShown && (<span className="answer">{currentAnswer}</span> )} ?</span>
             </div>
          
           <div>

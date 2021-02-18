@@ -244,6 +244,11 @@ a:hover {
   padding-bottom: 15px;
 }
 
+.answer{
+  font-size: 50px;
+  color: white
+}
+
 .question-area {
   width: 450px;
   height: 300px;
