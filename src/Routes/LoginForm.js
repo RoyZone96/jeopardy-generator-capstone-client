@@ -79,7 +79,7 @@ export default class LoginForm extends Component {
           </div>
           <div className="spacer">
             <label htmlFor="password"> Password </label>
-            <input type="text" className="password" name="password" required />
+            <input type="password" className="password" name="password" required />
           </div>
           <div className="button-spacer">
             <button type="submit"> Login </button>
