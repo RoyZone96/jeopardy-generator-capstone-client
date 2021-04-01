@@ -73,6 +73,42 @@ h2 {
   font-size: 35px;
 }
 
+input,
+select,
+button {
+  border: 1px solid #0E4EB4;
+  padding: 10px 25px;
+  margin: 5px;
+  border-radius: 15px;
+  color: green;
+}
+
+button {
+  background-color: black;
+  border: 2px solid green;
+}
+
+button:hover {
+  background-color: green;
+  color: black;
+  border: 2px solid black;
+}
+
+
+/* button[type=submit] {
+  background-color: gold;
+  border: 2px solid #C01C17;
+}
+
+button[type=submit]:hover {
+  color: #C01C17;
+} */
+
+label {
+  display: block;
+  margin: 10px;
+}
+
 .navigation {
   background: url(images/weclome-back.jpg) no-repeat center;
   margin-top: 20px;
