@@ -18,17 +18,31 @@ export default class MyBoards extends Component {
     }
 
     componentDidMount() {
-        Promise.all([
-            fetch(`${config.API_ENDPOINT}/boards`)
-        ])
-            .then(([boardsRes]) => {
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
                 if (!boardsRes.ok)
                     return boardsRes.json().then(e => Promise.reject(e));
-                return Promise.all([boardsRes.json()]);
+                return boardsRes.json();
             })
-            .then(([boards]) => {
-                this.setState({ boards });
+            .then((boards) => {
+
                 console.log(boards)
+                console.log(user_id)
+
+                let filteredBudgets = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBudgets.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBudgets });
             })
             .catch(error => {
                 console.log({ error });

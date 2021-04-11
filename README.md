@@ -191,6 +191,7 @@ This is v1.0 of the app, but future enhancements are expected to include:
 * being able to update categories from edit board
 * implementing double and final jeopardy
 * aesthetic changes
+* Integrated a way to remind a user of password or Username
 
 ## How to run it
 Use command line to navigate into the project folder and run the following in terminal
