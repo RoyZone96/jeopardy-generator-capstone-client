@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
 import BoardNav from '../components/BoardNav'
+import SortSelect from '../components/SortSelect'
 import config from "../config"
 import ApiContext from '../ApiContext'
 import TokenService from '../services/TokenService'
@@ -112,6 +113,9 @@ export default class MyBoards extends Component {
             <div>
                 <Welcome />
                 <NavLinks />
+                <div className="sort">
+                    <SortSelect />
+                </div>
                 <section key={boards.id} className="board-list">
                     {boardsOutput}
                 </section>

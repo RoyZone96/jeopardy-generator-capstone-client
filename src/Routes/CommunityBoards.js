@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import CommunitySortSelect from '../components/CommunitySortSelect'
 import config from '../config'
 import CommunityNav from '../components/CommunityNav'
-import LogoutButton from '../components/LogoutButton'
 import NavLinks from '../components/NavLinks'
 
 
@@ -51,6 +50,9 @@ export default class CommunityBoards extends Component {
         return (
             <div>
                 <NavLinks />
+                <div className="sort">
+                    <CommunitySortSelect />
+                </div>
                 {communityListHtml}
             </div>
         )

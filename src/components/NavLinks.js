@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import LougoutButton from './LogoutButton'
-import SortSelect from '../components/SortSelect'
+
 
 export default function Navigation() {
     return (
@@ -24,9 +24,6 @@ export default function Navigation() {
                     </NavLink>
                 </li>
             </ul>
-            <div className="sort">
-                <SortSelect/>
-            </div>
         </div>
     )
 }
