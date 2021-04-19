@@ -36,13 +36,13 @@ export default class MyBoards extends Component {
                 console.log(boards)
                 console.log(user_id)
 
-                let filteredBudgets = [];
+                let filteredBoards = [];
                 for (let i = 0; i < boards.length; i++) {
                     if (boards[i].user_id == user_id) {
-                        filteredBudgets.push(boards[i]);
+                        filteredBoards.push(boards[i]);
                     }
                 }
-                this.setState({ boards: filteredBudgets });
+                this.setState({ boards: filteredBoards });
             })
             .catch(error => {
                 console.log({ error });

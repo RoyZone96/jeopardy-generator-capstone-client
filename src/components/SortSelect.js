@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class SortSelect extends Component {
-    state={
+    state = {
         isSorted: false
     }
 
@@ -24,24 +24,121 @@ export default class SortSelect extends Component {
     // }
     // }
 
-    handleToggle = () => {
-        if (this.state.sorted) {
-            this.props.sort('asc')
-        }
-        if (this.state.sorted) {
-            this.props.sort('desc')
-        }
-        this.setState({ sorted: !this.state.sorted })
+    handleToggleDefault = () => {
+        window.location = '/myboards'
+
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
+                if (!boardsRes.ok)
+                    return boardsRes.json().then(e => Promise.reject(e));
+                return boardsRes.json();
+            })
+            .then((boards) => {
+
+                console.log(boards)
+                console.log(user_id)
+
+                let filteredBoards = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBoards.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBoards });
+            })
+            .catch(error => {
+                console.log({ error });
+            });
+
+    }
+
+    handleToggleNames = () => {
+        this.setState({ isSorted: true })
+        window.location = '/myboards'
+
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards/sort-by/names`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
+                if (!boardsRes.ok)
+                    return boardsRes.json().then(e => Promise.reject(e));
+                return boardsRes.json();
+            })
+            .then((boards) => {
+
+                console.log(boards)
+                console.log(user_id)
+
+                let filteredBoards = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBoards.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBoards });
+            })
+            .catch(error => {
+                console.log({ error });
+            });
+
+    }
+
+    handleToggleDates = () => {
+        this.setState({ isSorted: true })
+        window.location = '/myboards'
+
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards/sort-by/names`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
+                if (!boardsRes.ok)
+                    return boardsRes.json().then(e => Promise.reject(e));
+                return boardsRes.json();
+            })
+            .then((boards) => {
+
+                console.log(boards)
+                console.log(user_id)
+
+                let filteredBoards = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBoards.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBoards });
+            })
+            .catch(error => {
+                console.log({ error });
+            });
     }
 
     render() {
         return (
-        <div className="sorter clearfix">
-            <select name="sorting" id="sort-bar">
-            <option value="name">A - Z</option> 
-            <option value="recent">Recent</option>
-           </select>
-        </div>
+            <div className="sorter clearfix">
+                <select name="sorting" id="sort-bar">
+                    <option value="default" onChange={this.handleToggleDefault}>Default</option>
+                    <option value="name" onChange={this.handleToggleNames}>Alphabetical</option>
+                    <option value="recent" onChange={this.handleToggleDates}>Recent</option>
+                </select>
+            </div>
         )
     }
 }
