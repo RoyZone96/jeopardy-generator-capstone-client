@@ -1,76 +1,97 @@
-body {
-  background: rgba(0, 0, 0, 0) url("./images/bg1.png") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  margin: 0;
-  font-family: "Walter Turncoat", cursive;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: goldenrod;
-  margin-right: auto;
-  margin-left: auto;
-}
+/*
+The CSS code gets to executed from top to bottom and left ro right
+Basic rules to write CSS
+- write GENERAL rules first (for all the paragraph tags in the website for example) and only after that write CSS for SPECIFIC tags (for example the paragraph tags inside the footer)
+- write the css styles to define for the parent (outside) container and THEN the children (inside containers) of that parent and THEN the children (inside containers) of the child above
+*/
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table
-}
+/* -------------------------------------
+CSS reset
+Is a short set of CSS rules that resets the styling of all HTML elements to a consistent baseline so the website will look the same on all browsers
+*/
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
+  /*The box-sizing property is used to tell the browser what the sizing properties (width and height) should include border-box.*/
+  box-sizing: border-box;
+  /*reset Chrome user agent styles*/
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-before: 0px;
+  -webkit-padding-after: 0px;
+  -webkit-padding-start: 0px;
+  -webkit-padding-end: 0px;
+  /*reset Firefox user agent styles*/
+  -moz-margin-before: 0px;
+  -moz-margin-after: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-before: 0px;
+  -moz-padding-after: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
+  /*reset Internet Explorer user agent styles*/
+  -ms-margin-before: 0px;
+  -ms-margin-after: 0px;
+  -ms-margin-start: 0px;
+  -ms-margin-end: 0px;
+  -ms-padding-before: 0px;
+  -ms-padding-after: 0px;
+  -ms-padding-start: 0px;
+  -ms-padding-end: 0px;
+  /*reset Opera user agent styles*/
+  -o-margin-before: 0px;
+  -o-margin-after: 0px;
+  -o-margin-start: 0px;
+  -o-margin-end: 0px;
+  -o-padding-before: 0px;
+  -o-padding-after: 0px;
+  -o-padding-start: 0px;
+  -o-padding-end: 0px;
 }
 
-#borderimg {
-  width: 250px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px;
+
+/* -------------------------------------
+General styles (General Module, wrapping around the modules below)
+(the styles used everywhere in the page (like the Body) or styles which are used in more than 2 of the modules below (h2, h3, h4, h5, h6, p, a, ul, li))
+*/
+
+body {
+font-family: sans-serif;
+font-size: 20px;
+color: rgb(0, 0, 0);
+background-color: #eee;
+text-align: center;
+line-height: 1.5;
+height: auto;
+border: 3px solid white;
 }
 
-.Board {
-  width: 100%;
-  border: 10px solid white;
+a {
+text-decoration: none;
 }
 
-html {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+a:hover {
+color: red;
 }
 
-.logout{
-  margin-left: 45px;
-}
-
-li {
-  padding-left: 10px;
-}
-
-.spacer {
-  text-align: center;
-  padding: 30px
-}
-
-h1 {
-  text-align: center;
-  padding-bottom: 30px;
-}
-
-.app-title {
-  font-size: 35px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: cursive;
 }
 
 h2 {
-  font-size: 35px;
+  color: #0E4EB4;
 }
 
 input,
@@ -80,351 +101,181 @@ button {
   padding: 10px 25px;
   margin: 5px;
   border-radius: 15px;
-  color: green;
+  color: orange;
 }
 
 button {
-  background-color: black;
-  border: 2px solid green;
+  background-color: transparent;
+  border: 2px solid #6D7296;
 }
 
 button:hover {
-  background-color: green;
+  background-color: #EFC43F;
   color: black;
-  border: 2px solid black;
 }
 
-
-/* button[type=submit] {
-  background-color: gold;
+button[type=submit] {
+  background-color: transparent;
   border: 2px solid #C01C17;
 }
 
 button[type=submit]:hover {
   color: #C01C17;
-} */
+}
 
 label {
   display: block;
   margin: 10px;
 }
 
-.navigation {
-  background: url(images/weclome-back.jpg) no-repeat center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 80px;
-  text-align: center;
-  font-size: 12pt;
+/*
+The clearfix Hack: If an element is taller than the element containing it, and it is floated, it will "overflow" outside of its container
+https://www.w3schools.com/css/css_float_clear.asp
+*/
+.clearfix::after {
+content: "";
+clear: both;
+display: table;
 }
 
-.menu {
-  padding: 25px;
-  display: inline-flex
+
+
+
+/* -------------------------------------
+Header styles (Main Module)
+(all the styles inside the < header > or < nav > tags)
+*/
+header {
+height: 700px;
+width: 100%;
+display: block;
+position: relative;
+padding-top: 20px;
+margin-top: 0;
+text-align: center;
+background-size: cover;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
 }
 
-.LoginForm {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-  padding-top: 55px
+header h1 {
+color: white;
+margin-top: 10%;
+font-size: 214%;
 }
 
-.RegistrationForm {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-  padding-top: 55px
+header nav {
+position: fixed;
+display: block;
+width: 100%;
+top: 0;
+text-align: left;
 }
 
-form {
-  padding-top: 15px;
+header nav ul.nav-items,
+header nav div.logo {
+display: inline-block;
+width: auto;
 }
 
-.wrapper {
-  margin: 30px;
-  width: 500px;
-  /* height: 500px; */
-  text-align: center;
-  border: 2pt solid;
-  margin-left: auto;
-  margin-right: auto
+header nav div.logo {
+padding: 0px 20px;
+color: #163a8b;
+font-family: "Caveat", cursive;
+font-size: 155%;
 }
 
-.menu-wrapper {
-  padding-top: 40px;
-  margin: 30px;
-  width: 300px;
-  /* height: 250px; */
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+header nav ul.nav-items {
+list-style-type: none;
+float: right;
 }
 
-.board-list{
-  margin-top: 70px;
+header nav ul.nav-items li {
+display: inline-block;
+width: auto;
+padding: 10px 20px;
+border-right: 2px solid #ddd;
 }
 
-.tableWrapper {
-  padding-top: 50px;
-  width: 800px;
-  margin-left: auto;
-  margin-right: auto
+header nav ul.nav-items li:last-child {
+border-right: 0;
 }
 
+/* -------------------------------------
+Content styles (Main Module)
+(all the styles inside the < sections > or < aside > tags)
+*/
 section {
-  text-align: center
+width: 70%;
+margin: 30px auto;
+padding-top: 20px;
+padding-bottom: 20px;
+border-bottom: 2px solid green;
+text-align: left;
+font-family: "Roboto", serif;
 }
 
-.menu-select{
-  background: url(images/download.jpeg) no-repeat center;
+section.projects {
+display: block;
 }
 
-select{
-  margin-left: 20px;
-  margin-right: 20px;
+section.projects div.project-container {
+margin-bottom: 5%;
+margin-top: 2%;
+border-bottom: 1px solid #ccc;
 }
 
-.title-box {
-  padding-bottom: 40px;
+section.projects div.project-container:last-child {
+border-bottom: 0;
 }
 
-.divTable, .divTableBody {
-  display: block;
-  width: 100%;
+section.projects div.project-container h4 {
+margin-bottom: 15px;
+font-size: 120%;
 }
 
-.divTableBody a {
-  color: goldenrod
+section.projects div.project-container div.project-column {
+display: inline-block;
+width: 48%;
+margin-left: 0.5%;
+margin-right: 0.5%;
+margin-bottom: 1rem;
+vertical-align: top;
+padding-left: 20px;
 }
 
-.divTableRow, .divTableHeading {
-  display: block;
-  width: 100%
+section.projects div.project-container div.project-column img {
+width: 100%;
 }
 
-.divTableBody a:visited {
-  color: grey
+/* -------------------------------------
+Footer styles (Main Module)
+(all the styles inside the < footer > tag)
+*/
+
+footer {
+margin-top: 50px;
+margin-bottom: 15px;
+border: 0px;
 }
 
-
-.divTableHeading {
-  background-color: #EEE;
+footer a {
+display: block;
+position: fixed;
+bottom: 30px;
+right: 30px;
+color: #163a8b;
 }
 
-.divTableCell, .divTableHead {
-  border: 3px solid white;
-  display: inline-block;
-  padding: 10px 10px;
-  width: 200px;
-
-  color: white;
-}
-
-.divTable .lastCell {
-  display: inline-block;
-}
-
-.logout{
-  float: left;
+footer a:hover {
+color: #081e6f;
 }
 
 
-button {
-  font-family: "Walter Turncoat", cursive;
-  padding: 5px;
-  display: inline-block;
-  border-radius: 9px;
-  border-color: goldenrod;
-  color: goldenrod;
-  background-color: black;
-}
-
-.new-board {
-  font-size: 24pt;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.submit {
-  font-size: 24pt;
-}
-
-button:hover {
-  color: white
-}
-
-.button-spacer {
-  display: inline-flex;
-  margin: 5px;
-}
-
-.button-wrapper{
-  margin-top: 30px;
-}
-
-a {
-  color: goldenrod;
-}
-
-a:hover {
-  color: white;
-}
-
-.question-container {
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
-.answer-container {
-  padding-bottom: 15px;
-}
-
-.answer{
-  font-size: 50px;
-  color: white
-}
-
-.question-area {
-  width: 450px;
-  height: 300px;
-}
-
-.reveal {
-  font-size: 24pt;
-}
-
-.add-board {
-  width: 150px;
-  /* height: 100px; */
-  font-size: 18pt;
-  margin-bottom: 50px
-}
-
-.boards {
-  text-align: center
-}
-
-.scoreboard {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 50px;
-  margin-top: 25px;
-}
-
-.player {
-  margin-bottom: 25px
-}
-
-.add {
-  margin-bottom: 20px
-}
-
-.score {
-  width: 50px
-}
-
-li {
-  list-style: none;
-  margin-bottom: 30px;
-}
-
-.category-box {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.support {
-  background: url(images/1991998.jpg) no-repeat center;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 15px;
-  width: 80
-}
-
-.content {
-  width: 250px;
-  /* height: 250px; */
-}
-
-.sort {
-  float: right;
-}
-
-label{
-  margin-right: 12px;
-}
-
-/* .existingGame{
-  color: red !important;
-  font-weight: bold
-} */
-
-.footer {
-  text-align: center;
-  background-color: black;
-  color: white;
-  position: fixed;
-  /* margin-top: 290px; */
-  bottom: 0px;
-}
-
-@media only screen and (min-width: 768px) {
-  .wrapper {
-    margin: 30px;
-    width: 500px;
-    /* height: 500px; */
-    text-align: center;
-    border: 2pt solid;
-    margin-left: auto;
-    margin-right: auto
-  }
-  .menu-wrapper {
-    padding-top: 40px;
-    margin: 30px;
-    width: 300px;
-    /* height: 200px; */
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .tableWrapper {
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
- 
-  .divTable, .divTableBody {
-    display: block;
-    width: 100%;
-  }
-  .divTableBody a {
-    color: goldenrod
-  }
-  .divTableBody a:visited {
-    color: grey
-  }
-
-  
- 
-  
-  .content {
-    width: 500px;
-    /* height: 250px; */
-  }
-  .footer {
-    text-align: center;
-    background-color: black;
-    color: white;
-    position: relative;
-    margin-top: 290px;
-    bottom: 0px;
-  }
-  .support {
-    margin-right: auto;
-    margin-left: auto;
-    padding-top: 15px
-  }
-}
-
-@media only screen and (min-width: 1024px) {}
+/* -------------------------------------
+place all the desktop styles above this line
+Responsive styles
+(the very last module in the CSS, contains all the media queries and it is dealing with the compatibility with mobiles and tablets)
+place all the mobile tables styles below this line
+*/
