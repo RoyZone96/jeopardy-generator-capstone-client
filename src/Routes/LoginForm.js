@@ -63,6 +63,7 @@ export default class LoginForm extends Component {
 
       })
       .catch(err => {
+        alert(err);
         console.log(err);
       });
   }

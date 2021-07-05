@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
@@ -12,13 +11,21 @@ import BoardsApiService from '../services/BoardsApiService'
 
 
 export default class MyBoards extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            boards: []
+        }
 
-
-    state = {
-        boards: []
     }
 
+
+
     componentDidMount() {
+        this.getAllBoards()
+    }
+
+    getAllBoards() {
         const user_id = TokenService.getUserId()
         console.log(user_id)
 
@@ -49,11 +56,48 @@ export default class MyBoards extends Component {
                 console.log({ error });
             });
     }
+
+    handleSearch = (event) => {
+        event.preventDefault()
+        const data = event.target.value
+        let filterLowerCased = data.toLowerCase()
+        //if no search term display all students
+        if (data == '') {
+            this.getAllBoards()
+        }
+        // if there is a search term narrow it down
+        else {
+            let filteredBoards = []
+            for (let i = 0; i < this.state.boards.length; i++) {
+                let searchTermLowercased = this.state.boards[i].board_title.toLowerCase()
+                if (searchTermLowercased.indexOf(filterLowerCased) > -1) {
+                    console.log('found')
+                    filteredBoards.push(this.state.boards[i])
+                }
+            }
+            // if there are no results display an error
+            if (filteredBoards.length == 0) {
+                this.setState({
+                    boards: []
+                })
+            }
+            //if there are results display them
+            else {
+                console.log(filteredBoards)
+                this.setState({
+                    boards: filteredBoards
+                })
+            }
+        }
+    }
+
+
     handleAddBoard = (board) => {
         this.setState({
             boards: [...this.state.boards, board]
         })
     }
+
 
     handlePost = e => {
         e.preventDefault()
@@ -115,6 +159,13 @@ export default class MyBoards extends Component {
                 <NavLinks />
                 <div className="sort">
                     <SortSelect />
+                    <form>
+                        <input type="text"
+                            className="search_bar"
+                            name='filter'
+                            placeholder="Input Here..."
+                            onChange={(event) => this.handleSearch(event)} />
+                    </form>
                 </div>
                 <section key={boards.id} className="board-list">
                     {boardsOutput}
