@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
     return (
-        <div className="wrapper">
-            <h2> This is the</h2>
-            <h1 className="app-title">Jeopardy Generator!</h1>
-            <div>
+        <div className="landing">
+            <h1> This is the</h1>
+            <h2 className="app-title">Jeopardy Generator!</h2>
+            <div className="description">
                 <p>Make you own Jeopardy boards and share them across the globe
                     <br></br>
                     Perfect for study sessions or parties
@@ -15,10 +15,10 @@ export default function LandingPage() {
             </div>
             <div className="menu">
                 <div className="spacer">
-                <Link to="/login">Login</Link>{' '}
+                    <Link to="/login">Login</Link>{' '}
                 </div>
                 <div className="spacer">
-                <Link to="/registration">Register</Link>
+                    <Link to="/registration">Register</Link>
                 </div>
             </div>
         </div>
