@@ -89,12 +89,13 @@ input, select, button {
   padding: 10px 25px;
   margin: 5px;
   border-radius: 15px;
-  color: yellow;
+  
 }
 
 button {
   background-color: transparent;
   border: 2px solid #6D7296;
+  color: yellow
 }
 
 button:hover {
@@ -241,8 +242,17 @@ section.projects div.project-container div.project-column img {
   margin: 15px;
 }
 
-.description{
+.landing{
+  font-size: 30px;
+}
 
+.app-title{
+  font-size: 45px;
+  margin-bottom: 35px;
+}
+
+.description{
+  margin-bottom: 35px;
 }
 
 .wrapper {
@@ -254,19 +264,17 @@ section.projects div.project-container div.project-column img {
   border: 2pt solid;
   margin-left: auto;
   margin-right: auto;
-  background-color: gainsboro;
+
 }
 
 .login {
   margin: 30px;
   width: 500px;
   height: 300px;
-  text-align: center;
-  margin-top: 120px;
-  border: 2pt solid;
+  color: white; 
   margin-left: auto;
   margin-right: auto;
-  background-color: gainsboro;
+
 }
 
 .registration{
@@ -275,10 +283,10 @@ section.projects div.project-container div.project-column img {
   height: 500px;
   text-align: center;
   margin-top: 120px;
-  border: 2pt solid;
+  color: white;
   margin-left: auto;
   margin-right: auto;
-  background-color: gainsboro;
+ 
 }
 
 .button-spacer {

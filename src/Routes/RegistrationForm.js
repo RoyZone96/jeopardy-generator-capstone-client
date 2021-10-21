@@ -122,7 +122,7 @@ export default class RegistrationForm extends Component {
                         <input type="password" className="password" name="password" minLength="8" required />
                     </div>
                     <div className="spacer">
-                        <label htmlFor="confirmPassword"> Confirm Password </label>
+                        <label htmlFor="confirmPassword"> Confirm                                                                                                                                                 </label>
                         <input type="password" className="confirmPassword" name="confirmPassword" required />
                     </div>
                     <div className="spacer">
