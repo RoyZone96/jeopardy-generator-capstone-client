@@ -60,7 +60,7 @@ body {
 }
 
 .App{
-  height: 682px;
+  height: 770px;
 }
 
 a {
@@ -188,6 +188,42 @@ header nav ul.nav-items li:last-child {
   border-right: 0;
 }
 
+.navigation{
+  margin-bottom: 30px;
+  height: 60px;
+  text-align: center;
+  background-color: black;
+}
+
+.logout{
+  float: left
+}
+
+.menu {
+  display: inline-flex;
+  margin: 5px;
+  list-style: none;
+}
+
+.menu-wrapper{
+  background: rgba(0, 0, 0, 0) url("./images/download.jpeg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ text-align: center;
+ height: 350px;
+ width: 650px;
+ margin-right: auto;
+ margin-left: auto;
+}
+
+.title{
+  font-size:37px;
+  font-family: cursive;
+  color: yellow;
+}
+
 /* -------------------------------------
 Content styles (Main Module)
 (all the styles inside the < sections > or < aside > tags)
@@ -198,7 +234,7 @@ section {
   margin: 30px auto;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 2px solid green;
+  
   text-align: left;
   font-family: "Roboto", serif;
 }
@@ -292,6 +328,74 @@ section.projects div.project-container div.project-column img {
 .button-spacer {
   display: inline-flex;
   margin: 5px;
+}
+
+.new-wrapper{
+  text-align: center;
+}
+
+.new-board{
+  font-size: 39px;
+  font-family: cursive;
+}
+
+.add-wrapper{
+  margin-bottom: 40px;
+  color:white
+}
+
+.board-list{
+  overflow-y: scroll;
+}
+
+.community-list{
+  overflow-y: scroll;
+}
+
+.board-nav{
+  margin-top: 50px;
+}
+
+.tableWrapper {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.divTable, .divTableBody {
+  display: block;
+  width: 100%;
+}
+
+.divTableBody a {
+  color: goldenrod
+}
+
+.divTableRow, .divTableHeading {
+  display: block;
+  width: 100%
+}
+
+.divTableBody a:visited {
+  color: grey
+}
+
+
+.divTableHeading {
+  background-color: #EEE;
+}
+
+.divTableCell, .divTableHead {
+  border: 3px solid white;
+  display: inline-block;
+  padding: 10px 10px;
+  width: 200px;
+
+  color: white;
+}
+
+.divTable .lastCell {
+  display: inline-block;
 }
 
 /* -------------------------------------

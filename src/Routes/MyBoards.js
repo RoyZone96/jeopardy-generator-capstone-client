@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import NavLinks from '../components/NavLinks'
 import Welcome from '../components/Welcome'
 import BoardNav from '../components/BoardNav'
-import SortSelect from '../components/SortSelect'
+import Pagination from '../components/Pagination'
 import config from "../config"
 import ApiContext from '../ApiContext'
 import TokenService from '../services/TokenService'
@@ -14,9 +14,12 @@ export default class MyBoards extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boards: []
+            itemPage: [],
+            boards: [],
+            isSorted: false
         }
 
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
 
@@ -55,6 +58,11 @@ export default class MyBoards extends Component {
             .catch(error => {
                 console.log({ error });
             });
+    }
+
+    onChangePage(pageOfItems) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
     }
 
     handleSearch = (event) => {
@@ -132,6 +140,112 @@ export default class MyBoards extends Component {
             })
     }
 
+    handleToggleDefault = () => {
+        window.location = '/myboards'
+
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
+                if (!boardsRes.ok)
+                    return boardsRes.json().then(e => Promise.reject(e));
+                return boardsRes.json();
+            })
+            .then((boards) => {
+
+                console.log(boards)
+                console.log(user_id)
+
+                let filteredBoards = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBoards.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBoards });
+            })
+            .catch(error => {
+                console.log({ error });
+            });
+
+    }
+
+    handleToggleNames = () => {
+        this.setState({ isSorted: true })
+        window.location = '/myboards'
+
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards/sort-by/names`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
+                if (!boardsRes.ok)
+                    return boardsRes.json().then(e => Promise.reject(e));
+                return boardsRes.json();
+            })
+            .then((boards) => {
+
+                console.log(boards)
+                console.log(user_id)
+
+                let filteredBoards = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBoards.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBoards });
+            })
+            .catch(error => {
+                console.log({ error });
+            });
+
+    }
+
+    handleToggleDates = () => {
+        this.setState({ isSorted: true })
+        window.location = '/myboards'
+
+        const user_id = TokenService.getUserId()
+        console.log(user_id)
+
+        let boardUrl = `${config.API_ENDPOINT}/boards/sort-by/dates`
+
+        console.log(boardUrl)
+
+        fetch(boardUrl)
+            .then((boardsRes) => {
+                if (!boardsRes.ok)
+                    return boardsRes.json().then(e => Promise.reject(e));
+                return boardsRes.json();
+            })
+            .then((boards) => {
+
+                console.log(boards)
+                console.log(user_id)
+
+                let filteredBoards = [];
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].user_id == user_id) {
+                        filteredBoards.push(boards[i]);
+                    }
+                }
+                this.setState({ boards: filteredBoards });
+            })
+            .catch(error => {
+                console.log({ error });
+            });
+    }
+
 
 
 
@@ -158,7 +272,11 @@ export default class MyBoards extends Component {
                 <Welcome />
                 <NavLinks />
                 <div className="sort">
-                    <SortSelect />
+                    <select name="sorting" id="sort-bar">
+                        <option value="default" onChange={this.handleToggleDefault}>Default</option>
+                        <option value="name" onChange={this.handleToggleNames}>Alphabetical</option>
+                        <option value="recent" onChange={this.handleToggleDates}>Recent</option>
+                    </select>
                     <form>
                         <input type="text"
                             className="search_bar"
@@ -167,14 +285,15 @@ export default class MyBoards extends Component {
                             onChange={(event) => this.handleSearch(event)} />
                     </form>
                 </div>
-                <section key={boards.id} className="board-list">
-                    {boardsOutput}
-                </section>
                 <section className="new-wrapper">
                     <Link to="/newboard">
                         <button className="new-board" type="button">NEW BOARD +</button>
                     </Link>
                 </section>
+                <section key={boards.id} className="board-list">
+                    {boardsOutput}
+                </section>
+                
             </div>
         )
     }

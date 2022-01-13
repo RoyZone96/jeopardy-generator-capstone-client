@@ -158,7 +158,7 @@ export default class AddBoard extends Component {
     render() {
         return (
             <div>
-            <div className="wrapper">
+            <div className="add-wrapper">
                 <form onSubmit={this.handleBoardCreate}>
                     <div className="title-box">
                         <label htmlFor="board-title">Board title</label>
@@ -172,7 +172,7 @@ export default class AddBoard extends Component {
                     <div className="category-box">
                         <ul>
                             <li>
-                                <label htmlFor="category-title">Category title</label>
+                                <label htmlFor="category-title">Category title 1</label>
                                 <input
                                     id="category-title"
                                     type="text"
@@ -181,7 +181,7 @@ export default class AddBoard extends Component {
                                 />
                             </li>
                             <li>
-                                <label htmlFor="categories-title">Category title</label>
+                                <label htmlFor="categories-title">Category title 2</label>
                                 <input
                                     id="categories-title"
                                     type="text"
@@ -190,7 +190,7 @@ export default class AddBoard extends Component {
                                 />
                             </li>
                             <li>
-                                <label htmlFor="categories-title">Category title</label>
+                                <label htmlFor="categories-title">Category title 3</label>
                                 <input
                                     id="categories-title"
                                     type="text"
@@ -199,7 +199,7 @@ export default class AddBoard extends Component {
                                 />
                             </li>
                             <li>
-                                <label htmlFor="categories-title">Category title</label>
+                                <label htmlFor="categories-title">Category title 4</label>
                                 <input
                                     id="categories-title"
                                     type="text"
@@ -208,7 +208,7 @@ export default class AddBoard extends Component {
                                 />
                             </li>
                             <li>
-                                <label htmlFor="categories-title">Category title</label>
+                                <label htmlFor="categories-title">Category title 5</label>
                                 <input
                                     id="categories-title"
                                     type="text"
@@ -217,7 +217,7 @@ export default class AddBoard extends Component {
                                 />
                             </li>
                             <li>
-                                <label htmlFor="categories-title">Category title</label>
+                                <label htmlFor="categories-title">Category title 6</label>
                                 <input
                                     id="categories-title"
                                     type="text"
