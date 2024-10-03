@@ -1,103 +1,82 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import AuthApiService from '../services/AuthApiService'
-import TokenService from '../services/TokenService'
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import TokenService from '../services/TokenService';
+import '../styles/Login.css';
 
+const LoginForm = ({ onLoginSuccess = () => {} }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const history = useHistory();
 
-
-export default class LoginForm extends Component {
-  static defaultProps = {
-    onLoginSuccess: () => { }
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: {
-        value: ''
-      },
-      password: {
-        value: ''
-      },
-      LogInUserID: 0,
-      error: null,
-
-    };
-  }
-
-  handleLoginSuccess = () => {
-    window.location = '/myboards'
-  }
-
-  changeUsername(username) {
-    this.setState({ userName: { value: username } });
-  }
-
-  changePassword(password) {
-    this.setState({ password: { value: password } });
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     console.log('Stateful component LogIn successfully mounted.');
-  }
+  }, []);
 
-  handleSubmitJwtAuth = (event) => {
+  const handleLoginSuccess = () => {
+    window.location = '/myboards';
+  };
+
+  const handleSubmitJwtAuth = async (event) => {
     event.preventDefault();
-    const { username, password } = event.target
-    console.log('username:', username.value, "password:", password.value);
-    AuthApiService.postLogin({
-      username: username.value,
-      password: password.value,
-    })
-
-      .then(response => {
-        console.log("response ID", response)
-        username.value = ''
-        password.value = ''
-        TokenService.saveAuthToken(response.authToken)
-        TokenService.saveUserId(response.user_id)
-        this.props.history.push('/myBoards')
-      })
-      .then(response => {
-        console.log("response:", response)
-
-      })
-      .catch(err => {
-        alert(err);
-        console.log(err);
+    try {
+      const response = await axios.post('/api/auth/login', {
+        username,
+        password,
       });
-  }
+      console.log("response ID", response.data);
+      setUsername('');
+      setPassword('');
+      TokenService.saveAuthToken(response.data.authToken);
+      TokenService.saveUserId(response.data.user_id);
+      history.push('/myBoards');
+    } catch (err) {
+      alert(err);
+      console.log(err);
+      setError(err.message);
+    }
+  };
 
+  return (
+    <div className="login">
+      <form onSubmit={handleSubmitJwtAuth}>
+        
+          <input
+            type="text"
+            className="formInput"
+            name="username"
+            placeholder='Username'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+       
+     
+          <input
+            type="password"
+            className="formInput"
+            name="password"
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+       
+        <div className="button-spacer">
+          <button className="formButton" type="submit"> Login </button>
+        </div>
+        <div className="button-spacer">
+          <Link to="/registration">
+            <button className="formButton" type="button"> Register </button>
+          </Link>
+        </div>
+        <div role='alert'>
+          {error && <p className='red'>{error}</p>}
+        </div>
+      </form>
+    </div>
+  );
+};
 
-  render() {
-    const { error } = this.state
-    return (
-      <div className="login">
-        <form onSubmit={this.handleSubmitJwtAuth}>
-          <div className="spacer">
-            <label htmlFor="username"> Username </label>
-            <input type="text" className="username" name="username" required />
-          </div>
-          <div className="spacer">
-            <label htmlFor="password"> Password </label>
-            <input type="password" className="password" name="password" required />
-          </div>
-          <div className="button-spacer">
-            <button type="submit"> Login </button>
-          </div>
-          <div className="button-spacer">
-            <Link to="/registration">
-              <button type="button"> Register </button>
-            </Link>
-          </div>
-          <div role='console.log'>
-            {error && <p className='red'>{error}</p>}
-          </div>
-        </form>
-      </div>
-    )
-  }
-
-
-
-}
+export default LoginForm;

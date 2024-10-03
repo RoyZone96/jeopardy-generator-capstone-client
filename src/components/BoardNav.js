@@ -1,23 +1,11 @@
-import React, { Component } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { format, parseISO } from 'date-fns'
-import config from '../config'
-import ApiContext from '../ApiContext'
+import React, { useState, useEffect, useContext } from "react";
+import { NavLink, Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import config from "../config";
+import ApiContext from "../utils/ApiContext";
 
-
-export default class BoardNav extends Component {
-  static defaultProps = {
-    onDeleteBoard: () => { },
-    match: {
-      params: {}
-    },
-    onShareBoard: () => { },
-    match: {
-      params: {}
-    }
-  }
-
-  state = {
+const BoardNav = (props) => {
+  const [board, setBoard] = useState({
     board_title: "",
     category_five: "",
     category_four: "",
@@ -29,148 +17,106 @@ export default class BoardNav extends Component {
     date_updated: "",
     id: 0,
     times_played: 0,
-    user_id: 0
-  }
+    user_id: 0,
+  });
 
-  static contextType = ApiContext;
+  const context = useContext(ApiContext);
+  const history = useHistory();
 
-  componentDidMount() {
-    const url = `${config.API_ENDPOINT}/boards/${this.props.id}`
-    console.log(url)
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then((responseJson) => {
-        console.log(responseJson)
-        this.setState({
-          board_title: responseJson.board_title,
-          category_five: responseJson.category_five,
-          category_four: responseJson.category_four,
-          category_one: responseJson.category_one,
-          category_six: responseJson.category_six,
-          category_three: responseJson.category_three,
-          category_two: responseJson.category_two,
-          date_created: responseJson.date_created,
-          date_updated: responseJson.date_updated,
-          id: responseJson.id,
-          times_played: responseJson.times_played,
-          user_id: responseJson.user_id
-        })
-      })
-  }
+  useEffect(() => {
+    const fetchBoard = async () => {
+      try {
+        const response = await axios.get(
+          `${config.API_ENDPOINT}/boards/${props.id}`
+        );
+        setBoard(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  handlePost = e => {
-    e.preventDefault()
-    const { id } = this.props;
+    fetchBoard();
+  }, [props.id]);
+
+  const handlePost = async (e) => {
+    e.preventDefault();
     const sharedBoard = {
-      id: this.props.id,
-      board_title: this.state.board_title,
-      category_five: this.state.category_five,
-      category_four: this.state.category_four,
-      category_one: this.state.category_one,
-      category_six: this.state.category_six,
-      category_three: this.state.category_three,
-      category_two: this.state.category_two,
-      user_id: this.state.user_id,
-      likes: 0
+      ...board,
+      likes: 0,
+    };
+
+    try {
+      const response = await axios.post(
+        `${config.API_ENDPOINT}/communityBoards`,
+        sharedBoard,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      context.shareBoard(response.data);
+    } catch (error) {
+      console.error(error.message);
     }
-    console.log(sharedBoard)
+  };
 
-    fetch(`${config.API_ENDPOINT}/communityBoards`,
-      {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(sharedBoard),
-      })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(response =>
-        this.context.shareBoard(response),
-        console.log(ApiContext))
-      .then(
-        console.log(sharedBoard)
-      )
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
+  const handleClickDelete = async (e) => {
+    e.preventDefault();
 
+    try {
+      await axios.delete(`${config.API_ENDPOINT}/boards/${props.id}`, {
+        headers: { "Content-Type": "application/json" },
+      });
+      context.deleteBoard(props.id);
+      props.onDeleteBoard(props.id);
+      history.push("/myBoards");
 
-  handleClickDelete = e => {
-    e.preventDefault()
-    const { id } = this.props;
+      await axios.delete(`${config.API_ENDPOINT}/communityBoards/${props.id}`, {
+        headers: { "Content-Type": "application/json" },
+      });
+      context.deleteBoard(props.id);
+      props.onDeleteBoard(props.id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    fetch(`${config.API_ENDPOINT}/boards/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res
-      })
-      .then(() => {
-        this.context.deleteBoard(id)
-        this.props.onDeleteBoard(id)
-        this.props.history.push('/myBoards')
-      })
-      .catch(error => {
-        console.error({ error })
-      })
-
-      fetch(`${config.API_ENDPOINT}/communityBoards/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'content-type': 'application/json'
-        },
-      })
-        .then(res => {
-          if (!res.ok)
-            return res.json().then(e => Promise.reject(e))
-          return res
-        })
-        .then(() => {
-          this.context.deleteBoard(id)
-          this.props.onDeleteBoard(id)
-        })
-        .catch(error => {
-          console.error({ error })
-        })
-  }
-
-  render() {
-    return (
-      <div className='boardNav'>
-            <div className="button-spacer">
-              <Link to={`/board/${this.props.id}`}>
-                <button type="button"> EDIT </button>
-              </Link>
-            </div>
-            <div className="button-spacer">
-              <Link to={`/play/${this.props.id}`}>
-                <button type="button"> PLAY </button>
-              </Link>
-            </div>
-            <div className="button-spacer">
-              <button type="submit" onClick={this.handlePost}> SHARE </button>
-            </div>
-            <div className="button-spacer">
-              <button type="button" onClick={this.handleClickDelete}> DELETE </button>
-            </div>
+  return (
+    <div className="boardNav">
+      <div className="button-spacer">
+        <Link to={`/board/${props.id}`}>
+          <button type="button"> EDIT </button>
+        </Link>
       </div>
-    )
-  }
-}
+      <div className="button-spacer">
+        <Link to={`/play/${props.id}`}>
+          <button type="button"> PLAY </button>
+        </Link>
+      </div>
+      <div className="button-spacer">
+        <button type="submit" onClick={handlePost}>
+          {" "}
+          SHARE{" "}
+        </button>
+      </div>
+      <div className="button-spacer">
+        <button type="button" onClick={handleClickDelete}>
+          {" "}
+          DELETE{" "}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+BoardNav.defaultProps = {
+  onDeleteBoard: () => {},
+  match: {
+    params: {},
+  },
+  onShareBoard: () => {},
+  match: {
+    params: {},
+  },
+};
+
+export default BoardNav;

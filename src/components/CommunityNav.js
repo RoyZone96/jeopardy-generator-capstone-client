@@ -1,106 +1,78 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { format, parseISO } from 'date-fns'
-import config from '../config'
-import ApiContext from '../ApiContext'
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { format, parseISO } from "date-fns";
+import axios from "axios";
+import config from "../config";
+import ApiContext from "../utils/ApiContext";
 
+const BoardNav = (props) => {
+  const [boardTitle, setBoardTitle] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [boardId, setBoardId] = useState(0);
+  const [dayPosted, setDayPosted] = useState("");
+  const context = useContext(ApiContext);
 
-
-export default class BoardNav extends Component {
-  static defaultProps = {
-    onDeleteBoard: () => { },
-    match: {
-      params: {}
-    }
-  }
-
-  state = {
-    board_title: '',
-    isLiked: false,
-    likes: 0,
-    board_id: 0,
-    existingBoards: {}
-  }
-
-  static contextType = ApiContext;
-
-
-
-  componentDidMount() {
-    console.log(this.props)
-    let url = `${config.API_ENDPOINT}/communityBoards/${this.props.id}`
-   
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
+  useEffect(() => {
+    const url = `${config.API_ENDPOINT}/communityBoards/${props.id}`;
+    axios
+      .get(url)
+      .then((response) => {
+        const { id, board_title, likes, day_posted } = response.data;
+        setBoardId(id);
+        setBoardTitle(board_title);
+        setLikes(likes);
+        setDayPosted(day_posted);
       })
-      .then((responseJson) => {
-        
-        this.setState({
-          board_id: responseJson.id,
-          board_title: responseJson.board_title,
-          likes: responseJson.likes
-        })
-       
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [props.id]);
+
+  const toggleLike = (event) => {
+    event.preventDefault();
+    const existingLikes = likes + 1;
+
+    const updateLikes = {
+      likes: existingLikes,
+    };
+
+    axios
+      .patch(
+        `${config.API_ENDPOINT}/communityBoards/${props.id}`,
+        updateLikes,
+        {
+          headers: { "content-type": "application/json" },
+        }
+      )
+      .then((response) => {
+        window.location = "/community";
       })
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
-
-  toggleLike = (event) => {
-    event.preventDefault()
-    let existingLikes = this.state.likes + 1
-
-    let updateLikes = {
-      likes: existingLikes
-    }
-
-
-    
-
-    fetch(`${config.API_ENDPOINT}/communityBoards/${this.props.id}`,
-      {
-        method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(updateLikes),
-      })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(response => {
-        window.location = "/community"
-      })
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
-
-  render() {
-    const { board_id, board_title, day_posted, likes } = this.state;
-
-    return (
-      <div className='boardNav'>
-        <h2>{day_posted && format(parseISO(day_posted), 'MMM d, yyyy')}</h2>
-        <div className="button-spacer">
-          <Link to={`/communityPlay/${this.props.id}`}>
-            <button type="button"> PLAY </button>
-          </Link>
-        </div>
-        <div className="button-spacer">
-          <button onClick={this.toggleLike}> LIKE: {likes}</button>
-        </div>
+  return (
+    <div className="boardNav">
+      <h2>{dayPosted && format(parseISO(dayPosted), "MMM d, yyyy")}</h2>
+      <div className="button-spacer">
+        <Link to={`/communityPlay/${props.id}`}>
+          <button type="button"> PLAY </button>
+        </Link>
       </div>
-    )
-  }
-}
+      <div className="button-spacer">
+        <button onClick={toggleLike}> LIKE: {likes}</button>
+      </div>
+    </div>
+  );
+};
+
+BoardNav.defaultProps = {
+  onDeleteBoard: () => {},
+  match: {
+    params: {},
+  },
+};
+
+export default BoardNav;

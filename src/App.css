@@ -1,0 +1,55 @@
+body {
+    background: rgba(0, 0, 0, 0) url(images/bg1.png) no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    font-family: 'Chalkboard SE', 'Comic Sans MS', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Chalkduster', 'Comic Sans MS', cursive;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000000;
+}
+
+p, li, a {
+    font-family: 'Chalkboard SE', 'Comic Sans MS', cursive;
+    color: #ffffff;
+}
+
+.container {
+    padding: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    background-color: #3b3b3b;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    background-color: #4b4b4b;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: 'Chalkboard SE', 'Comic Sans MS', cursive;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5b5b5b;
+}
+
+input, textarea {
+    background-color: #4b4b4b;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Chalkboard SE', 'Comic Sans MS', cursive;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #bbbbbb;
+}

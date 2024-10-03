@@ -1,300 +1,200 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import NavLinks from '../components/NavLinks'
-import Welcome from '../components/Welcome'
-import BoardNav from '../components/BoardNav'
-import Pagination from '../components/Pagination'
-import config from "../config"
-import ApiContext from '../ApiContext'
-import TokenService from '../services/TokenService'
-import BoardsApiService from '../services/BoardsApiService'
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import NavLinks from "../components/NavLinks";
+import Welcome from "../components/Welcome";
+import BoardNav from "../components/BoardNav";
+import config from "../config";
+import ApiContext from "../utils/ApiContext";
+import TokenService from "../services/TokenService";
+import BoardsApiService from "../services/BoardsApiService";
+import "bootstrap/dist/css/bootstrap.min.css";
 
+const MyBoards = () => {
+  const [boards, setBoards] = useState([]);
+  const [isSorted, setIsSorted] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
+  const apiContext = useContext(ApiContext);
 
-export default class MyBoards extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            itemPage: [],
-            boards: [],
-            isSorted: false
+  useEffect(() => {
+    getAllBoards();
+  }, []);
+
+  const getAllBoards = async () => {
+    const user_id = TokenService.getUserId();
+    try {
+      const response = await axios.get(`${config.API_ENDPOINT}/boards`);
+      const filteredBoards = response.data.filter(
+        (board) => board.user_id === user_id
+      );
+      setBoards(filteredBoards);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const data = event.target.value.toLowerCase();
+    if (data === "") {
+      getAllBoards();
+    } else {
+      const filteredBoards = boards.filter((board) =>
+        board.board_title.toLowerCase().includes(data)
+      );
+      setBoards(filteredBoards);
+    }
+  };
+
+  const handleAddBoard = (board) => {
+    setBoards([...boards, board]);
+  };
+
+  const handlePost = async (e) => {
+    e.preventDefault();
+    const sharedBoard = {
+      board_title: e.target.board_title.value,
+      user_id: TokenService.getUserId(),
+      board_id: BoardsApiService.getBoardsById(),
+      likes: 0,
+    };
+    try {
+      const response = await axios.post(
+        `${config.API_ENDPOINT}/communityBoards`,
+        sharedBoard,
+        {
+          headers: { "Content-Type": "application/json" },
         }
-
-        this.onChangePage = this.onChangePage.bind(this);
+      );
+      apiContext.shareBoard(response.data);
+      window.location = "/";
+    } catch (error) {
+      console.error(error.message);
     }
+  };
 
+  const handleToggleDefault = async () => {
+    window.location = "/myboards";
+    getAllBoards();
+  };
 
-
-    componentDidMount() {
-        this.getAllBoards()
+  const handleToggleNames = async () => {
+    setIsSorted(true);
+    window.location = "/myboards";
+    const user_id = TokenService.getUserId();
+    try {
+      const response = await axios.get(
+        `${config.API_ENDPOINT}/boards/sort-by/names`
+      );
+      const filteredBoards = response.data.filter(
+        (board) => board.user_id === user_id
+      );
+      setBoards(filteredBoards);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    getAllBoards() {
-        const user_id = TokenService.getUserId()
-        console.log(user_id)
-
-        let boardUrl = `${config.API_ENDPOINT}/boards`
-
-        console.log(boardUrl)
-
-        fetch(boardUrl)
-            .then((boardsRes) => {
-                if (!boardsRes.ok)
-                    return boardsRes.json().then(e => Promise.reject(e));
-                return boardsRes.json();
-            })
-            .then((boards) => {
-
-                console.log(boards)
-                console.log(user_id)
-
-                let filteredBoards = [];
-                for (let i = 0; i < boards.length; i++) {
-                    if (boards[i].user_id == user_id) {
-                        filteredBoards.push(boards[i]);
-                    }
-                }
-                this.setState({ boards: filteredBoards });
-            })
-            .catch(error => {
-                console.log({ error });
-            });
+  const handleToggleDates = async () => {
+    setIsSorted(true);
+    window.location = "/myboards";
+    const user_id = TokenService.getUserId();
+    try {
+      const response = await axios.get(
+        `${config.API_ENDPOINT}/boards/sort-by/dates`
+      );
+      const filteredBoards = response.data.filter(
+        (board) => board.user_id === user_id
+      );
+      setBoards(filteredBoards);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    onChangePage(pageOfItems) {
-        // update state with new page of items
-        this.setState({ pageOfItems: pageOfItems });
-    }
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-    handleSearch = (event) => {
-        event.preventDefault()
-        const data = event.target.value
-        let filterLowerCased = data.toLowerCase()
-        //if no search term display all students
-        if (data == '') {
-            this.getAllBoards()
-        }
-        // if there is a search term narrow it down
-        else {
-            let filteredBoards = []
-            for (let i = 0; i < this.state.boards.length; i++) {
-                let searchTermLowercased = this.state.boards[i].board_title.toLowerCase()
-                if (searchTermLowercased.indexOf(filterLowerCased) > -1) {
-                    console.log('found')
-                    filteredBoards.push(this.state.boards[i])
-                }
-            }
-            // if there are no results display an error
-            if (filteredBoards.length == 0) {
-                this.setState({
-                    boards: []
-                })
-            }
-            //if there are results display them
-            else {
-                console.log(filteredBoards)
-                this.setState({
-                    boards: filteredBoards
-                })
-            }
-        }
-    }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = boards.slice(indexOfFirstItem, indexOfLastItem);
 
+  const boardsOutput = currentItems.map((board) => (
+    <ul key={board.id}>
+      <li className="menu-select">
+        <div className="menu-wrapper">
+          <div>
+            <p className="title">{board.board_title}</p>
+            <BoardNav id={board.id} />
+          </div>
+        </div>
+      </li>
+    </ul>
+  ));
 
-    handleAddBoard = (board) => {
-        this.setState({
-            boards: [...this.state.boards, board]
-        })
-    }
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(boards.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
+  return (
+    <div>
+      <Welcome />
+      <NavLinks />
+      <div className="sort">
+        <select
+          name="sorting"
+          id="sort-bar"
+          onChange={(e) => {
+            if (e.target.value === "default") handleToggleDefault();
+            if (e.target.value === "name") handleToggleNames();
+            if (e.target.value === "recent") handleToggleDates();
+          }}
+        >
+          <option value="default">Default</option>
+          <option value="name">Alphabetical</option>
+          <option value="recent">Recent</option>
+        </select>
+        <form>
+          <input
+            type="text"
+            className="search_bar"
+            name="filter"
+            placeholder="Input Here..."
+            onChange={handleSearch}
+          />
+        </form>
+      </div>
+      <section className="new-wrapper">
+        <Link to="/newboard">
+          <button className="new-board" type="button">
+            NEW BOARD +
+          </button>
+        </Link>
+      </section>
+      <section className="board-list">{boardsOutput}</section>
+      <nav>
+        <ul className="pagination">
+          {pageNumbers.map((number) => (
+            <li
+              key={number}
+              className={`page-item ${currentPage === number ? "active" : ""}`}
+            >
+              <a
+                onClick={() => handlePageChange(number)}
+                className="page-link"
+                href="#"
+              >
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  );
+};
 
-    handlePost = e => {
-        e.preventDefault()
-        const board_title = board_title
-        const sharedBoard = {
-            board_title: this.board_title,
-            user_id: TokenService.getUserId(),
-            board_id: BoardsApiService.getBoardsById(),
-            likes: 0,
-        }
-
-        fetch(`${config.API_ENDPOINT}/communityBoards`,
-            {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(sharedBoard),
-            })
-            .then(res => {
-                if (!res.ok)
-                    return res.json().then(e => Promise.reject(e))
-                return res.json()
-            })
-            .then(response =>
-                this.context.shareBoard(response),
-                console.log(ApiContext))
-            .then(
-                console.log(sharedBoard),
-                window.location = '/'
-            )
-            .catch(error => {
-                console.log(error.message)
-            })
-    }
-
-    handleToggleDefault = () => {
-        window.location = '/myboards'
-
-        const user_id = TokenService.getUserId()
-        console.log(user_id)
-
-        let boardUrl = `${config.API_ENDPOINT}/boards`
-
-        console.log(boardUrl)
-
-        fetch(boardUrl)
-            .then((boardsRes) => {
-                if (!boardsRes.ok)
-                    return boardsRes.json().then(e => Promise.reject(e));
-                return boardsRes.json();
-            })
-            .then((boards) => {
-
-                console.log(boards)
-                console.log(user_id)
-
-                let filteredBoards = [];
-                for (let i = 0; i < boards.length; i++) {
-                    if (boards[i].user_id == user_id) {
-                        filteredBoards.push(boards[i]);
-                    }
-                }
-                this.setState({ boards: filteredBoards });
-            })
-            .catch(error => {
-                console.log({ error });
-            });
-
-    }
-
-    handleToggleNames = () => {
-        this.setState({ isSorted: true })
-        window.location = '/myboards'
-
-        const user_id = TokenService.getUserId()
-        console.log(user_id)
-
-        let boardUrl = `${config.API_ENDPOINT}/boards/sort-by/names`
-
-        console.log(boardUrl)
-
-        fetch(boardUrl)
-            .then((boardsRes) => {
-                if (!boardsRes.ok)
-                    return boardsRes.json().then(e => Promise.reject(e));
-                return boardsRes.json();
-            })
-            .then((boards) => {
-
-                console.log(boards)
-                console.log(user_id)
-
-                let filteredBoards = [];
-                for (let i = 0; i < boards.length; i++) {
-                    if (boards[i].user_id == user_id) {
-                        filteredBoards.push(boards[i]);
-                    }
-                }
-                this.setState({ boards: filteredBoards });
-            })
-            .catch(error => {
-                console.log({ error });
-            });
-
-    }
-
-    handleToggleDates = () => {
-        this.setState({ isSorted: true })
-        window.location = '/myboards'
-
-        const user_id = TokenService.getUserId()
-        console.log(user_id)
-
-        let boardUrl = `${config.API_ENDPOINT}/boards/sort-by/dates`
-
-        console.log(boardUrl)
-
-        fetch(boardUrl)
-            .then((boardsRes) => {
-                if (!boardsRes.ok)
-                    return boardsRes.json().then(e => Promise.reject(e));
-                return boardsRes.json();
-            })
-            .then((boards) => {
-
-                console.log(boards)
-                console.log(user_id)
-
-                let filteredBoards = [];
-                for (let i = 0; i < boards.length; i++) {
-                    if (boards[i].user_id == user_id) {
-                        filteredBoards.push(boards[i]);
-                    }
-                }
-                this.setState({ boards: filteredBoards });
-            })
-            .catch(error => {
-                console.log({ error });
-            });
-    }
-
-
-
-
-    render() {
-        const boards = this.state.boards
-        console.log(boards)
-        let boardsOutput = boards.map(boards => {
-            console.log(boards)
-            return (
-                <ul>
-                    <li className="menu-select">
-                        <div className="menu-wrapper">
-                            <div>
-                                <p className="title">{boards.board_title}</p>
-                                <BoardNav id={boards.id} />
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            )
-        })
-        return (
-            <div>
-                <Welcome />
-                <NavLinks />
-                <div className="sort">
-                    <select name="sorting" id="sort-bar">
-                        <option value="default" onChange={this.handleToggleDefault}>Default</option>
-                        <option value="name" onChange={this.handleToggleNames}>Alphabetical</option>
-                        <option value="recent" onChange={this.handleToggleDates}>Recent</option>
-                    </select>
-                    <form>
-                        <input type="text"
-                            className="search_bar"
-                            name='filter'
-                            placeholder="Input Here..."
-                            onChange={(event) => this.handleSearch(event)} />
-                    </form>
-                </div>
-                <section className="new-wrapper">
-                    <Link to="/newboard">
-                        <button className="new-board" type="button">NEW BOARD +</button>
-                    </Link>
-                </section>
-                <section key={boards.id} className="board-list">
-                    {boardsOutput}
-                </section>
-                
-            </div>
-        )
-    }
-}
+export default MyBoards;
